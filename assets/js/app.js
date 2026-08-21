@@ -36,20 +36,49 @@ function populateConfiguredText() {
 
 function setupExternalLinks() {
   const mapsLink = $('#maps-link');
-  const calendarLink = $('#calendar-link');
+  const primaryCalendarLink = $('#calendar-link');
+  const giftDeliveryLink = $('#gift-delivery-link');
 
   if (mapsLink) {
-    mapsLink.href = buildGoogleMapsUrl(WEDDING_CONFIG.event.venueAddress);
+    mapsLink.href = isConfiguredValue(WEDDING_CONFIG.event.mapsUrl)
+      ? WEDDING_CONFIG.event.mapsUrl
+      : buildGoogleMapsUrl(WEDDING_CONFIG.event.venueAddress);
   }
 
-  if (calendarLink) {
-    calendarLink.href = buildGoogleCalendarUrl({
+  if (primaryCalendarLink && !primaryCalendarLink.dataset.calendarEvent) {
+    primaryCalendarLink.href = buildGoogleCalendarUrl({
       title: WEDDING_CONFIG.event.title,
       start: WEDDING_CONFIG.event.start,
       end: WEDDING_CONFIG.event.end,
       location: WEDDING_CONFIG.event.venueAddress,
       description: WEDDING_CONFIG.event.description
     });
+  }
+
+  $$('[data-calendar-event]').forEach((link) => {
+    const event = WEDDING_CONFIG.events?.[link.dataset.calendarEvent];
+    if (!event) return;
+    link.href = buildGoogleCalendarUrl({
+      title: event.title,
+      start: event.start,
+      end: event.end,
+      location: event.venueAddress,
+      description: event.description
+    });
+  });
+
+  $$('[data-maps-event]').forEach((link) => {
+    const event = WEDDING_CONFIG.events?.[link.dataset.mapsEvent];
+    if (!event) return;
+    link.href = isConfiguredValue(event.mapsUrl)
+      ? event.mapsUrl
+      : buildGoogleMapsUrl(event.venueAddress);
+  });
+
+  if (giftDeliveryLink) {
+    giftDeliveryLink.href = isConfiguredValue(WEDDING_CONFIG.gift.deliveryAddressUrl)
+      ? WEDDING_CONFIG.gift.deliveryAddressUrl
+      : buildGoogleMapsUrl(WEDDING_CONFIG.gift.deliveryAddress);
   }
 }
 
