@@ -15,7 +15,9 @@
   --content-width: 1120px;
   --page-gutter: clamp(1.25rem, 5vw, 4rem);
   --section-space: clamp(5rem, 12vw, 9rem);
-  --radius-card: 1.5rem;
+  --radius-card: .875rem;
+  --radius-control: .625rem;
+  --radius-button: .75rem;
   --shadow-soft: 0 24px 80px rgba(34, 28, 20, 0.12);
   --transition: 480ms cubic-bezier(.2,.7,.2,1);
 }
@@ -163,7 +165,7 @@ a {
   justify-content: center;
   padding: .85rem 1.5rem;
   border: 1px solid transparent;
-  border-radius: 999px;
+  border-radius: var(--radius-button);
   appearance: none;
   cursor: pointer;
   font-family: var(--font-body);
@@ -455,6 +457,7 @@ textarea:focus-visible {
   min-width: 0;
   padding: 1.5rem 1rem;
   border: 1px solid var(--color-line-light);
+  border-radius: var(--radius-button);
   text-align: center;
 }
 
@@ -492,6 +495,7 @@ textarea:focus-visible {
 .event-card {
   padding: 1.6rem;
   border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
   background: var(--color-paper);
 }
 
@@ -639,6 +643,7 @@ textarea:focus-visible {
   gap: 1.3rem;
   padding: 1.4rem;
   border: 1px solid var(--color-line-light);
+  border-radius: var(--radius-card);
   background: rgba(255,255,255,.045);
 }
 
@@ -671,7 +676,7 @@ textarea:focus-visible {
   min-height: 3.25rem;
   padding: .9rem 1rem;
   border: 1px solid rgba(255,255,255,.24);
-  border-radius: 0;
+  border-radius: var(--radius-control);
   outline: none;
   background: rgba(255,255,255,.04);
   color: var(--color-white);
@@ -725,6 +730,7 @@ textarea:focus-visible {
   place-items: center;
   padding: .8rem;
   border: 1px solid rgba(255,255,255,.24);
+  border-radius: var(--radius-control);
   color: rgba(255,255,255,.76);
   font-size: .78rem;
   text-align: center;
@@ -847,6 +853,7 @@ textarea:focus-visible {
 .gift-grid > div {
   padding: 1.35rem;
   border: 1px solid rgba(29,28,26,.16);
+  border-radius: var(--radius-card);
   background: rgba(255,255,255,.28);
 }
 
@@ -892,6 +899,13 @@ textarea:focus-visible {
   color: rgba(255,255,255,.76);
 }
 
+#closing-title {
+  max-width: 46rem;
+  font-size: clamp(2.2rem, 8.5vw, 4.2rem);
+  letter-spacing: -.035em;
+  line-height: .92;
+}
+
 .closing__signature {
   margin-top: 2rem;
   font-family: var(--font-display);
@@ -911,7 +925,7 @@ textarea:focus-visible {
   gap: .5rem;
   padding: .55rem .85rem;
   border: 1px solid rgba(255,255,255,.2);
-  border-radius: 999px;
+  border-radius: var(--radius-button);
   background: rgba(29,28,26,.86);
   box-shadow: 0 10px 30px rgba(0,0,0,.18);
   color: var(--color-white);
@@ -1158,7 +1172,7 @@ textarea:focus-visible {
 
 .story-slider__viewport {
   overflow: hidden;
-  border-radius: 1.5rem;
+  border-radius: var(--radius-card);
   background: #d9d0c4;
 }
 
@@ -1240,7 +1254,7 @@ textarea:focus-visible {
   min-width: 0;
   overflow: hidden;
   border: 1px solid rgba(29, 28, 26, .14);
-  border-radius: 1.5rem;
+  border-radius: var(--radius-card);
   background: #d8d0c6;
 }
 
@@ -1260,7 +1274,7 @@ textarea:focus-visible {
   display: block;
   width: 100%;
   max-height: 72rem;
-  border-radius: 1.5rem;
+  border-radius: var(--radius-card);
   object-fit: cover;
   object-position: center;
 }
@@ -1278,7 +1292,7 @@ textarea:focus-visible {
   min-height: 4.2rem;
   padding: 1rem 1.15rem;
   border: 1px solid rgba(255,255,255,.28);
-  border-radius: 0;
+  border-radius: var(--radius-control);
   outline: 0;
   background: #f7f3ec;
   color: var(--color-ink);
@@ -1349,7 +1363,7 @@ textarea:focus-visible {
   padding: 0;
   break-inside: avoid;
   border: 0;
-  border-radius: 1.25rem;
+  border-radius: var(--radius-button);
   background: transparent;
   cursor: zoom-in;
   overflow: hidden;
@@ -1401,7 +1415,7 @@ textarea:focus-visible {
   max-height: 88vh;
   width: auto;
   height: auto;
-  border-radius: 1rem;
+  border-radius: var(--radius-button);
   object-fit: contain;
   box-shadow: 0 24px 80px rgba(0,0,0,.38);
 }
