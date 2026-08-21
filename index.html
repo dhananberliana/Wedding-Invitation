@@ -54,22 +54,47 @@
           <h2 class="display-title" id="couple-title">The Bride<br>&amp; The Groom</h2>
           <p class="body-copy">With gratitude and love, we invite you to witness a day that marks the beginning of our lifelong journey together.</p>
           <div class="couple-names">
-            <article>
+            <article class="couple-profile">
+              <img class="couple-portrait couple-portrait--bride" src="assets/images/bride.webp" alt="Portrait of the bride" loading="lazy" decoding="async">
               <p class="mini-label">The Bride</p>
               <h3 data-config="couple.bride">XXX</h3>
               <p class="parent-copy">Daughter of <span data-config="couple.brideFather">XXX</span> &amp; <span data-config="couple.brideMother">XXX</span></p>
             </article>
-            <article>
+            <article class="couple-profile">
+              <img class="couple-portrait couple-portrait--groom" src="assets/images/groom.webp" alt="Portrait of the groom" loading="lazy" decoding="async">
               <p class="mini-label">The Groom</p>
               <h3 data-config="couple.groom">XXX</h3>
               <p class="parent-copy">Son of <span data-config="couple.groomFather">XXX</span> &amp; <span data-config="couple.groomMother">XXX</span></p>
             </article>
           </div>
         </div>
-        <figure class="editorial-figure reveal">
-          <img src="assets/images/couple-editorial.webp" alt="Editorial portrait of the couple" loading="lazy" decoding="async">
-          <figcaption>Our story, our forever.</figcaption>
-        </figure>
+        <div class="story-slider reveal" id="story-slider" aria-label="Our story photo slider">
+          <div class="story-slider__viewport">
+            <div class="story-slider__track">
+              <figure class="story-slider__slide" data-story-slide>
+                <img src="assets/images/couple-editorial.webp" alt="Dhanan and Berliana editorial portrait" loading="lazy" decoding="async">
+              </figure>
+              <figure class="story-slider__slide" data-story-slide>
+                <img src="assets/images/story-01.webp" alt="Dhanan and Berliana pre-wedding portrait" loading="lazy" decoding="async">
+              </figure>
+              <figure class="story-slider__slide" data-story-slide>
+                <img src="assets/images/story-03.webp" alt="Dhanan and Berliana studio portrait" loading="lazy" decoding="async">
+              </figure>
+            </div>
+          </div>
+          <div class="story-slider__footer">
+            <p class="story-slider__caption">Our story, our forever.</p>
+            <div class="story-slider__controls" aria-label="Slider controls">
+              <button class="story-slider__arrow" type="button" data-story-prev aria-label="Previous photo">←</button>
+              <div class="story-slider__dots" aria-label="Choose photo">
+                <button type="button" data-story-dot="0" aria-label="Show photo 1" aria-current="true"></button>
+                <button type="button" data-story-dot="1" aria-label="Show photo 2" aria-current="false"></button>
+                <button type="button" data-story-dot="2" aria-label="Show photo 3" aria-current="false"></button>
+              </div>
+              <button class="story-slider__arrow" type="button" data-story-next aria-label="Next photo">→</button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -146,10 +171,8 @@
           <p class="venue-address" data-config="event.venueAddress">XXX</p>
           <a class="text-link" id="maps-link" href="https://www.google.com/maps/search/?api=1&query=XXX" target="_blank" rel="noopener noreferrer">Open in Google Maps <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="venue-card__visual" aria-hidden="true">
-          <span class="venue-pin">⌖</span>
-          <span class="venue-line"></span>
-          <span class="venue-caption">Directions</span>
+        <div class="venue-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.568626527479!2d115.19624937595414!3d-8.541190491501956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23c7069bfefa3%3A0xb974753cf3b8cf19!2sG-BOY%20CELL!5e0!3m2!1sen!2sid!4v1787329642492!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="Wedding venue map"></iframe>
         </div>
       </div>
     </section>
@@ -159,15 +182,10 @@
         <p class="eyebrow eyebrow--dark">A glimpse of us</p>
         <h2 class="display-title" id="story-title">Our Story in Frames</h2>
       </div>
-      <div class="story-grid">
-        <figure class="story-frame story-frame--wide reveal">
-          <img src="assets/images/story-01.webp" alt="Couple portrait under a veil" loading="lazy" decoding="async">
-        </figure>
-        <figure class="story-frame reveal">
-          <img src="assets/images/story-02.webp" alt="Bride and groom portrait" loading="lazy" decoding="async">
-        </figure>
-        <figure class="story-frame reveal">
-          <img src="assets/images/story-03.webp" alt="Couple in a dramatic studio portrait" loading="lazy" decoding="async">
+      <div class="section-shell">
+        <figure class="story-feature reveal">
+          <img id="story-feature-image" src="assets/images/story-feature.webp" alt="Featured pre-wedding story portrait" loading="lazy" decoding="async">
+          <figcaption>This photo can be replaced with your preferred Our Story image later.</figcaption>
         </figure>
       </div>
     </section>
@@ -198,18 +216,8 @@
 
           <div class="field-group" id="guest-count-group">
             <label for="guest-count">Number of Guests Attending</label>
-            <select id="guest-count" name="guests">
-              <option value="1">1 Guest</option>
-              <option value="2">2 Guests</option>
-              <option value="3">3 Guests</option>
-              <option value="4">4 Guests</option>
-              <option value="5">5 Guests</option>
-              <option value="6">6 Guests</option>
-              <option value="7">7 Guests</option>
-              <option value="8">8 Guests</option>
-              <option value="9">9 Guests</option>
-              <option value="10">10 Guests</option>
-            </select>
+            <input id="guest-count" name="guests" type="number" min="1" max="10" step="1" inputmode="numeric" value="1" aria-describedby="guest-count-hint">
+            <p class="field-hint" id="guest-count-hint">Enter the number of guests attending (1–10).</p>
           </div>
 
           <div class="field-group">
