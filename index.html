@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3eee6">
+  <meta name="description" content="A private wedding invitation for our beloved family and friends.">
+  <title>Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="is-locked">
+  <noscript>
+    <div class="noscript-banner">Please enable JavaScript to use the RSVP and interactive invitation features.</div>
+  </noscript>
+
+  <section class="opening-cover" id="opening-cover" aria-label="Opening wedding invitation">
+    <div class="opening-cover__media" aria-hidden="true"></div>
+    <div class="opening-cover__veil"></div>
+    <div class="opening-cover__content">
+      <p class="eyebrow" data-config="site.invitationLabel">Wedding Invitation</p>
+      <h1 class="opening-cover__names">
+        <span data-config="couple.bride">XXX</span>
+        <span class="ampersand">&amp;</span>
+        <span data-config="couple.groom">XXX</span>
+      </h1>
+      <p class="opening-cover__guest">To our beloved family &amp; friends</p>
+      <button class="button button--light" type="button" id="open-invitation">Open Invitation</button>
+    </div>
+  </section>
+
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <img class="hero__image" src="assets/images/hero.webp" alt="Bride and groom in traditional wedding attire" fetchpriority="high">
+      <div class="hero__overlay"></div>
+      <div class="hero__content reveal">
+        <p class="eyebrow" data-config="site.greeting">Dear family &amp; friends,</p>
+        <h2 class="hero__title" id="hero-title">
+          <span data-config="couple.bride">XXX</span>
+          <span class="ampersand">&amp;</span>
+          <span data-config="couple.groom">XXX</span>
+        </h2>
+        <p class="hero__copy" data-config="site.openingMessage">Together with our families, we warmly invite you to celebrate the beginning of our forever.</p>
+        <a class="scroll-cue" href="#couple" aria-label="Scroll to wedding details">Scroll</a>
+      </div>
+    </section>
+
+    <section class="section section--paper" id="couple" aria-labelledby="couple-title">
+      <div class="section-shell couple-grid">
+        <div class="couple-copy reveal">
+          <p class="eyebrow eyebrow--dark">Two souls, one story</p>
+          <h2 class="display-title" id="couple-title">The Bride<br>&amp; The Groom</h2>
+          <p class="body-copy">With gratitude and love, we invite you to witness a day that marks the beginning of our lifelong journey together.</p>
+          <div class="couple-names">
+            <article>
+              <p class="mini-label">The Bride</p>
+              <h3 data-config="couple.bride">XXX</h3>
+            </article>
+            <article>
+              <p class="mini-label">The Groom</p>
+              <h3 data-config="couple.groom">XXX</h3>
+              <p class="parent-copy">Son of <span data-config="couple.groomFather">XXX</span> &amp; <span data-config="couple.groomMother">XXX</span></p>
+            </article>
+          </div>
+        </div>
+        <figure class="editorial-figure reveal">
+          <img src="assets/images/couple-editorial.webp" alt="Editorial portrait of the couple" loading="lazy" decoding="async">
+          <figcaption>Our story, our forever.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="countdown" aria-labelledby="countdown-title">
+      <div class="section-shell reveal">
+        <p class="eyebrow">Counting down to our day</p>
+        <h2 class="display-title display-title--light" id="countdown-title">Until Forever Begins</h2>
+        <div class="countdown-grid" aria-live="polite">
+          <div class="countdown-card"><strong id="countdown-days">--</strong><span>Days</span></div>
+          <div class="countdown-card"><strong id="countdown-hours">--</strong><span>Hours</span></div>
+          <div class="countdown-card"><strong id="countdown-minutes">--</strong><span>Minutes</span></div>
+          <div class="countdown-card"><strong id="countdown-seconds">--</strong><span>Seconds</span></div>
+        </div>
+        <p class="countdown-note" id="countdown-note"></p>
+      </div>
+    </section>
+
+    <section class="section section--paper" id="event-details" aria-labelledby="event-title">
+      <div class="section-shell event-layout">
+        <div class="event-intro reveal">
+          <p class="eyebrow eyebrow--dark">Save the date</p>
+          <h2 class="display-title" id="event-title">Wedding Day</h2>
+          <p class="body-copy">We would be honored to celebrate this meaningful day together with you.</p>
+        </div>
+        <div class="event-card reveal">
+          <div class="event-card__item">
+            <span class="mini-label">Date &amp; Time</span>
+            <strong data-config="event.displayDateTime">XXX</strong>
+          </div>
+          <div class="event-card__item">
+            <span class="mini-label">Venue</span>
+            <strong data-config="event.venueAddress">XXX</strong>
+          </div>
+          <a class="button button--dark" id="calendar-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE" target="_blank" rel="noopener noreferrer">Save to Google Calendar</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--sand" id="venue" aria-labelledby="venue-title">
+      <div class="section-shell venue-card reveal">
+        <div class="venue-card__copy">
+          <p class="eyebrow eyebrow--dark">Where to celebrate</p>
+          <h2 class="display-title" id="venue-title">The Venue</h2>
+          <p class="venue-address" data-config="event.venueAddress">XXX</p>
+          <a class="text-link" id="maps-link" href="https://www.google.com/maps/search/?api=1&query=XXX" target="_blank" rel="noopener noreferrer">Open in Google Maps <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="venue-card__visual" aria-hidden="true">
+          <span class="venue-pin">⌖</span>
+          <span class="venue-line"></span>
+          <span class="venue-caption">Directions</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="story" aria-labelledby="story-title">
+      <div class="section-shell story-heading reveal">
+        <p class="eyebrow eyebrow--dark">A glimpse of us</p>
+        <h2 class="display-title" id="story-title">Our Story in Frames</h2>
+      </div>
+      <div class="story-grid">
+        <figure class="story-frame story-frame--wide reveal">
+          <img src="assets/images/story-01.webp" alt="Couple portrait under a veil" loading="lazy" decoding="async">
+        </figure>
+        <figure class="story-frame reveal">
+          <img src="assets/images/story-02.webp" alt="Bride and groom portrait" loading="lazy" decoding="async">
+        </figure>
+        <figure class="story-frame reveal">
+          <img src="assets/images/story-03.webp" alt="Couple in a dramatic studio portrait" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="rsvp" aria-labelledby="rsvp-title">
+      <div class="section-shell rsvp-layout">
+        <div class="rsvp-intro reveal">
+          <p class="eyebrow">Kindly respond</p>
+          <h2 class="display-title display-title--light" id="rsvp-title">Will You Join Us?</h2>
+          <p class="body-copy body-copy--light">Your response helps us prepare our celebration with care. Please submit one RSVP for your party.</p>
+        </div>
+
+        <form class="rsvp-form reveal" id="rsvp-form" novalidate>
+          <div class="field-group">
+            <label for="full-name">Full Name</label>
+            <input id="full-name" name="fullName" type="text" autocomplete="name" maxlength="120" required placeholder="Your full name">
+            <p class="field-error" id="full-name-error" aria-live="polite"></p>
+          </div>
+
+          <fieldset class="field-group fieldset-reset">
+            <legend>Attendance Confirmation</legend>
+            <div class="attendance-options">
+              <label class="choice-card"><input type="radio" name="attendance" value="attending" required><span>Attending</span></label>
+              <label class="choice-card"><input type="radio" name="attendance" value="not-attending" required><span>Not Attending</span></label>
+            </div>
+            <p class="field-error" id="attendance-error" aria-live="polite"></p>
+          </fieldset>
+
+          <div class="field-group" id="guest-count-group">
+            <label for="guest-count">Number of Guests Attending</label>
+            <select id="guest-count" name="guests">
+              <option value="1">1 Guest</option>
+              <option value="2">2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="5">5 Guests</option>
+              <option value="6">6 Guests</option>
+              <option value="7">7 Guests</option>
+              <option value="8">8 Guests</option>
+              <option value="9">9 Guests</option>
+              <option value="10">10 Guests</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="message">Wishes &amp; Messages</label>
+            <textarea id="message" name="message" rows="5" maxlength="1000" placeholder="Share your warm wishes with us"></textarea>
+          </div>
+
+          <button class="button button--light button--full" id="rsvp-submit" type="submit">Send RSVP</button>
+          <p class="form-status" id="rsvp-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="section section--paper" id="wishes" aria-labelledby="wishes-title">
+      <div class="section-shell wishes-shell">
+        <div class="wishes-heading reveal">
+          <p class="eyebrow eyebrow--dark">From the heart</p>
+          <h2 class="display-title" id="wishes-title">Wedding Wishes</h2>
+          <p class="body-copy">Messages shared by our family and friends will appear here.</p>
+        </div>
+        <div class="wishes-list" id="wishes-list" aria-live="polite">
+          <p class="wishes-empty">No wishes yet. Be the first to leave a message.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--sand" id="gift" aria-labelledby="gift-title">
+      <div class="section-shell gift-card reveal">
+        <p class="eyebrow eyebrow--dark">With love</p>
+        <h2 class="display-title" id="gift-title">Wanna give us some gifts?</h2>
+        <p class="body-copy">Your presence is already a beautiful gift. If you would like to send something more, these details are here for your convenience.</p>
+        <div class="gift-grid">
+          <div>
+            <span class="mini-label">Bank Account Number</span>
+            <strong data-config="gift.bankAccount">XXX</strong>
+          </div>
+          <div>
+            <span class="mini-label">Gift Delivery Address</span>
+            <strong data-config="gift.deliveryAddress">XXX</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" id="closing" aria-labelledby="closing-title">
+      <img class="closing__image" src="assets/images/closing.webp" alt="Closing portrait of the bride and groom" loading="lazy" decoding="async">
+      <div class="closing__overlay"></div>
+      <div class="closing__content reveal">
+        <p class="eyebrow">With love and gratitude</p>
+        <h2 class="display-title display-title--light" id="closing-title">
+          <span data-config="couple.bride">XXX</span> <span class="ampersand">&amp;</span> <span data-config="couple.groom">XXX</span>
+        </h2>
+        <p data-config="site.closingMessage">Your presence and prayers will make our day even more meaningful.</p>
+        <p class="closing__signature">See you on our special day.</p>
+      </div>
+    </section>
+  </main>
+
+  <button class="music-toggle" id="music-toggle" type="button" aria-pressed="false" aria-label="Play background music">
+    <span class="music-toggle__icon" aria-hidden="true">♪</span>
+    <span class="music-toggle__label">Music</span>
+  </button>
+  <audio id="background-music" preload="none" loop src="assets/audio/bermuara.mp3"></audio>
+
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
