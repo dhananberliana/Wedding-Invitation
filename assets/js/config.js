@@ -18,7 +18,7 @@ export const WEDDING_CONFIG = Object.freeze({
     deliveryAddress: 'XXX'
   },
   integration: {
-  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbxvHSZSthEdaz7coZlBKwaLHXf7FK72mNjWSds5fhEg6yQSc2mWw1FM3xrmlu-LbF0n/exec'
+    appsScriptUrl: 'https://script.google.com/macros/s/AKfycbxvHSZSthEdaz7coZlBKwaLHXf7FK72mNjWSds5fhEg6yQSc2mWw1FM3xrmlu-LbF0n/exec'
   },
   site: {
     invitationLabel: 'Wedding Invitation',
