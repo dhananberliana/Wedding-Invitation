@@ -270,7 +270,7 @@ textarea:focus-visible {
   gap: .15rem;
   margin: .4rem 0 1rem;
   font-family: var(--font-display);
-  font-size: clamp(3.6rem, 18vw, 6.8rem);
+  font-size: clamp(3rem, 14vw, 5.8rem);
   font-weight: 500;
   letter-spacing: -.055em;
   line-height: .75;
@@ -337,10 +337,10 @@ textarea:focus-visible {
   max-width: 38rem;
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(4rem, 20vw, 9rem);
+  font-size: clamp(3rem, 13vw, 6.5rem);
   font-weight: 500;
   letter-spacing: -.06em;
-  line-height: .72;
+  line-height: .88;
 }
 
 .hero__title .ampersand {
@@ -968,7 +968,7 @@ textarea:focus-visible {
   }
 
   .opening-cover__names {
-    font-size: clamp(5rem, 10vw, 8rem);
+    font-size: clamp(4.2rem, 8vw, 6.5rem);
   }
 
   .hero__content {
@@ -1139,12 +1139,14 @@ textarea:focus-visible {
 }
 
 .couple-portrait {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  margin-bottom: 1.15rem;
-  border-radius: 0;
+  display: block;
+  width: min(58vw, 12.5rem);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto 1.15rem;
+  border: 3px solid rgba(163, 124, 69, .22);
+  border-radius: 50%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 30%;
   box-shadow: 0 16px 40px rgba(29, 28, 26, .10);
 }
 
@@ -1156,6 +1158,7 @@ textarea:focus-visible {
 
 .story-slider__viewport {
   overflow: hidden;
+  border-radius: 1.5rem;
   background: #d9d0c4;
 }
 
@@ -1237,6 +1240,7 @@ textarea:focus-visible {
   min-width: 0;
   overflow: hidden;
   border: 1px solid rgba(29, 28, 26, .14);
+  border-radius: 1.5rem;
   background: #d8d0c6;
 }
 
@@ -1256,6 +1260,7 @@ textarea:focus-visible {
   display: block;
   width: 100%;
   max-height: 72rem;
+  border-radius: 1.5rem;
   object-fit: cover;
   object-position: center;
 }
@@ -1296,7 +1301,8 @@ textarea:focus-visible {
 
 @media (min-width: 768px) {
   .couple-portrait {
-    aspect-ratio: 3 / 4;
+    width: 15rem;
+    aspect-ratio: 1 / 1;
   }
 
   .story-slider {
@@ -1315,6 +1321,127 @@ textarea:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   .story-slider__track {
+    transition: none;
+  }
+}
+
+/* Our Story in Frames — full gallery */
+.story-gallery__intro {
+  max-width: 38rem;
+  margin: 1rem 0 0;
+  color: #766a5e;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.65;
+}
+
+.story-gallery {
+  column-count: 2;
+  column-gap: .5rem;
+  padding-bottom: .5rem;
+}
+
+.story-frame {
+  display: block;
+  width: 100%;
+  margin: 0 0 .5rem;
+  padding: 0;
+  break-inside: avoid;
+  border: 0;
+  border-radius: 1.25rem;
+  background: transparent;
+  cursor: zoom-in;
+  overflow: hidden;
+}
+
+.story-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform .45s ease, filter .45s ease;
+}
+
+.story-frame:hover img,
+.story-frame:focus-visible img {
+  transform: scale(1.025);
+  filter: brightness(.96);
+}
+
+.story-frame:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+.story-lightbox {
+  width: min(94vw, 58rem);
+  max-width: none;
+  max-height: 94vh;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+}
+
+.story-lightbox::backdrop {
+  background: rgba(17, 15, 13, .92);
+  backdrop-filter: blur(6px);
+}
+
+.story-lightbox__stage {
+  display: grid;
+  width: 100%;
+  max-height: 90vh;
+  place-items: center;
+}
+
+.story-lightbox__image {
+  display: block;
+  max-width: 100%;
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  border-radius: 1rem;
+  object-fit: contain;
+  box-shadow: 0 24px 80px rgba(0,0,0,.38);
+}
+
+.story-lightbox__close {
+  position: absolute;
+  z-index: 2;
+  top: .6rem;
+  right: .6rem;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.45);
+  border-radius: 50%;
+  background: rgba(17,15,13,.72);
+  color: #fff;
+  font: 300 1.8rem/1 var(--font-sans);
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .story-gallery {
+    column-count: 3;
+    column-gap: .7rem;
+  }
+
+  .story-frame {
+    margin-bottom: .7rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .story-gallery {
+    column-count: 4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-frame img {
     transition: none;
   }
 }
