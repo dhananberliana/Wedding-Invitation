@@ -191,6 +191,45 @@ function setupStorySlider() {
   startAuto();
 }
 
+function setupStoryGallery() {
+  const gallery = $('#story-gallery');
+  const lightbox = $('#story-lightbox');
+  const lightboxImage = $('#story-lightbox-image');
+  const closeButton = $('[data-story-lightbox-close]', lightbox || document);
+  if (!gallery || !lightbox || !lightboxImage) return;
+
+  const closeLightbox = () => {
+    if (typeof lightbox.close === 'function') {
+      lightbox.close();
+    } else {
+      lightbox.removeAttribute('open');
+    }
+    lightboxImage.src = '';
+    lightboxImage.alt = '';
+  };
+
+  $$('[data-story-frame]', gallery).forEach((frame) => {
+    frame.addEventListener('click', () => {
+      const image = $('img', frame);
+      if (!image) return;
+
+      lightboxImage.src = frame.dataset.fullSrc || image.src;
+      lightboxImage.alt = image.alt || 'Pre-wedding photo';
+
+      if (typeof lightbox.showModal === 'function') {
+        lightbox.showModal();
+      } else {
+        lightbox.setAttribute('open', '');
+      }
+    });
+  });
+
+  closeButton?.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+}
+
 function updateCountdown() {
   const parts = getCountdownParts(WEDDING_CONFIG.event.start);
   const fields = {
@@ -410,6 +449,7 @@ function init() {
   setupOpeningCover();
   setupMusic();
   setupStorySlider();
+  setupStoryGallery();
   setupCountdown();
   setupRevealAnimations();
   setupAttendanceToggle();
