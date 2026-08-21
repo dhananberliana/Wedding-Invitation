@@ -138,6 +138,59 @@ function setupMusic() {
   });
 }
 
+function setupStorySlider() {
+  const slider = $('#story-slider');
+  if (!slider) return;
+
+  const track = $('.story-slider__track', slider);
+  const slides = $$('[data-story-slide]', slider);
+  const dots = $$('[data-story-dot]', slider);
+  const prev = $('[data-story-prev]', slider);
+  const next = $('[data-story-next]', slider);
+  if (!track || slides.length < 2) return;
+
+  let index = 0;
+  let timer = null;
+  const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+  const render = () => {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot, dotIndex) => {
+      dot.setAttribute('aria-current', dotIndex === index ? 'true' : 'false');
+    });
+  };
+
+  const goTo = (nextIndex) => {
+    index = (nextIndex + slides.length) % slides.length;
+    render();
+  };
+
+  const stopAuto = () => {
+    if (timer) clearInterval(timer);
+    timer = null;
+  };
+
+  const startAuto = () => {
+    stopAuto();
+    if (!reduceMotion) timer = setInterval(() => goTo(index + 1), 5000);
+  };
+
+  prev?.addEventListener('click', () => { goTo(index - 1); startAuto(); });
+  next?.addEventListener('click', () => { goTo(index + 1); startAuto(); });
+  dots.forEach((dot) => dot.addEventListener('click', () => {
+    goTo(Number(dot.dataset.storyDot));
+    startAuto();
+  }));
+
+  slider.addEventListener('mouseenter', stopAuto);
+  slider.addEventListener('mouseleave', startAuto);
+  slider.addEventListener('focusin', stopAuto);
+  slider.addEventListener('focusout', startAuto);
+
+  render();
+  startAuto();
+}
+
 function updateCountdown() {
   const parts = getCountdownParts(WEDDING_CONFIG.event.start);
   const fields = {
@@ -356,6 +409,7 @@ function init() {
   setupExternalLinks();
   setupOpeningCover();
   setupMusic();
+  setupStorySlider();
   setupCountdown();
   setupRevealAnimations();
   setupAttendanceToggle();
