@@ -57,6 +57,7 @@
             <article>
               <p class="mini-label">The Bride</p>
               <h3 data-config="couple.bride">XXX</h3>
+              <p class="parent-copy">Daughter of <span data-config="couple.brideFather">XXX</span> &amp; <span data-config="couple.brideMother">XXX</span></p>
             </article>
             <article>
               <p class="mini-label">The Groom</p>
@@ -93,16 +94,46 @@
           <h2 class="display-title" id="event-title">Wedding Day</h2>
           <p class="body-copy">We would be honored to celebrate this meaningful day together with you.</p>
         </div>
-        <div class="event-card reveal">
-          <div class="event-card__item">
-            <span class="mini-label">Date &amp; Time</span>
-            <strong data-config="event.displayDateTime">XXX</strong>
-          </div>
-          <div class="event-card__item">
-            <span class="mini-label">Venue</span>
-            <strong data-config="event.venueAddress">XXX</strong>
-          </div>
-          <a class="button button--dark" id="calendar-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE" target="_blank" rel="noopener noreferrer">Save to Google Calendar</a>
+        <div class="event-cards reveal">
+          <article class="event-card" id="event-ngidi">
+            <p class="event-card__label" data-config="events.ngidi.label">Ngidi</p>
+            <div class="event-card__item">
+              <span class="mini-label">Date</span>
+              <strong data-config="events.ngidi.displayDate">XXX</strong>
+            </div>
+            <div class="event-card__item">
+              <span class="mini-label">Time</span>
+              <strong data-config="events.ngidi.displayTime">XXX</strong>
+            </div>
+            <div class="event-card__item">
+              <span class="mini-label">Venue</span>
+              <strong data-config="events.ngidi.venueAddress">XXX</strong>
+            </div>
+            <div class="event-card__actions">
+              <a class="button button--dark" id="calendar-link" data-calendar-event="ngidi" href="https://calendar.google.com/calendar/render?action=TEMPLATE" target="_blank" rel="noopener noreferrer">Save to Calendar</a>
+              <a class="text-link" data-maps-event="ngidi" href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Open Maps <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="event-card" id="event-reception">
+            <p class="event-card__label" data-config="events.reception.label">Resepsi</p>
+            <div class="event-card__item">
+              <span class="mini-label">Date</span>
+              <strong data-config="events.reception.displayDate">XXX</strong>
+            </div>
+            <div class="event-card__item">
+              <span class="mini-label">Time</span>
+              <strong data-config="events.reception.displayTime">XXX</strong>
+            </div>
+            <div class="event-card__item">
+              <span class="mini-label">Venue</span>
+              <strong data-config="events.reception.venueAddress">XXX</strong>
+            </div>
+            <div class="event-card__actions">
+              <a class="button button--dark" data-calendar-event="reception" href="https://calendar.google.com/calendar/render?action=TEMPLATE" target="_blank" rel="noopener noreferrer">Save to Calendar</a>
+              <a class="text-link" data-maps-event="reception" href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Open Maps <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -218,6 +249,7 @@
           <div>
             <span class="mini-label">Gift Delivery Address</span>
             <strong data-config="gift.deliveryAddress">XXX</strong>
+            <a class="text-link gift-delivery-link" id="gift-delivery-link" href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Open delivery location <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </div>
