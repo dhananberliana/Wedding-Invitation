@@ -72,13 +72,16 @@
           <div class="story-slider__viewport">
             <div class="story-slider__track">
               <figure class="story-slider__slide" data-story-slide>
-                <img src="assets/images/couple-editorial.webp" alt="Dhanan and Berliana editorial portrait" loading="lazy" decoding="async">
+                <img src="assets/images/story-slider-01.webp" alt="Dhanan and Berliana embracing in traditional Balinese attire" loading="lazy" decoding="async">
               </figure>
               <figure class="story-slider__slide" data-story-slide>
-                <img src="assets/images/story-01.webp" alt="Dhanan and Berliana pre-wedding portrait" loading="lazy" decoding="async">
+                <img src="assets/images/story-slider-02.webp" alt="Dhanan and Berliana formal traditional portrait" loading="lazy" decoding="async">
               </figure>
               <figure class="story-slider__slide" data-story-slide>
-                <img src="assets/images/story-03.webp" alt="Dhanan and Berliana studio portrait" loading="lazy" decoding="async">
+                <img src="assets/images/story-slider-03.webp" alt="Dhanan and Berliana heritage portrait" loading="lazy" decoding="async">
+              </figure>
+              <figure class="story-slider__slide" data-story-slide>
+                <img src="assets/images/story-slider-04.webp" alt="Dhanan and Berliana romantic close-up portrait" loading="lazy" decoding="async">
               </figure>
             </div>
           </div>
@@ -90,6 +93,7 @@
                 <button type="button" data-story-dot="0" aria-label="Show photo 1" aria-current="true"></button>
                 <button type="button" data-story-dot="1" aria-label="Show photo 2" aria-current="false"></button>
                 <button type="button" data-story-dot="2" aria-label="Show photo 3" aria-current="false"></button>
+                <button type="button" data-story-dot="3" aria-label="Show photo 4" aria-current="false"></button>
               </div>
               <button class="story-slider__arrow" type="button" data-story-next aria-label="Next photo">→</button>
             </div>
@@ -181,14 +185,62 @@
       <div class="section-shell story-heading reveal">
         <p class="eyebrow eyebrow--dark">A glimpse of us</p>
         <h2 class="display-title" id="story-title">Our Story in Frames</h2>
+        <p class="story-gallery__intro">A collection of moments from our pre-wedding story. Tap any photo to view it larger.</p>
       </div>
       <div class="section-shell">
-        <figure class="story-feature reveal">
-          <img id="story-feature-image" src="assets/images/story-feature.webp" alt="Featured pre-wedding story portrait" loading="lazy" decoding="async">
-          <figcaption>This photo can be replaced with your preferred Our Story image later.</figcaption>
-        </figure>
+        <div class="story-gallery reveal" id="story-gallery" aria-label="Our story photo gallery">
+          <button class="story-frame" type="button" data-story-frame data-full-src="assets/images/story-frame-01.webp" aria-label="Open photo 1 of 14">
+            <img src="assets/images/story-frame-01.webp" alt="Dhanan and Berliana embracing in traditional Balinese attire" loading="lazy" decoding="async">
+          </button>
+          <button class="story-frame" type="button" data-story-frame data-full-src="assets/images/story-frame-02.webp" aria-label="Open photo 2 of 14">
+            <img src="assets/images/story-frame-02.webp" alt="Dhanan and Berliana sharing a joyful moment under the spotlight" loading="lazy" decoding="async">
+          </button>
+          <button class="story-frame" type="button" data-story-frame data-full-src="assets/images/story-frame-03.webp" aria-label="Open photo 3 of 14">
+            <img src="assets/images/story-frame-03.webp" alt="Formal pre-wedding portrait of Dhanan and Berliana" loading="lazy" decoding="async">
+          </button>
+          <button class="story-frame" type="button" data-story-frame data-full-src="assets/images/story-frame-04.webp" aria-label="Open photo 4 of 14">
+            <img src="assets/images/story-frame-04.webp" alt="Dhanan and Berliana posing beside a carved wooden doorway" loading="lazy" decoding="async">
+          </button>
+          <button class="story-frame" type="button" data-story-frame data-full-src="assets/images/story-frame-05.webp" aria-label="Open photo 5 of 14">
+            <img src="assets/images/story-frame-05.webp" alt="Romantic portrait behind a soft veil" loading="lazy" decoding="async">
+          </button>
+          <button class="story-frame" type="button" data-story-frame data-full-src="assets/images/story-frame-06.webp" aria-label="Open photo 6 of 14">
+            <img src="assets/images/story-frame-06.webp" alt="Close-up pre-wedding portrait under a veil" loading="lazy" decoding="async">
+          </button>
+          <button class="story-frame" type="button" data-story-frame data-full-src="assets/images/story-frame-07.webp" aria-label="Open photo 7 of 14">
+            <img src="assets/images/story-frame-07.webp" alt="Veil portrait with Berliana looking toward the camera" loading="lazy" decoding="async">
+          </button>
+          <button class="story-frame" type="button" data-story-frame data-full-src="assets/images/story-frame-08.webp" aria-label="Open photo 8 of 14">
+            <img src="assets/images/story-frame-08.webp" alt="Artistic motion portrait of Dhanan and Berliana" loading="lazy" decoding="async">
+          </button>
+          <button class="story-frame" type="button" data-story-frame data-full-src="assets/images/story-frame-09.webp" aria-label="Open photo 9 of 14">
+            <img src="assets/images/story-frame-09.webp" alt="Traditional seated pre-wedding portrait" loading="lazy" decoding="async">
+          </button>
+          <button class="story-frame" type="button" data-story-frame data-full-src="assets/images/story-frame-10.webp" aria-label="Open photo 10 of 14">
+            <img src="assets/images/story-frame-10.webp" alt="Solo groom portrait in Balinese attire" loading="lazy" decoding="async">
+          </button>
+          <button class="story-frame" type="button" data-story-frame data-full-src="assets/images/story-frame-11.webp" aria-label="Open photo 11 of 14">
+            <img src="assets/images/story-frame-11.webp" alt="Solo bride portrait in Balinese attire" loading="lazy" decoding="async">
+          </button>
+          <button class="story-frame" type="button" data-story-frame data-full-src="assets/images/story-frame-12.webp" aria-label="Open photo 12 of 14">
+            <img src="assets/images/story-frame-12.webp" alt="Dhanan and Berliana holding hands in a studio portrait" loading="lazy" decoding="async">
+          </button>
+          <button class="story-frame" type="button" data-story-frame data-full-src="assets/images/story-frame-13.webp" aria-label="Open photo 13 of 14">
+            <img src="assets/images/story-frame-13.webp" alt="Pre-wedding portrait with circular spotlight" loading="lazy" decoding="async">
+          </button>
+          <button class="story-frame" type="button" data-story-frame data-full-src="assets/images/story-frame-14.webp" aria-label="Open photo 14 of 14">
+            <img src="assets/images/story-frame-14.webp" alt="Pre-wedding portrait with circular spotlight and direct gaze" loading="lazy" decoding="async">
+          </button>
+        </div>
       </div>
     </section>
+
+    <dialog class="story-lightbox" id="story-lightbox" aria-label="Our Story photo viewer">
+      <button class="story-lightbox__close" type="button" data-story-lightbox-close aria-label="Close photo viewer">×</button>
+      <div class="story-lightbox__stage">
+        <img class="story-lightbox__image" id="story-lightbox-image" src="" alt="">
+      </div>
+    </dialog>
 
     <section class="section section--dark" id="rsvp" aria-labelledby="rsvp-title">
       <div class="section-shell rsvp-layout">
