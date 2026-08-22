@@ -201,58 +201,62 @@ function setupExternalLinks() {
 ========================================================= */
 
 function setupOpeningCover() {
-  const cover =
-    $('#opening-cover');
-
-  const button =
-    $('#open-invitation');
-
-  const audio =
-    $('#background-music');
-
-  const musicToggle =
-    $('#music-toggle');
+  const cover = $('#opening-cover');
+  const button = $('#open-invitation');
+  const audio = $('#background-music');
+  const musicToggle = $('#music-toggle');
 
   if (!cover || !button) return;
 
-
   button.addEventListener(
     'click',
-    async () => {
-
-      cover.classList.add(
-        'is-open'
-      );
-
-      document.body.classList.remove(
-        'is-locked'
-      );
-
+    () => {
+      cover.classList.add('is-open');
+      document.body.classList.remove('is-locked');
 
       if (!audio) return;
 
+      audio.volume = 0.65;
+      audio.muted = false;
 
-      try {
-        await audio.play();
+      const playPromise = audio.play();
 
-        if (musicToggle) {
-          musicToggle.setAttribute(
-            'aria-pressed',
-            'true'
-          );
+      if (
+        playPromise &&
+        typeof playPromise.then === 'function'
+      ) {
+        playPromise
+          .then(() => {
+            if (!musicToggle) return;
 
-          musicToggle.setAttribute(
-            'aria-label',
-            'Jeda musik latar'
-          );
-        }
+            musicToggle.setAttribute(
+              'aria-pressed',
+              'true'
+            );
 
-      } catch {
-        /*
-         * Safari / Chrome dapat
-         * menolak autoplay tertentu.
-         * Tombol musik tetap tersedia.
-         */
+            musicToggle.setAttribute(
+              'aria-label',
+              'Jeda musik latar'
+            );
+          })
+          .catch((error) => {
+            console.warn(
+              'Browser memblokir musik otomatis:',
+              error
+            );
+
+            if (!musicToggle) return;
+
+            musicToggle.setAttribute(
+              'aria-pressed',
+              'false'
+            );
+
+            musicToggle.setAttribute(
+              'aria-label',
+              'Putar musik latar'
+            );
+          });
       }
     },
     { once: true }
