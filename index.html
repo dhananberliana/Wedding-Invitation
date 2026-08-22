@@ -63,6 +63,30 @@
       .hero__slide:nth-child(5) { object-position: 50% center; }
     }
 
+
+    @media (min-width: 768px) {
+      /* Desktop focal points: keep both people inside the hero crop. */
+      .hero__slide:nth-child(1) {
+        object-position: 50% center;
+      }
+
+      .hero__slide:nth-child(2) {
+        object-position: 38% center;
+      }
+
+      .hero__slide:nth-child(3) {
+        object-position: 42% center;
+      }
+
+      .hero__slide:nth-child(4) {
+        object-position: 40% center;
+      }
+
+      .hero__slide:nth-child(5) {
+        object-position: 43% center;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .hero__slide {
         transition: none;
