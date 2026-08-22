@@ -2348,3 +2348,85 @@ button {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* =========================================================
+   PAWIWAHAN SCROLL REVEAL
+========================================================= */
+
+.pawiwahan-intro.reveal {
+  opacity: 0;
+  transform: translateY(34px);
+
+  transition:
+    opacity 1.35s cubic-bezier(.22, 1, .36, 1),
+    transform 1.35s cubic-bezier(.22, 1, .36, 1);
+}
+
+.pawiwahan-intro.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Veda Card */
+.pawiwahan-intro.reveal .veda-card {
+  opacity: 0;
+  transform: translateY(28px) scale(.985);
+
+  transition:
+    opacity 1.25s cubic-bezier(.22, 1, .36, 1) .15s,
+    transform 1.25s cubic-bezier(.22, 1, .36, 1) .15s;
+}
+
+.pawiwahan-intro.reveal.is-visible .veda-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+
+/* Aksara Bali */
+.pawiwahan-intro.reveal .pawiwahan-intro__aksara {
+  opacity: 0;
+  transform: translateY(20px);
+
+  transition:
+    opacity 1.1s cubic-bezier(.22, 1, .36, 1) .45s,
+    transform 1.1s cubic-bezier(.22, 1, .36, 1) .45s;
+}
+
+.pawiwahan-intro.reveal.is-visible .pawiwahan-intro__aksara {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Om Swastyastu */
+.pawiwahan-intro.reveal .pawiwahan-intro__greeting {
+  opacity: 0;
+  transform: translateY(18px);
+
+  transition:
+    opacity 1.1s cubic-bezier(.22, 1, .36, 1) .65s,
+    transform 1.1s cubic-bezier(.22, 1, .36, 1) .65s;
+}
+
+.pawiwahan-intro.reveal.is-visible .pawiwahan-intro__greeting {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Pawiwahan copy */
+.pawiwahan-intro.reveal .pawiwahan-intro__copy {
+  opacity: 0;
+  transform: translateY(18px);
+
+  transition:
+    opacity 1.2s cubic-bezier(.22, 1, .36, 1) .85s,
+    transform 1.2s cubic-bezier(.22, 1, .36, 1) .85s;
+}
+
+.pawiwahan-intro.reveal.is-visible .pawiwahan-intro__copy {
+  opacity: .86;
+  transform: translateY(0);
+}
