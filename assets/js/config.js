@@ -41,10 +41,11 @@ export const WEDDING_CONFIG = Object.freeze({
     }
   },
   gift: {
-    bankAccount: '7705388041',
-    deliveryAddress: 'Petang, Bali',
-    deliveryAddressUrl: 'https://maps.app.goo.gl/P7p5qe1bmp2mH7tQ6?g_st=aw'
-  },
+  bankAccountName: 'a.n. Berliana Maharani',
+  bankAccount: '1234 5678 9012',
+  deliveryAddress: 'XXX',
+  deliveryAddressUrl: 'XXX'
+}},
   integration: {
     appsScriptUrl: 'https://script.google.com/macros/s/AKfycbxvHSZSthEdaz7coZlBKwaLHXf7FK72mNjWSds5fhEg6yQSc2mWw1FM3xrmlu-LbF0n/exec'
   },
