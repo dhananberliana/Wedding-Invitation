@@ -482,29 +482,65 @@
       </div>
     </section>
 
-    <section class="section section--paper" id="event-details" aria-labelledby="event-title">
-      <div class="section-shell event-layout">
-        <div class="event-intro reveal">
-          <p class="eyebrow eyebrow--dark">Simpan Tanggalnya</p>
-          <h2 class="display-title" id="event-title">Hari Pernikahan</h2>
-          <p class="body-copy">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Anda berkenan hadir untuk merayakan hari istimewa ini bersama kami.</p>
+<section class="section section--paper" id="event-details" aria-labelledby="event-title">
+  <div class="section-shell event-layout event-layout--editorial">
+    <div class="event-intro event-intro--editorial reveal">
+      <p class="eyebrow eyebrow--dark">Simpan Tanggalnya</p>
+      <h2 class="display-title" id="event-title">Hari Pernikahan</h2>
+      <p class="body-copy">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Anda berkenan hadir untuk merayakan hari istimewa ini bersama kami.</p>
+      <div class="event-intro__line" aria-hidden="true"></div>
+      <p class="event-intro__note">Dhanan <span aria-hidden="true">&amp;</span> Berliana</p>
+    </div>
+
+    <figure class="event-visual reveal">
+      <div class="event-visual__frame">
+        <img src="assets/images/story-frame-05.webp" alt="Potret pranikah Dhanan dan Berliana" loading="lazy" decoding="async">
+      </div>
+      <figcaption class="event-visual__caption">
+        <span>Our Wedding Day</span>
+        <span aria-hidden="true">✦</span>
+      </figcaption>
+      <div class="event-visual__monogram" aria-hidden="true">D<span>&amp;</span>B</div>
+    </figure>
+
+    <div class="event-cards event-cards--editorial reveal">
+      <article class="event-card event-card--editorial" id="event-reception">
+        <div class="event-card__header">
+          <div>
+            <p class="event-card__kicker">The Celebration</p>
+            <p class="event-card__label" data-config="events.reception.label">Resepsi</p>
+          </div>
+          <span class="event-card__mark" aria-hidden="true">✦</span>
         </div>
 
-        <!-- Ngidi card intentionally removed. Other sections remain unchanged. -->
-        <div class="event-cards reveal">
-          <article class="event-card" id="event-reception">
-            <p class="event-card__label" data-config="events.reception.label">Resepsi</p>
-            <div class="event-card__item"><span class="mini-label">Tanggal</span><strong data-config="events.reception.displayDate">XXX</strong></div>
-            <div class="event-card__item"><span class="mini-label">Waktu</span><strong data-config="events.reception.displayTime">XXX</strong></div>
-            <div class="event-card__item"><span class="mini-label">Lokasi</span><strong data-config="events.reception.venueAddress">XXX</strong></div>
-            <div class="event-card__actions">
-              <a class="button button--dark" id="calendar-link" data-calendar-event="reception" href="https://calendar.google.com/calendar/render?action=TEMPLATE" target="_blank" rel="noopener noreferrer">Simpan ke Kalender</a>
-              <a class="text-link" data-maps-event="reception" href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Buka Maps <span aria-hidden="true">↗</span></a>
-            </div>
-          </article>
+        <div class="event-card__details">
+          <div class="event-card__item">
+            <span class="mini-label">Tanggal</span>
+            <strong data-config="events.reception.displayDate">XXX</strong>
+          </div>
+          <div class="event-card__item">
+            <span class="mini-label">Waktu</span>
+            <strong data-config="events.reception.displayTime">XXX</strong>
+          </div>
+          <div class="event-card__item">
+            <span class="mini-label">Lokasi</span>
+            <strong data-config="events.reception.venueAddress">XXX</strong>
+          </div>
         </div>
-      </div>
-    </section>
+
+        <div class="event-card__actions event-card__actions--editorial">
+          <a class="button button--dark" id="calendar-link" data-calendar-event="reception" href="https://calendar.google.com/calendar/render?action=TEMPLATE" target="_blank" rel="noopener noreferrer">
+            <span>Simpan ke Kalender</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a class="text-link" data-maps-event="reception" href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">
+            Buka Maps <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
     <section class="section section--sand" id="venue" aria-labelledby="venue-title">
       <div class="section-shell venue-card reveal">
