@@ -1521,6 +1521,13 @@ textarea:focus-visible {
   min-width: 0;
   flex-direction: column;
   align-items: flex-start;
+
+  padding: 1.35rem;
+
+  border: 1px solid rgba(29,28,26,.16);
+  border-radius: var(--radius-card);
+
+  background: rgba(255,255,255,.28);
 }
 
 .gift-delivery-card .mini-label {
