@@ -1622,15 +1622,18 @@ textarea:focus-visible {
 }
 
 /* =========================================================
-   REVEAL
+   SLOWER SCROLL REVEAL
 ========================================================= */
 
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(32px);
+
   transition:
-    opacity var(--transition),
-    transform var(--transition);
+    opacity 1.35s cubic-bezier(.22, 1, .36, 1),
+    transform 1.35s cubic-bezier(.22, 1, .36, 1);
+
+  transition-delay: .18s;
 }
 
 .reveal.is-visible {
