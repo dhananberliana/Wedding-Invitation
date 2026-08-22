@@ -2435,6 +2435,10 @@ button {
    GIFT BANK ACCOUNT
 ========================================================= */
 
+/* =========================================================
+   GIFT BANK ACCOUNT
+========================================================= */
+
 .gift-bank-card__head {
   display: flex;
   align-items: center;
@@ -2458,6 +2462,30 @@ button {
   font-size: 1.15rem;
 }
 
+/* Nama pemilik rekening */
+.gift-bank-card__name {
+  margin: 0 0 .35rem;
+  color: var(--color-ink-soft);
+  font-size: .76rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  line-height: 1.5;
+}
+
+/* Nomor rekening */
+.gift-bank-card__number {
+  display: block;
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: .025em;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+/* Copy button */
 .gift-copy-button {
   display: inline-flex;
   min-height: 2.8rem;
@@ -2488,7 +2516,7 @@ button {
 
 .gift-copy-status {
   min-height: 1.2em;
-  margin: .6rem 0 0;
+  margin: .55rem 0 0;
   color: var(--color-ink-soft);
-  font-size: .72rem;
+  font-size: .7rem;
 }
