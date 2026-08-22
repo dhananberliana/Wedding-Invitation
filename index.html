@@ -8,108 +8,315 @@
   <title>Wedding Invitation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600&family=Noto+Sans+Balinese:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
-    /* Sacred Pawiwahan intro — intentionally local so this revision only requires index.html. */
-    .sacred-intro {
-      background: #f3eee6;
+    /* Approved cinematic hero/opening — preserved from the previous final version. */
+    .hero {
+      position: relative;
       overflow: hidden;
+      isolation: isolate;
     }
 
-    .sacred-intro__shell {
-      width: min(100% - 2rem, 760px);
-      margin-inline: auto;
+    .hero__media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+      background: #cfc1b2;
+    }
+
+    .hero__slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1.55s cubic-bezier(0.22, 1, 0.36, 1), visibility 1.55s linear;
+      will-change: opacity;
+    }
+
+    .hero__slide.is-active {
+      opacity: 1;
+      visibility: visible;
+      z-index: 1;
+    }
+
+    .hero__backdrop,
+    .hero__portrait {
+      position: absolute;
+      display: block;
+    }
+
+    .hero__backdrop { display: none; }
+
+    .hero__portrait {
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.02);
+      transition: transform 7.5s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    .hero__slide.is-active .hero__portrait { transform: scale(1.065); }
+
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero:not(.hero--entered) .hero__content > * {
+      opacity: 0;
+      transform: translate3d(0, 20px, 0);
+    }
+
+    .hero.hero--entered .hero__content > * {
+      animation: heroContentEnter 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .hero.hero--entered .hero__content > :nth-child(1) { animation-delay: 0.08s; }
+    .hero.hero--entered .hero__content > :nth-child(2) { animation-delay: 0.18s; }
+    .hero.hero--entered .hero__content > :nth-child(3) { animation-delay: 0.32s; }
+    .hero.hero--entered .hero__content > :nth-child(4) { animation-delay: 0.46s; }
+
+    @keyframes heroContentEnter {
+      from { opacity: 0; transform: translate3d(0, 20px, 0); filter: blur(3px); }
+      to { opacity: 1; transform: translate3d(0, 0, 0); filter: blur(0); }
+    }
+
+    @keyframes heroBackdropDrift {
+      from { transform: scale(1.045) translate3d(0, 0, 0); }
+      to { transform: scale(1.085) translate3d(-0.35%, -0.2%, 0); }
+    }
+
+    @media (max-width: 767px) {
+      .hero__content {
+        width: auto;
+        max-width: 34rem;
+        margin-inline: auto;
+        padding-inline: max(1.25rem, env(safe-area-inset-left));
+        padding-right: max(1.25rem, env(safe-area-inset-right));
+      }
+
+      .hero__title { max-width: 10ch; }
+      .hero__copy { max-width: 30rem; }
+      .hero__slide:nth-child(2) .hero__portrait { object-position: 48% center; }
+      .hero__slide:nth-child(3) .hero__portrait { object-position: 52% center; }
+      .hero__slide:nth-child(4) .hero__portrait { object-position: 50% center; }
+      .hero__slide:nth-child(5) .hero__portrait { object-position: 50% center; }
+    }
+
+    @media (min-width: 768px) {
+      .hero__backdrop {
+        display: block;
+        inset: -4%;
+        width: 108%;
+        height: 108%;
+        object-fit: cover;
+        object-position: center;
+        filter: blur(18px) saturate(0.78) brightness(0.88);
+        transform: scale(1.045);
+      }
+
+      .hero__slide.is-active .hero__backdrop {
+        animation: heroBackdropDrift 9s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .hero__portrait {
+        inset: auto clamp(1rem, 3vw, 4rem) 0 auto;
+        width: min(58vw, 920px);
+        height: 100%;
+        object-fit: contain;
+        object-position: right bottom;
+        transform: none;
+        transition: none;
+        filter: saturate(0.96) contrast(1.01);
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.5) 7%, #000 17%, #000 100%);
+        mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.5) 7%, #000 17%, #000 100%);
+      }
+
+      .hero__slide.is-active .hero__portrait { transform: none; }
+
+      .hero__overlay {
+        background:
+          linear-gradient(90deg, rgba(19,16,13,.72) 0%, rgba(19,16,13,.58) 32%, rgba(19,16,13,.24) 55%, rgba(19,16,13,.06) 76%, rgba(19,16,13,.14) 100%),
+          linear-gradient(0deg, rgba(19,16,13,.34) 0%, rgba(19,16,13,.03) 50%);
+      }
+
+      .hero__content {
+        width: min(44rem, 46vw);
+        max-width: 44rem;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .hero__content { width: min(46rem, 42vw); }
+      .hero__copy { max-width: 36rem; }
+    }
+
+    /* Cinematic transition from opening cover into the invitation. */
+    .opening-transition-clone {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 9999 !important;
+      margin: 0 !important;
+      pointer-events: none !important;
+      overflow: hidden;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+      will-change: opacity, transform, filter, clip-path;
+    }
+
+    .opening-transition-clone.is-leaving {
+      animation: openingCurtainExit 1.35s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+    }
+
+    .opening-transition-clone.is-leaving .opening-cover__content {
+      animation: openingContentLift 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .opening-transition-clone.is-leaving .opening-cover__veil {
+      animation: openingVeilGlow 1.1s ease-out forwards;
+    }
+
+    @keyframes openingCurtainExit {
+      0% { opacity: 1; transform: scale(1); filter: blur(0); clip-path: inset(0 0 0 0); }
+      45% { opacity: 1; transform: scale(1.012); filter: blur(0); clip-path: inset(0 0 0 0); }
+      100% { opacity: 0; transform: scale(1.055); filter: blur(8px); clip-path: inset(0 0 100% 0); }
+    }
+
+    @keyframes openingContentLift {
+      0% { opacity: 1; transform: translate3d(0, 0, 0); }
+      100% { opacity: 0; transform: translate3d(0, -24px, 0); }
+    }
+
+    @keyframes openingVeilGlow {
+      0% { opacity: 1; }
+      55% { opacity: 0.76; }
+      100% { opacity: 0; }
+    }
+
+    /* Existing Pawiwahan block: same placement as the approved version. */
+    .pawiwahan-intro {
+      max-width: 46rem;
+      margin: 0 auto clamp(2.25rem, 5vw, 4rem);
       text-align: center;
     }
 
-    .veda-card {
-      margin: 0 0 clamp(2.75rem, 8vw, 5rem);
-      padding: clamp(2rem, 7vw, 3.5rem) clamp(1.35rem, 6vw, 3.25rem);
-      border: 1px solid rgba(91, 71, 46, 0.16);
-      border-radius: 1.5rem;
-      background: #f8f1e7;
-      box-shadow: 0 20px 55px rgba(63, 48, 30, 0.08);
-      color: #302b25;
-      position: relative;
+    .pawiwahan-intro__aksara {
+      margin: 0 0 0.85rem;
+      font-family: "Noto Sans Balinese", "Noto Sans", sans-serif;
+      font-size: clamp(1.75rem, 4vw, 2.6rem);
+      font-weight: 400;
+      line-height: 1.45;
+      letter-spacing: 0.02em;
+      color: currentColor;
     }
 
-    .veda-card::before {
-      content: "“";
+    .pawiwahan-intro__greeting {
+      margin: 0 0 1rem;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .pawiwahan-intro__copy {
+      max-width: 42rem;
+      margin: 0 auto;
+      font-size: clamp(0.92rem, 1.35vw, 1.02rem);
+      line-height: 1.9;
+      text-wrap: pretty;
+      opacity: 0.86;
+    }
+
+    .pawiwahan-intro::after {
+      content: "";
       display: block;
-      margin-bottom: 0.8rem;
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(3.8rem, 14vw, 6.5rem);
-      line-height: 0.55;
-      color: #9a7750;
-      opacity: 0.72;
+      width: 3.5rem;
+      height: 1px;
+      margin: clamp(1.5rem, 3vw, 2rem) auto 0;
+      background: currentColor;
+      opacity: 0.25;
+    }
+
+    /* Only new visual: the Veda quote card above Om Swastyastu. */
+    .veda-card {
+      margin: 0 auto clamp(2rem, 5vw, 3rem);
+      padding: clamp(1.7rem, 4vw, 2.5rem) clamp(1.2rem, 4vw, 2.35rem);
+      border: 1px solid rgba(91, 71, 46, 0.15);
+      border-radius: 1.25rem;
+      background: #f8f1e7;
+      box-shadow: 0 18px 48px rgba(63, 48, 30, 0.07);
+      color: #302b25;
     }
 
     .veda-card__verse {
-      max-width: 620px;
+      max-width: 38rem;
       margin: 0 auto;
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(1.45rem, 5.5vw, 2.05rem);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
       font-weight: 500;
-      line-height: 1.3;
-      letter-spacing: 0.01em;
+      line-height: 1.42;
     }
 
     .veda-card__translation {
-      max-width: 590px;
-      margin: 1.4rem auto 0;
-      font-size: clamp(0.92rem, 3.6vw, 1.02rem);
+      max-width: 36rem;
+      margin: 1rem auto 0;
+      font-size: clamp(0.86rem, 1.25vw, 0.98rem);
       line-height: 1.75;
-      color: rgba(48, 43, 37, 0.76);
+      opacity: 0.78;
     }
 
     .veda-card__source {
       display: inline-flex;
       align-items: center;
-      gap: 0.65rem;
-      margin-top: 1.5rem;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+      gap: 0.55rem;
+      margin-top: 1.25rem;
       color: #806341;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
 
-    .veda-card__source span {
-      font-size: 0.8rem;
-      line-height: 1;
-    }
+    .veda-card__source cite { font-style: normal; }
 
-    .veda-card__source cite {
-      font-style: normal;
-    }
-
-    .pawiwahan-intro {
-      max-width: 620px;
-      margin-inline: auto;
-    }
-
-    .pawiwahan-intro__aksara {
-      margin: 0 0 0.9rem;
-      font-family: serif;
-      font-size: clamp(1.35rem, 5vw, 1.75rem);
-      letter-spacing: 0.08em;
-      color: #826a4d;
-    }
-
-    .pawiwahan-intro .eyebrow {
-      margin-bottom: 1rem;
-    }
-
-    .pawiwahan-intro .body-copy {
-      margin: 0 auto;
-      line-height: 1.85;
+    @media (max-width: 767px) {
+      .pawiwahan-intro { margin-bottom: 2.5rem; }
+      .pawiwahan-intro__copy { line-height: 1.8; }
+      .veda-card { border-radius: 1rem; }
     }
 
     @media (min-width: 768px) {
-      .veda-card {
-        border-radius: 2rem;
+      .couple-grid > .pawiwahan-intro {
+        grid-column: 1 / -1;
+        width: min(100%, 56rem);
+        justify-self: center;
+        margin-bottom: clamp(3rem, 5vw, 4.5rem);
+        padding-inline: clamp(1.5rem, 4vw, 3rem);
       }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .opening-transition-clone.is-leaving { animation: openingReducedExit 0.2s linear forwards; }
+      .opening-transition-clone.is-leaving .opening-cover__content,
+      .opening-transition-clone.is-leaving .opening-cover__veil { animation: none; }
+      @keyframes openingReducedExit { to { opacity: 0; } }
+      .hero__slide { transition: opacity 0.2s linear; }
+      .hero__portrait,
+      .hero__backdrop { transform: none !important; transition: none !important; animation: none !important; }
+      .hero:not(.hero--entered) .hero__content > *,
+      .hero.hero--entered .hero__content > * { opacity: 1; transform: none; filter: none; animation: none; }
     }
   </style>
 </head>
@@ -135,7 +342,28 @@
 
   <main>
     <section class="hero" id="home" aria-labelledby="hero-title">
-      <img class="hero__image" src="assets/images/hero.webp" alt="Bride and groom in traditional wedding attire" fetchpriority="high">
+      <div class="hero__media" aria-hidden="true">
+        <div class="hero__slide is-active">
+          <img class="hero__backdrop" src="assets/images/hero.webp" alt="" fetchpriority="high" decoding="async">
+          <img class="hero__portrait" src="assets/images/hero.webp" alt="" fetchpriority="high" decoding="async">
+        </div>
+        <div class="hero__slide">
+          <img class="hero__backdrop" src="assets/images/story-frame-01.webp" alt="" loading="eager" decoding="async">
+          <img class="hero__portrait" src="assets/images/story-frame-01.webp" alt="" loading="eager" decoding="async">
+        </div>
+        <div class="hero__slide">
+          <img class="hero__backdrop" src="assets/images/story-frame-03.webp" alt="" loading="eager" decoding="async">
+          <img class="hero__portrait" src="assets/images/story-frame-03.webp" alt="" loading="eager" decoding="async">
+        </div>
+        <div class="hero__slide">
+          <img class="hero__backdrop" src="assets/images/story-frame-05.webp" alt="" loading="eager" decoding="async">
+          <img class="hero__portrait" src="assets/images/story-frame-05.webp" alt="" loading="eager" decoding="async">
+        </div>
+        <div class="hero__slide">
+          <img class="hero__backdrop" src="assets/images/story-frame-12.webp" alt="" loading="eager" decoding="async">
+          <img class="hero__portrait" src="assets/images/story-frame-12.webp" alt="" loading="eager" decoding="async">
+        </div>
+      </div>
       <div class="hero__overlay"></div>
       <div class="hero__content reveal">
         <p class="eyebrow" data-config="site.greeting">Dear family &amp; friends,</p>
@@ -149,27 +377,18 @@
       </div>
     </section>
 
-    <section class="section section--paper sacred-intro" aria-labelledby="sacred-greeting">
-      <div class="section-shell sacred-intro__shell reveal">
-        <blockquote class="veda-card">
-          <p class="veda-card__verse">Ihaiva stam mā vi yauṣṭaṃ viśvam āyur vy aśnutam, krīḻantau putrair naptṛbhir modamānau sve gṛhe.</p>
-          <p class="veda-card__translation">“Wahai pasangan suami-istri, semoga kalian tetap bersatu dan tidak pernah terpisahkan. Semoga kalian menjalani seluruh kehidupan bersama, bergembira di rumah kalian bersama anak dan cucu.”</p>
-          <footer class="veda-card__source">
-            <span aria-hidden="true">✦</span>
-            <cite>Rg Veda X.85.42</cite>
-          </footer>
-        </blockquote>
-
-        <div class="pawiwahan-intro">
-          <p class="pawiwahan-intro__aksara" aria-hidden="true">ᬒᬁ ᬲ᭄ᬯᬲ᭄ᬢ᭄ᬬᬲ᭄ᬢᬸ</p>
-          <p class="eyebrow eyebrow--dark" id="sacred-greeting">Om Swastyastu</p>
-          <p class="body-copy">Atas asung kerta wara nugraha Ida Sang Hyang Widhi Wasa, kami bermaksud menyelenggarakan Upacara Manusa Yadnya Pawiwahan (Pernikahan) kami. Dengan penuh rasa syukur, kami memohon doa restu agar seluruh rangkaian upacara dapat berlangsung dengan lancar dan penuh kebahagiaan.</p>
-        </div>
-      </div>
-    </section>
-
     <section class="section section--paper" id="couple" aria-labelledby="couple-title">
       <div class="section-shell couple-grid">
+        <div class="pawiwahan-intro" aria-label="Pawiwahan ceremonial greeting">
+          <blockquote class="veda-card">
+            <p class="veda-card__verse">Ihaiva stam mā vi yauṣṭaṃ viśvam āyur vy aśnutam, krīḻantau putrair naptṛbhir modamānau sve gṛhe.</p>
+            <p class="veda-card__translation">“Wahai pasangan suami-istri, semoga kalian tetap bersatu dan tidak pernah terpisahkan. Semoga kalian menjalani seluruh kehidupan bersama, bergembira di rumah kalian bersama anak dan cucu.”</p>
+            <footer class="veda-card__source"><span aria-hidden="true">✦</span><cite>Rg Veda X.85.42</cite></footer>
+          </blockquote>
+          <p class="pawiwahan-intro__aksara" lang="ban-Bali">ᬒᬁ ᬲ᭄ᬯᬲ᭄ᬢ᭄ᬬᬲ᭄ᬢᬸ</p>
+          <p class="pawiwahan-intro__greeting">Om Swastyastu</p>
+          <p class="pawiwahan-intro__copy">Atas Asung Kertha Wara Nugraha Ida Sang Hyang Widhi Wasa/Tuhan Yang Maha Esa kami bermaksud mengundang Bapak/Ibu/Saudara/i pada Upacara Manusa Yadnya Pawiwahan (Pernikahan) kami.</p>
+        </div>
         <div class="couple-copy reveal">
           <p class="eyebrow eyebrow--dark">Two souls, one story</p>
           <h2 class="display-title" id="couple-title">The Groom<br>&amp; The Bride</h2>
@@ -395,6 +614,105 @@
     <span class="music-toggle__label">Music</span>
   </button>
   <audio id="background-music" preload="none" loop src="assets/audio/bermuara.mp3"></audio>
+
+
+  <script>
+    (() => {
+      const openButton = document.getElementById('open-invitation');
+      const hero = document.getElementById('home');
+      const heroSlides = Array.from(document.querySelectorAll('.hero__slide'));
+      if (!hero || heroSlides.length < 2) return;
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let currentIndex = 0;
+      let timerId = null;
+      let hasOpened = !document.body.classList.contains('is-locked');
+
+      const enterHero = () => {
+        if (hero.classList.contains('hero--entered')) return;
+        window.setTimeout(() => hero.classList.add('hero--entered'), reduceMotion.matches ? 0 : 760);
+      };
+
+      const showSlide = (nextIndex) => {
+        if (nextIndex === currentIndex) return;
+        heroSlides[currentIndex].classList.remove('is-active');
+        currentIndex = nextIndex;
+        heroSlides[currentIndex].classList.add('is-active');
+      };
+
+      const stopSlideshow = () => {
+        if (timerId === null) return;
+        window.clearInterval(timerId);
+        timerId = null;
+      };
+
+      const startSlideshow = () => {
+        if (!hasOpened || reduceMotion.matches || document.hidden || timerId !== null) return;
+        timerId = window.setInterval(() => showSlide((currentIndex + 1) % heroSlides.length), 5200);
+      };
+
+      openButton?.addEventListener('click', () => {
+        hasOpened = true;
+        enterHero();
+        startSlideshow();
+      }, { once: true });
+
+      document.addEventListener('visibilitychange', () => document.hidden ? stopSlideshow() : startSlideshow());
+
+      if (typeof reduceMotion.addEventListener === 'function') {
+        reduceMotion.addEventListener('change', (event) => {
+          if (event.matches) { stopSlideshow(); enterHero(); }
+          else startSlideshow();
+        });
+      }
+
+      if (hasOpened) enterHero();
+      startSlideshow();
+    })();
+  </script>
+
+  <script>
+    (() => {
+      const cover = document.getElementById('opening-cover');
+      const openButton = document.getElementById('open-invitation');
+      const music = document.getElementById('background-music');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (!cover || !openButton) return;
+
+      const fadeInWeddingMusic = (duration = 2800, targetVolume = 0.68) => {
+        if (!music) return;
+        const finalVolume = Math.min(1, Math.max(0, targetVolume));
+        const fadeDuration = reduceMotion.matches ? 350 : duration;
+        music.volume = 0;
+        const playResult = music.play();
+        if (playResult && typeof playResult.catch === 'function') playResult.catch(() => {});
+        const startedAt = performance.now();
+        const step = (now) => {
+          const progress = Math.min(1, (now - startedAt) / fadeDuration);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          music.volume = finalVolume * eased;
+          if (progress < 1 && !music.paused) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
+
+      const createTransitionClone = () => {
+        const clone = cover.cloneNode(true);
+        clone.removeAttribute('id');
+        clone.setAttribute('aria-hidden', 'true');
+        clone.classList.add('opening-transition-clone');
+        clone.querySelectorAll('[id]').forEach((element) => element.removeAttribute('id'));
+        document.body.appendChild(clone);
+        requestAnimationFrame(() => requestAnimationFrame(() => clone.classList.add('is-leaving')));
+        window.setTimeout(() => clone.remove(), reduceMotion.matches ? 300 : 1550);
+      };
+
+      openButton.addEventListener('click', () => {
+        createTransitionClone();
+        fadeInWeddingMusic();
+      }, { once: true });
+    })();
+  </script>
 
   <script type="module" src="assets/js/app.js"></script>
 </body>
