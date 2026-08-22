@@ -293,12 +293,28 @@
     .veda-card__source cite { font-style: normal; }
 
     /* Couple names: reduced slightly for a more balanced editorial hierarchy. */
+    .couple-profile {
+      text-align: center;
+    }
+
+    .couple-profile .mini-label,
+    .couple-profile .parent-copy {
+      width: 100%;
+      margin-inline: auto;
+      text-align: center;
+    }
+
     .couple-profile h3 {
       width: 100%;
       margin-inline: auto;
       font-size: clamp(1.55rem, 3.8vw, 2.5rem);
       line-height: 1.08;
       text-align: center;
+    }
+
+    .parent-copy__relation {
+      display: inline-block;
+      margin-bottom: 0.25rem;
     }
 
     @media (max-width: 767px) {
@@ -408,13 +424,13 @@
               <img class="couple-portrait couple-portrait--groom" src="assets/images/groom.webp" alt="Potret mempelai pria" loading="lazy" decoding="async">
               <p class="mini-label">Sang Mempelai Pria</p>
               <h3 data-config="couple.groom">XXX</h3>
-              <p class="parent-copy">Putra dari <span data-config="couple.groomFather">XXX</span> &amp; <span data-config="couple.groomMother">XXX</span></p>
+              <p class="parent-copy"><span class="parent-copy__relation">Putra dari</span><br><span data-config="couple.groomFather">XXX</span> &amp; <span data-config="couple.groomMother">XXX</span></p>
             </article>
             <article class="couple-profile">
               <img class="couple-portrait couple-portrait--bride" src="assets/images/bride.webp" alt="Potret mempelai wanita" loading="lazy" decoding="async">
               <p class="mini-label">Sang Mempelai Wanita</p>
               <h3 data-config="couple.bride">XXX</h3>
-              <p class="parent-copy">Putri dari <span data-config="couple.brideFather">XXX</span> &amp; <span data-config="couple.brideMother">XXX</span></p>
+              <p class="parent-copy"><span class="parent-copy__relation">Putri dari</span><br><span data-config="couple.brideFather">XXX</span> &amp; <span data-config="couple.brideMother">XXX</span></p>
             </article>
           </div>
         </div>
