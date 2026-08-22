@@ -1594,19 +1594,39 @@
           untuk memudahkan Anda.
         </p>
 
-        <div class="gift-grid">
+        <div class="gift-bank-card">
 
-          <div>
+  <div class="gift-bank-card__head">
+    <span class="gift-bank-card__icon" aria-hidden="true">
+      💳
+    </span>
 
-            <span class="mini-label">
-              Nomor Rekening
-            </span>
+    <span class="mini-label">
+      Nomor Rekening
+    </span>
+  </div>
 
-            <strong data-config="gift.bankAccount">
-              XXX
-            </strong>
+  <strong
+    id="bank-account-number"
+    data-config="gift.bankAccount">
+    XXX
+  </strong>
 
-          </div>
+  <button
+    class="gift-copy-button"
+    id="copy-bank-account"
+    type="button"
+    aria-label="Salin nomor rekening">
+    Salin Nomor Rekening
+  </button>
+
+  <p
+    class="gift-copy-status"
+    id="gift-copy-status"
+    aria-live="polite">
+  </p>
+
+</div>
 
           <div>
 
