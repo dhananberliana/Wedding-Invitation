@@ -1,6 +1,6 @@
 export const WEDDING_CONFIG = Object.freeze({
   couple: {
-    groom: 'Ir. I Wayan Dhanan Arieyasha, S.T.',
+    groom: 'Ir. I Wayan Dhanan Arieyasa, S.T.',
     bride: 'Ni Putu Berliana Maharani, S.Kom',
     groomFather: 'Bapak I Ketut Artayasa',
     groomMother: 'Ibu Ni Nyoman Shuardani ',
