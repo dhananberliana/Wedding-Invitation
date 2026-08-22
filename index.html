@@ -1578,26 +1578,28 @@
 
   <div class="section-shell gift-card reveal">
 
-    <p class="eyebrow eyebrow--dark">
-      Dengan Cinta
-    </p>
+    <div class="gift-heading">
+      <p class="eyebrow eyebrow--dark">
+        Dengan Cinta
+      </p>
 
-    <h2
-      class="display-title"
-      id="gift-title">
-      Ingin Memberikan Hadiah?
-    </h2>
+      <h2
+        class="display-title"
+        id="gift-title">
+        Ingin Memberikan Hadiah?
+      </h2>
 
-    <p class="body-copy">
-      Kehadiran dan doa Anda merupakan hadiah terindah bagi kami.
-      Jika ingin mengirimkan tanda kasih, informasi berikut kami sediakan
-      untuk memudahkan Anda.
-    </p>
+      <p class="body-copy">
+        Kehadiran dan doa Anda merupakan hadiah terindah bagi kami.
+        Jika ingin mengirimkan tanda kasih, informasi berikut kami sediakan
+        untuk memudahkan Anda.
+      </p>
+    </div>
 
     <div class="gift-grid">
 
-      <!-- NOMOR REKENING -->
-      <div class="gift-bank-card">
+      <!-- BANK ACCOUNT -->
+      <article class="gift-info-card gift-bank-card">
 
         <div class="gift-bank-card__head">
 
@@ -1640,14 +1642,24 @@
           aria-live="polite">
         </p>
 
-      </div>
+      </article>
 
-      <!-- ALAMAT PENGIRIMAN -->
-      <div class="gift-delivery-card">
+      <!-- DELIVERY ADDRESS -->
+      <article class="gift-info-card gift-delivery-card">
 
-        <span class="mini-label">
-          Alamat Pengiriman Hadiah
-        </span>
+        <div class="gift-delivery-card__head">
+
+          <span
+            class="gift-delivery-card__icon"
+            aria-hidden="true">
+            📍
+          </span>
+
+          <span class="mini-label">
+            Alamat Pengiriman Hadiah
+          </span>
+
+        </div>
 
         <strong
           class="gift-delivery-address"
@@ -1662,15 +1674,12 @@
           target="_blank"
           rel="noopener noreferrer">
 
-          Buka lokasi pengiriman
-
-          <span aria-hidden="true">
-            ↗
-          </span>
+          Buka Lokasi Pengiriman
+          <span aria-hidden="true">↗</span>
 
         </a>
 
-      </div>
+      </article>
 
     </div>
 
