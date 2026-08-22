@@ -2084,145 +2084,52 @@
        OPENING + MUSIC TRANSITION
   ======================================================== -->
 
-  <script>
-    (() => {
-      const cover =
-        document.getElementById('opening-cover');
+ <script>
+  (() => {
+    const cover = document.getElementById('opening-cover');
+    const openButton = document.getElementById('open-invitation');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-      const openButton =
-        document.getElementById('open-invitation');
+    if (!cover || !openButton) return;
 
-      const music =
-        document.getElementById('background-music');
+    const createTransitionClone = () => {
+      const clone = cover.cloneNode(true);
 
-      const reduceMotion =
-        window.matchMedia(
-          '(prefers-reduced-motion: reduce)'
-        );
+      clone.removeAttribute('id');
+      clone.setAttribute('aria-hidden', 'true');
+      clone.classList.add('opening-transition-clone');
 
-      if (!cover || !openButton) return;
+      clone
+        .querySelectorAll('[id]')
+        .forEach((element) => {
+          element.removeAttribute('id');
+        });
 
-      const fadeInWeddingMusic = (
-        duration = 2800,
-        targetVolume = .68
-      ) => {
+      document.body.appendChild(clone);
 
-        if (!music) return;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          clone.classList.add('is-leaving');
+        });
+      });
 
-        const finalVolume =
-          Math.min(
-            1,
-            Math.max(0, targetVolume)
-          );
-
-        const fadeDuration =
-          reduceMotion.matches
-            ? 350
-            : duration;
-
-        music.volume = 0;
-
-        const playResult =
-          music.play();
-
-        if (
-          playResult &&
-          typeof playResult.catch === 'function'
-        ) {
-          playResult.catch(() => {});
-        }
-
-        const startedAt =
-          performance.now();
-
-        const step = (now) => {
-          const progress =
-            Math.min(
-              1,
-              (now - startedAt) /
-              fadeDuration
-            );
-
-          const eased =
-            1 -
-            Math.pow(
-              1 - progress,
-              3
-            );
-
-          music.volume =
-            finalVolume *
-            eased;
-
-          if (
-            progress < 1 &&
-            !music.paused
-          ) {
-            requestAnimationFrame(step);
-          }
-        };
-
-        requestAnimationFrame(step);
-      };
-
-      const createTransitionClone = () => {
-        const clone =
-          cover.cloneNode(true);
-
-        clone.removeAttribute('id');
-
-        clone.setAttribute(
-          'aria-hidden',
-          'true'
-        );
-
-        clone.classList.add(
-          'opening-transition-clone'
-        );
-
-        clone
-          .querySelectorAll('[id]')
-          .forEach(
-            (element) => {
-              element.removeAttribute('id');
-            }
-          );
-
-        document.body.appendChild(clone);
-
-        requestAnimationFrame(
-          () => {
-            requestAnimationFrame(
-              () => {
-                clone.classList.add(
-                  'is-leaving'
-                );
-              }
-            );
-          }
-        );
-
-        window.setTimeout(
-          () => {
-            clone.remove();
-          },
-          reduceMotion.matches
-            ? 300
-            : 1550
-        );
-      };
-
-      openButton.addEventListener(
-        'click',
+      window.setTimeout(
         () => {
-          createTransitionClone();
-          fadeInWeddingMusic();
+          clone.remove();
         },
-        { once: true }
+        reduceMotion.matches ? 300 : 1550
       );
+    };
 
-    })();
-  </script>
+    openButton.addEventListener(
+      'click',
+      () => {
+        createTransitionClone();
+      },
+      { once: true }
+    );
+  })();
+</script>
 
   <!-- =======================================================
        MAIN APPLICATION
