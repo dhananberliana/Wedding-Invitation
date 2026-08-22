@@ -1937,11 +1937,14 @@
   </button>
 
   <audio
-    id="background-music"
-    preload="none"
-    loop
-    src="assets/audio/bermuara.mp3">
-  </audio>
+  id="background-music"
+  preload="metadata"
+  loop
+  playsinline>
+  <source
+    src="assets/audio/bermuara.mp3"
+    type="audio/mpeg">
+</audio>
 
   <!-- =======================================================
        HERO SLIDESHOW
