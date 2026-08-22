@@ -41,7 +41,7 @@ export const WEDDING_CONFIG = Object.freeze({
     }
   },
   gift: {
-    bankAccount: 'BCA • xxxx',
+    bankAccount: 'BCA • 7705388041 - I Wayan Dhanan Arieyasa',
     deliveryAddress: 'Petang, Bali',
     deliveryAddressUrl: 'https://maps.app.goo.gl/1th8LpjMeTfUx5gy6'
   },
