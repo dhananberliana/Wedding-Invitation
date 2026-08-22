@@ -1964,3 +1964,384 @@ textarea:focus-visible {
     transition: none;
   }
 }
+
+/* =========================================================
+   RESPONSIVE / ZOOM SAFETY
+   Keeps the wedding invitation flexible at browser zoom
+========================================================= */
+
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Prevent flex/grid children from forcing page overflow */
+main,
+section,
+.section,
+.section-shell,
+.hero,
+.hero__content,
+.couple-grid,
+.couple-copy,
+.couple-names,
+.couple-profile,
+.event-layout,
+.event-cards,
+.event-card,
+.venue-card,
+.venue-card__copy,
+.venue-map,
+.rsvp-layout,
+.rsvp-form,
+.wishes-shell,
+.wishes-list,
+.gift-card,
+.gift-grid,
+.closing,
+.closing__content,
+.story,
+.story-gallery,
+.story-slider {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Responsive shell when browser zoom is increased */
+.section-shell {
+  width: min(
+    calc(100% - (var(--page-gutter) * 2)),
+    var(--content-width)
+  );
+
+  padding-inline: 0;
+}
+
+/* Text must always wrap instead of forcing overflow */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+strong,
+a,
+button,
+label,
+legend,
+blockquote,
+figcaption {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+/* Long address / account number / links */
+.venue-address,
+.gift-grid strong,
+.parent-copy,
+.event-card__item strong,
+.event-card__item p,
+.body-copy,
+.hero__copy,
+.closing__content p {
+  overflow-wrap: anywhere;
+}
+
+/* Responsive media */
+img,
+video,
+iframe,
+svg,
+canvas {
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
+/* Maps should never exceed their container */
+.venue-map {
+  width: 100%;
+}
+
+.venue-map iframe {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Inputs need to shrink correctly at browser zoom */
+input,
+select,
+textarea,
+button {
+  max-width: 100%;
+}
+
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form textarea {
+  min-width: 0;
+}
+
+/* =========================================================
+   FLEXIBLE TYPOGRAPHY
+========================================================= */
+
+.display-title {
+  font-size: clamp(
+    2.4rem,
+    8vw,
+    6.5rem
+  );
+}
+
+.hero__title {
+  font-size: clamp(
+    2.6rem,
+    9vw,
+    6.5rem
+  );
+}
+
+.opening-cover__names {
+  font-size: clamp(
+    2.8rem,
+    10vw,
+    5.8rem
+  );
+}
+
+.event-card__label {
+  font-size: clamp(
+    2.4rem,
+    8vw,
+    4.6rem
+  );
+}
+
+.event-card__item strong {
+  font-size: clamp(
+    1.45rem,
+    4vw,
+    2.5rem
+  );
+}
+
+/* =========================================================
+   FLEXIBLE GRID
+========================================================= */
+
+.couple-grid,
+.event-layout,
+.venue-card,
+.rsvp-layout,
+.wishes-shell,
+.gift-grid {
+  min-width: 0;
+}
+
+.couple-grid > *,
+.event-layout > *,
+.venue-card > *,
+.rsvp-layout > *,
+.wishes-shell > *,
+.gift-grid > * {
+  min-width: 0;
+}
+
+/* =========================================================
+   DESKTOP / ZOOM FRIENDLY LAYOUT
+========================================================= */
+
+/*
+   min-width alone can behave strangely when browser zoom is high.
+   min-width + min-height gives us safer responsive switching.
+*/
+
+@media (min-width: 768px) and (min-height: 500px) {
+
+  .couple-grid,
+  .venue-card,
+  .rsvp-layout,
+  .wishes-shell {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+  }
+
+  .event-layout {
+    grid-template-columns:
+      minmax(0, .78fr)
+      minmax(0, 1fr);
+  }
+}
+
+/* =========================================================
+   SAFETY WHEN EFFECTIVE VIEWPORT GETS SMALLER
+   Example: desktop browser at 150–200% zoom
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .event-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .venue-card {
+    grid-template-columns: 1fr;
+  }
+
+  .rsvp-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .wishes-shell {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   HIGH ZOOM / TABLET WIDTH
+========================================================= */
+
+@media (max-width: 700px) {
+
+  :root {
+    --page-gutter: clamp(
+      1rem,
+      4vw,
+      1.5rem
+    );
+  }
+
+  .section-shell {
+    width: calc(
+      100% -
+      (var(--page-gutter) * 2)
+    );
+  }
+
+  .couple-names {
+    grid-template-columns: 1fr;
+  }
+
+  .gift-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event-card__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .event-card__actions .button {
+    width: 100%;
+  }
+
+  .event-card__actions .text-link {
+    justify-self: start;
+  }
+}
+
+/* =========================================================
+   VERY HIGH ZOOM / VERY SMALL VIEWPORT
+========================================================= */
+
+@media (max-width: 480px) {
+
+  :root {
+    --page-gutter: 1rem;
+    --section-space: clamp(
+      4rem,
+      14vw,
+      6rem
+    );
+  }
+
+  .display-title {
+    font-size: clamp(
+      2.3rem,
+      12vw,
+      3.8rem
+    );
+  }
+
+  .event-card {
+    padding:
+      2rem
+      1.1rem
+      1.4rem;
+  }
+
+  .event-card__item {
+    grid-template-columns:
+      2.75rem
+      minmax(0, 1fr);
+  }
+
+  .event-card__item::before {
+    width: 2.55rem;
+    height: 2.55rem;
+  }
+
+  .attendance-options {
+    grid-template-columns: 1fr;
+  }
+
+  .music-toggle__label {
+    display: none;
+  }
+
+  .music-toggle {
+    width: 3rem;
+    height: 3rem;
+    justify-content: center;
+    padding: 0;
+    border-radius: 50%;
+  }
+}
+
+/* =========================================================
+   EXTREME NARROW WIDTH
+   Useful with 200%+ browser zoom
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .section-shell {
+    width: calc(100% - 1.5rem);
+  }
+
+  .event-card__item {
+    grid-template-columns: 1fr;
+  }
+
+  .event-card__item::before {
+    grid-row: auto;
+    grid-column: 1;
+    margin-bottom: .2rem;
+  }
+
+  .event-card__item .mini-label,
+  .event-card__item strong,
+  .event-card__item p {
+    grid-column: 1;
+  }
+
+  #countdown .countdown-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
