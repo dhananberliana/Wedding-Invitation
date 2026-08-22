@@ -1513,6 +1513,41 @@ textarea:focus-visible {
 }
 
 /* =========================================================
+   GIFT DELIVERY
+========================================================= */
+
+.gift-delivery-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.gift-delivery-card .mini-label {
+  display: block;
+  margin: 0 0 .65rem;
+}
+
+.gift-delivery-address {
+  display: block;
+  width: 100%;
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 4vw, 2rem);
+  font-weight: 500;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.gift-delivery-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  margin-top: 1rem;
+}
+
+/* =========================================================
    CLOSING
 ========================================================= */
 
