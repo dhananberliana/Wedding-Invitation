@@ -305,12 +305,6 @@ textarea:focus-visible {
   color: var(--color-white);
 }
 
-@media (min-width: 768px) {
-  .closing {
-    /* Foto asli 4512 x 3008 = 3:2 */
-    aspect-ratio: 3 / 2;
-    min-height: auto;
-  }
 
 .hero__image,
 .closing__image {
