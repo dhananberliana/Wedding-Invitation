@@ -87,7 +87,7 @@ export const WEDDING_CONFIG = Object.freeze({
   ========================================================= */
 
   gift: {
-    bankAccountName: 'a.n. Dhanan Arieyasa',
+    bankAccountName: ' BCA a.n. Dhanan Arieyasa',
 
     bankAccount: '7705388041',
 
