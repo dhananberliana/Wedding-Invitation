@@ -10,66 +10,63 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
+
   <style>
-  .opening-cover__media {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    background: #191713;
-  }
+    /* Opening Cover Slideshow */
+    .opening-cover__media {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #191713;
+    }
 
-  .opening-cover__slide {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    opacity: 0;
-    transform: scale(1.035);
-    transition:
-      opacity 1.6s ease-in-out,
-      transform 6.5s ease-out;
-    will-change: opacity, transform;
-  }
-
-  .opening-cover__slide.is-active {
-    opacity: 1;
-    transform: scale(1.08);
-  }
-
-  .opening-cover__veil {
-    pointer-events: none;
-    background:
-      linear-gradient(
-        180deg,
-        rgba(12, 10, 8, 0.25) 0%,
-        rgba(12, 10, 8, 0.12) 42%,
-        rgba(12, 10, 8, 0.52) 100%
-      );
-  }
-
-  @media (max-width: 767px) {
     .opening-cover__slide {
-      object-position: center center;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transform: scale(1.035);
+      transition:
+        opacity 1.6s ease-in-out,
+        transform 6.5s ease-out;
+      will-change: opacity, transform;
     }
 
-    .opening-cover__slide:nth-child(2) {
-      object-position: 48% center;
+    .opening-cover__slide.is-active {
+      opacity: 1;
+      transform: scale(1.08);
     }
 
-    .opening-cover__slide:nth-child(3) {
-      object-position: 52% center;
+    .opening-cover__veil {
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(12, 10, 8, 0.25) 0%, rgba(12, 10, 8, 0.12) 42%, rgba(12, 10, 8, 0.52) 100%);
     }
-  }
 
-  @media (prefers-reduced-motion: reduce) {
-    .opening-cover__slide {
-      transition: opacity 0.35s linear;
-      transform: none !important;
+    @media (max-width: 767px) {
+      .opening-cover__slide {
+        object-position: center center;
+      }
+
+      .opening-cover__slide:nth-child(2) {
+        object-position: 48% center;
+      }
+
+      .opening-cover__slide:nth-child(3) {
+        object-position: 52% center;
+      }
     }
-  }
-</style>
+
+    @media (prefers-reduced-motion: reduce) {
+      .opening-cover__slide {
+        transition: opacity 0.35s linear;
+        transform: none !important;
+      }
+    }
+  </style>
 </head>
 <body class="is-locked">
   <noscript>
@@ -77,7 +74,38 @@
   </noscript>
 
   <section class="opening-cover" id="opening-cover" aria-label="Opening wedding invitation">
-    <div class="opening-cover__media" aria-hidden="true"></div>
+    <div class="opening-cover__media" aria-hidden="true">
+      <img
+        class="opening-cover__slide is-active"
+        src="assets/images/story-frame-01.webp"
+        alt=""
+        fetchpriority="high"
+        decoding="async">
+      <img
+        class="opening-cover__slide"
+        src="assets/images/story-frame-03.webp"
+        alt=""
+        loading="eager"
+        decoding="async">
+      <img
+        class="opening-cover__slide"
+        src="assets/images/story-frame-05.webp"
+        alt=""
+        loading="eager"
+        decoding="async">
+      <img
+        class="opening-cover__slide"
+        src="assets/images/story-frame-12.webp"
+        alt=""
+        loading="eager"
+        decoding="async">
+      <img
+        class="opening-cover__slide"
+        src="assets/images/story-frame-14.webp"
+        alt=""
+        loading="eager"
+        decoding="async">
+    </div>
     <div class="opening-cover__veil"></div>
     <div class="opening-cover__content">
       <p class="eyebrow" data-config="site.invitationLabel">Wedding Invitation</p>
@@ -394,6 +422,67 @@
     <span class="music-toggle__label">Music</span>
   </button>
   <audio id="background-music" preload="none" loop src="assets/audio/bermuara.mp3"></audio>
+
+
+  <script>
+    (() => {
+      const cover = document.getElementById('opening-cover');
+      const openButton = document.getElementById('open-invitation');
+      const slides = Array.from(document.querySelectorAll('.opening-cover__slide'));
+
+      if (!cover || slides.length < 2) return;
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let currentIndex = 0;
+      let timerId = null;
+
+      const showSlide = (nextIndex) => {
+        slides[currentIndex].classList.remove('is-active');
+        currentIndex = nextIndex;
+        slides[currentIndex].classList.add('is-active');
+      };
+
+      const startSlideshow = () => {
+        if (reduceMotion.matches || timerId !== null) return;
+
+        timerId = window.setInterval(() => {
+          const nextIndex = (currentIndex + 1) % slides.length;
+          showSlide(nextIndex);
+        }, 4800);
+      };
+
+      const stopSlideshow = () => {
+        if (timerId === null) return;
+        window.clearInterval(timerId);
+        timerId = null;
+      };
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stopSlideshow();
+        } else if (document.body.classList.contains('is-locked')) {
+          startSlideshow();
+        }
+      });
+
+      openButton?.addEventListener('click', stopSlideshow, { once: true });
+
+      if (typeof reduceMotion.addEventListener === 'function') {
+        reduceMotion.addEventListener('change', (event) => {
+          if (event.matches) {
+            stopSlideshow();
+            slides.forEach((slide, index) => {
+              slide.classList.toggle('is-active', index === currentIndex);
+            });
+          } else if (document.body.classList.contains('is-locked')) {
+            startSlideshow();
+          }
+        });
+      }
+
+      startSlideshow();
+    })();
+  </script>
 
   <script type="module" src="assets/js/app.js"></script>
 </body>
