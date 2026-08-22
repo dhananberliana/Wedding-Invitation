@@ -8,7 +8,7 @@
   <title>Wedding Invitation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600&family=Noto+Sans+Balinese:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
 
   <style>
@@ -349,6 +349,61 @@
         animation: none;
       }
     }
+
+    /* Pawiwahan ceremonial introduction */
+    .pawiwahan-intro {
+      max-width: 46rem;
+      margin: 0 auto clamp(2.25rem, 5vw, 4rem);
+      text-align: center;
+    }
+
+    .pawiwahan-intro__aksara {
+      margin: 0 0 0.85rem;
+      font-family: "Noto Sans Balinese", "Noto Sans", sans-serif;
+      font-size: clamp(1.75rem, 4vw, 2.6rem);
+      font-weight: 400;
+      line-height: 1.45;
+      letter-spacing: 0.02em;
+      color: currentColor;
+    }
+
+    .pawiwahan-intro__greeting {
+      margin: 0 0 1rem;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .pawiwahan-intro__copy {
+      max-width: 42rem;
+      margin: 0 auto;
+      font-size: clamp(0.92rem, 1.35vw, 1.02rem);
+      line-height: 1.9;
+      text-wrap: pretty;
+      opacity: 0.86;
+    }
+
+    .pawiwahan-intro::after {
+      content: "";
+      display: block;
+      width: 3.5rem;
+      height: 1px;
+      margin: clamp(1.5rem, 3vw, 2rem) auto 0;
+      background: currentColor;
+      opacity: 0.25;
+    }
+
+    @media (max-width: 767px) {
+      .pawiwahan-intro {
+        margin-bottom: 2.5rem;
+      }
+
+      .pawiwahan-intro__copy {
+        line-height: 1.8;
+      }
+    }
+
   </style>
 </head>
 <body class="is-locked">
@@ -411,6 +466,11 @@
     <section class="section section--paper" id="couple" aria-labelledby="couple-title">
       <div class="section-shell couple-grid">
         <div class="couple-copy reveal">
+          <div class="pawiwahan-intro" aria-label="Pawiwahan ceremonial greeting">
+            <p class="pawiwahan-intro__aksara" lang="ban-Bali">ᬒᬁ ᬲ᭄ᬯᬲ᭄ᬢ᭄ᬬᬲ᭄ᬢᬸ</p>
+            <p class="pawiwahan-intro__greeting">Om Swastyastu</p>
+            <p class="pawiwahan-intro__copy">Atas Asung Kertha Wara Nugraha Ida Sang Hyang Widhi Wasa/Tuhan Yang Maha Esa kami bermaksud mengundang Bapak/Ibu/Saudara/i pada Upacara Manusa Yadnya Pawiwahan (Pernikahan) kami.</p>
+          </div>
           <p class="eyebrow eyebrow--dark">Two souls, one story</p>
           <h2 class="display-title" id="couple-title">The Groom<br>&amp; The Bride</h2>
           <p class="body-copy">With gratitude and love, we invite you to witness a day that marks the beginning of our lifelong journey together.</p>
