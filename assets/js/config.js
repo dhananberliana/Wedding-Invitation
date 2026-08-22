@@ -36,7 +36,7 @@ export const WEDDING_CONFIG = Object.freeze({
       start: '2026-12-10T16:00:00+08:00',
       end: '2026-12-10T22:00:00+08:00',
       venueAddress: 'Petang, Bali',
-      mapsUrl: 'https://maps.app.goo.gl/4NLyCT6QSVP9Z1Ab7',
+      mapsUrl: 'https://maps.app.goo.gl/P7p5qe1bmp2mH7tQ6?g_st=aw',
       description: 'Resepsi pernikahan Dhanan & Berliana.'
     }
   },
