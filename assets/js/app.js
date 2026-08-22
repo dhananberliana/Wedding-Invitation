@@ -1365,6 +1365,52 @@ function setupRsvp(
   );
 }
 
+/* =========================================================
+   BANK COPY
+========================================================= */
+
+function setupBankAccountCopy() {
+  const button = $('#copy-bank-account');
+  const account = $('#bank-account-number');
+  const status = $('#gift-copy-status');
+
+  if (!button || !account) return;
+
+  button.addEventListener('click', async () => {
+    const value = account.textContent.trim();
+
+    if (!value || value === 'XXX') {
+      if (status) {
+        status.textContent = 'Nomor rekening belum tersedia.';
+      }
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(value);
+
+      button.textContent = 'Tersalin ✓';
+
+      if (status) {
+        status.textContent = 'Nomor rekening berhasil disalin.';
+      }
+
+      window.setTimeout(() => {
+        button.textContent = 'Salin Nomor Rekening';
+
+        if (status) {
+          status.textContent = '';
+        }
+      }, 1800);
+
+    } catch {
+      if (status) {
+        status.textContent =
+          'Tidak dapat menyalin otomatis. Tekan dan tahan nomor rekening untuk menyalin.';
+      }
+    }
+  });
+}
 
 /* =========================================================
    INITIALISATION
@@ -1395,6 +1441,8 @@ function init() {
   );
 
   setupWishesPolling();
+
+  setupBankAccountCopy();
 }
 
 
