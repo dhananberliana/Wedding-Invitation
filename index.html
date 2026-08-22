@@ -12,15 +12,22 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 
   <style>
-    /* Opening Cover Slideshow */
-    .opening-cover__media {
+    /* Hero slideshow — starts after Open Invitation */
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__media {
       position: absolute;
       inset: 0;
+      z-index: 0;
       overflow: hidden;
+      pointer-events: none;
       background: #191713;
     }
 
-    .opening-cover__slide {
+    .hero__slide {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -28,41 +35,37 @@
       object-fit: cover;
       object-position: center;
       opacity: 0;
-      transform: scale(1.035);
-      transition:
-        opacity 1.6s ease-in-out,
-        transform 6.5s ease-out;
+      transform: scale(1.02);
+      transition: opacity 1.6s ease-in-out, transform 7s ease-out;
       will-change: opacity, transform;
     }
 
-    .opening-cover__slide.is-active {
+    .hero__slide.is-active {
       opacity: 1;
-      transform: scale(1.08);
+      transform: scale(1.07);
     }
 
-    .opening-cover__veil {
-      pointer-events: none;
-      background:
-        linear-gradient(180deg, rgba(12, 10, 8, 0.25) 0%, rgba(12, 10, 8, 0.12) 42%, rgba(12, 10, 8, 0.52) 100%);
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
     }
 
     @media (max-width: 767px) {
-      .opening-cover__slide {
-        object-position: center center;
-      }
-
-      .opening-cover__slide:nth-child(2) {
-        object-position: 48% center;
-      }
-
-      .opening-cover__slide:nth-child(3) {
-        object-position: 52% center;
-      }
+      .hero__slide:nth-child(2) { object-position: 48% center; }
+      .hero__slide:nth-child(3) { object-position: 52% center; }
+      .hero__slide:nth-child(4) { object-position: 50% center; }
+      .hero__slide:nth-child(5) { object-position: 50% center; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .opening-cover__slide {
-        transition: opacity 0.35s linear;
+      .hero__slide {
+        transition: none;
         transform: none !important;
       }
     }
@@ -74,38 +77,7 @@
   </noscript>
 
   <section class="opening-cover" id="opening-cover" aria-label="Opening wedding invitation">
-    <div class="opening-cover__media" aria-hidden="true">
-      <img
-        class="opening-cover__slide is-active"
-        src="assets/images/story-frame-01.webp"
-        alt=""
-        fetchpriority="high"
-        decoding="async">
-      <img
-        class="opening-cover__slide"
-        src="assets/images/story-frame-03.webp"
-        alt=""
-        loading="eager"
-        decoding="async">
-      <img
-        class="opening-cover__slide"
-        src="assets/images/story-frame-05.webp"
-        alt=""
-        loading="eager"
-        decoding="async">
-      <img
-        class="opening-cover__slide"
-        src="assets/images/story-frame-12.webp"
-        alt=""
-        loading="eager"
-        decoding="async">
-      <img
-        class="opening-cover__slide"
-        src="assets/images/story-frame-14.webp"
-        alt=""
-        loading="eager"
-        decoding="async">
-    </div>
+    <div class="opening-cover__media" aria-hidden="true"></div>
     <div class="opening-cover__veil"></div>
     <div class="opening-cover__content">
       <p class="eyebrow" data-config="site.invitationLabel">Wedding Invitation</p>
@@ -121,7 +93,13 @@
 
   <main>
     <section class="hero" id="home" aria-labelledby="hero-title">
-      <img class="hero__image" src="assets/images/hero.webp" alt="Bride and groom in traditional wedding attire" fetchpriority="high">
+      <div class="hero__media" aria-hidden="true">
+        <img class="hero__slide is-active" src="assets/images/hero.webp" alt="" fetchpriority="high" decoding="async">
+        <img class="hero__slide" src="assets/images/story-frame-01.webp" alt="" loading="eager" decoding="async">
+        <img class="hero__slide" src="assets/images/story-frame-03.webp" alt="" loading="eager" decoding="async">
+        <img class="hero__slide" src="assets/images/story-frame-05.webp" alt="" loading="eager" decoding="async">
+        <img class="hero__slide" src="assets/images/story-frame-12.webp" alt="" loading="eager" decoding="async">
+      </div>
       <div class="hero__overlay"></div>
       <div class="hero__content reveal">
         <p class="eyebrow" data-config="site.greeting">Dear family &amp; friends,</p>
@@ -426,29 +404,20 @@
 
   <script>
     (() => {
-      const cover = document.getElementById('opening-cover');
       const openButton = document.getElementById('open-invitation');
-      const slides = Array.from(document.querySelectorAll('.opening-cover__slide'));
+      const heroSlides = Array.from(document.querySelectorAll('.hero__slide'));
 
-      if (!cover || slides.length < 2) return;
+      if (heroSlides.length < 2) return;
 
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       let currentIndex = 0;
       let timerId = null;
+      let hasOpened = !document.body.classList.contains('is-locked');
 
       const showSlide = (nextIndex) => {
-        slides[currentIndex].classList.remove('is-active');
+        heroSlides[currentIndex].classList.remove('is-active');
         currentIndex = nextIndex;
-        slides[currentIndex].classList.add('is-active');
-      };
-
-      const startSlideshow = () => {
-        if (reduceMotion.matches || timerId !== null) return;
-
-        timerId = window.setInterval(() => {
-          const nextIndex = (currentIndex + 1) % slides.length;
-          showSlide(nextIndex);
-        }, 4800);
+        heroSlides[currentIndex].classList.add('is-active');
       };
 
       const stopSlideshow = () => {
@@ -457,26 +426,31 @@
         timerId = null;
       };
 
+      const startSlideshow = () => {
+        if (!hasOpened || reduceMotion.matches || document.hidden || timerId !== null) return;
+
+        timerId = window.setInterval(() => {
+          showSlide((currentIndex + 1) % heroSlides.length);
+        }, 4800);
+      };
+
+      openButton?.addEventListener('click', () => {
+        hasOpened = true;
+        startSlideshow();
+      }, { once: true });
+
       document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
           stopSlideshow();
-        } else if (document.body.classList.contains('is-locked')) {
+        } else {
           startSlideshow();
         }
       });
 
-      openButton?.addEventListener('click', stopSlideshow, { once: true });
-
       if (typeof reduceMotion.addEventListener === 'function') {
         reduceMotion.addEventListener('change', (event) => {
-          if (event.matches) {
-            stopSlideshow();
-            slides.forEach((slide, index) => {
-              slide.classList.toggle('is-active', index === currentIndex);
-            });
-          } else if (document.body.classList.contains('is-locked')) {
-            startSlideshow();
-          }
+          if (event.matches) stopSlideshow();
+          else startSlideshow();
         });
       }
 
