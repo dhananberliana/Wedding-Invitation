@@ -13,7 +13,7 @@ export const WEDDING_CONFIG = Object.freeze({
     start: '2026-12-09T09:00:00+08:00',
     end: '2026-12-09T22:00:00+08:00',
     venueAddress: 'Petang, Bali',
-    mapsUrl: 'https://maps.app.goo.gl/4NLyCT6QSVP9Z1Ab7',
+    mapsUrl: 'https://maps.app.goo.gl/P7p5qe1bmp2mH7tQ6?g_st=aw',
     description: 'Dengan penuh sukacita, kami mengundang keluarga dan sahabat untuk hadir dan memberikan doa restu pada hari bahagia kami.'
   },
   events: {
@@ -25,7 +25,7 @@ export const WEDDING_CONFIG = Object.freeze({
       start: '2026-12-09T09:00:00+08:00',
       end: '2026-12-09T22:00:00+08:00',
       venueAddress: 'Petang, Bali',
-      mapsUrl: 'https://maps.app.goo.gl/4NLyCT6QSVP9Z1Ab7',
+      mapsUrl: 'https://maps.app.goo.gl/P7p5qe1bmp2mH7tQ6?g_st=aw',
       description: 'Acara Ngidi pernikahan Dhanan & Berliana.'
     },
     reception: {
@@ -43,7 +43,7 @@ export const WEDDING_CONFIG = Object.freeze({
   gift: {
     bankAccount: 'BCA • 7705388041 - I Wayan Dhanan Arieyasa',
     deliveryAddress: 'Petang, Bali',
-    deliveryAddressUrl: 'https://maps.app.goo.gl/1th8LpjMeTfUx5gy6'
+    deliveryAddressUrl: 'https://maps.app.goo.gl/P7p5qe1bmp2mH7tQ6?g_st=aw'
   },
   integration: {
     appsScriptUrl: 'https://script.google.com/macros/s/AKfycbxvHSZSthEdaz7coZlBKwaLHXf7FK72mNjWSds5fhEg6yQSc2mWw1FM3xrmlu-LbF0n/exec'
