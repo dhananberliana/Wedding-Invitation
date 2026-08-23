@@ -92,10 +92,10 @@ export const WEDDING_CONFIG = Object.freeze({
     bankAccount: '7705388041',
 
     deliveryAddress:
-    'Petang, Badung, Bali',
+    'Banjar Dauh Peken, Penarungan - Mengwi',
 
     deliveryAddressUrl:
-    'https://maps.app.goo.gl/P7p5qe1bmp2mH7tQ6?g_st=aw'
+    'https://maps.app.goo.gl/Zb91ZEPLCAct3JPA9'
   },
 
   /* =========================================================
