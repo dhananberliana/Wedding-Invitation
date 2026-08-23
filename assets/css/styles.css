@@ -26,6 +26,7 @@
   --transition: 480ms cubic-bezier(.2,.7,.2,1);
 }
 
+
 /* =========================================================
    RESET
 ========================================================= */
@@ -82,6 +83,7 @@ a {
   background: var(--color-gold-light);
   color: var(--color-ink);
 }
+
 
 /* =========================================================
    GLOBAL
@@ -170,6 +172,7 @@ a {
   font-weight: 400;
 }
 
+
 /* =========================================================
    BUTTONS + LINKS
 ========================================================= */
@@ -253,6 +256,7 @@ textarea:focus-visible {
   text-decoration: none;
   text-transform: uppercase;
 }
+
 
 /* =========================================================
    OPENING COVER
@@ -345,6 +349,7 @@ textarea:focus-visible {
     transform: scale(1.09);
   }
 }
+
 
 /* =========================================================
    HERO
@@ -445,6 +450,7 @@ textarea:focus-visible {
   content: '';
 }
 
+
 /* =========================================================
    COUPLE
 ========================================================= */
@@ -521,6 +527,7 @@ textarea:focus-visible {
   font-size: 1.1rem;
   font-style: italic;
 }
+
 
 /* =========================================================
    COUNTDOWN
@@ -675,6 +682,7 @@ textarea:focus-visible {
   font-size: .78rem;
   text-align: center;
 }
+
 
 /* =========================================================
    EVENT / RESEPSI
@@ -929,6 +937,7 @@ textarea:focus-visible {
   color: var(--color-gold);
 }
 
+
 /* =========================================================
    VENUE
 ========================================================= */
@@ -1017,58 +1026,82 @@ textarea:focus-visible {
   aspect-ratio: 4 / 3;
 }
 
+
 /* =========================================================
-   STORY
+   STORY — CLEAN RESPONSIVE GRID
 ========================================================= */
 
 .story {
-  padding: var(--section-space) 0 0;
+  padding: var(--section-space) 0;
   background: var(--color-paper-soft);
 }
 
 .story-heading {
-  padding-bottom: 3rem;
+  padding-bottom: clamp(2.5rem, 7vw, 4.5rem);
 }
 
 .story-gallery__intro {
   max-width: 38rem;
-  margin: 1rem 0 0;
+  margin: 1.25rem 0 0;
   color: #766a5e;
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: clamp(1rem, 2.8vw, 1.2rem);
   font-style: italic;
   line-height: 1.65;
 }
 
+
+/* =========================================================
+   STORY GALLERY GRID
+========================================================= */
+
 .story-gallery {
-  column-count: 2;
-  column-gap: .5rem;
-  padding-bottom: .5rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .7rem;
+  width: 100%;
+  padding-bottom: 1rem;
 }
 
+
+/* =========================================================
+   STORY PHOTO CARD
+========================================================= */
+
 .story-frame {
+  position: relative;
   display: block;
   width: 100%;
-  margin: 0 0 .5rem;
+  min-width: 0;
+  margin: 0;
   padding: 0;
-  break-inside: avoid;
-  border: 0;
-  border-radius: var(--radius-button);
-  background: transparent;
-  cursor: zoom-in;
   overflow: hidden;
+  border: 0;
+  border-radius: 1rem;
+  background: #ddd4c8;
+  cursor: zoom-in;
+
+  /* Semua thumbnail dibuat konsisten */
+  aspect-ratio: 3 / 4;
 }
 
 .story-frame img {
   display: block;
   width: 100%;
-  height: auto;
-  transition: transform .45s ease, filter .45s ease;
+  height: 100%;
+
+  /* Foto memenuhi card tanpa merusak grid */
+  object-fit: cover;
+  object-position: center;
+
+  transition:
+    transform .7s cubic-bezier(.22, 1, .36, 1),
+    filter .7s ease;
 }
 
 .story-frame:hover img,
 .story-frame:focus-visible img {
-  transform: scale(1.025);
+  transform: scale(1.035);
   filter: brightness(.96);
 }
 
@@ -1076,6 +1109,11 @@ textarea:focus-visible {
   outline: 2px solid var(--color-gold);
   outline-offset: 3px;
 }
+
+
+/* =========================================================
+   STORY LIGHTBOX
+========================================================= */
 
 .story-lightbox {
   width: min(94vw, 58rem);
@@ -1127,7 +1165,11 @@ textarea:focus-visible {
   cursor: pointer;
 }
 
-/* Optional story slider */
+
+/* =========================================================
+   STORY SLIDER
+========================================================= */
+
 .story-slider {
   width: 100%;
   min-width: 0;
@@ -1234,6 +1276,7 @@ textarea:focus-visible {
   font-size: .95rem;
   font-style: italic;
 }
+
 
 /* =========================================================
    RSVP
@@ -1412,6 +1455,7 @@ textarea:focus-visible {
   display: none;
 }
 
+
 /* =========================================================
    WISHES
 ========================================================= */
@@ -1477,6 +1521,7 @@ textarea:focus-visible {
   font-style: italic;
 }
 
+
 /* =========================================================
    GIFT
 ========================================================= */
@@ -1487,72 +1532,142 @@ textarea:focus-visible {
 
 .gift-grid {
   display: grid;
-  gap: .8rem;
-  margin-top: 2.4rem;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 2.75rem;
 }
 
-.gift-grid > div {
-  padding: 1.35rem;
-  border: 1px solid rgba(29,28,26,.16);
-  border-radius: var(--radius-card);
-  background: rgba(255,255,255,.28);
-}
-
-.gift-grid strong {
-  display: block;
-  overflow-wrap: anywhere;
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 7vw, 2.3rem);
-  font-weight: 500;
-  line-height: 1.05;
-}
-
-.gift-delivery-link {
-  display: inline-flex;
-  margin-top: .9rem;
-}
-
-/* =========================================================
-   GIFT DELIVERY
-========================================================= */
-
-.gift-delivery-card {
+.gift-info-card {
+  position: relative;
   display: flex;
   min-width: 0;
+  min-height: 100%;
   flex-direction: column;
   align-items: flex-start;
-
-  padding: 1.35rem;
-
-  border: 1px solid rgba(29,28,26,.16);
-  border-radius: var(--radius-card);
-
-  background: rgba(255,255,255,.28);
+  padding: clamp(1.5rem, 4vw, 2rem);
+  border: 1px solid rgba(163,124,69,.22);
+  border-radius: 1.15rem;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,253,249,.44),
+      rgba(255,255,255,.18)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.5);
+  overflow: hidden;
 }
 
-.gift-delivery-card .mini-label {
+.gift-info-card::after {
+  position: absolute;
+  top: -3.5rem;
+  right: -3.5rem;
+  width: 8rem;
+  height: 8rem;
+  border: 1px solid rgba(163,124,69,.10);
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+}
+
+.gift-bank-card__head,
+.gift-delivery-card__head {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: 1.25rem;
+}
+
+.gift-bank-card__head .mini-label,
+.gift-delivery-card__head .mini-label {
+  margin: 0;
+}
+
+.gift-bank-card__icon,
+.gift-delivery-card__icon {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 2.75rem;
+  place-items: center;
+  border: 1px solid rgba(163,124,69,.28);
+  border-radius: 50%;
+  background: rgba(255,255,255,.34);
+  font-size: 1rem;
+}
+
+.gift-bank-card__name {
+  margin: 0 0 .45rem;
+  color: var(--color-ink-soft);
+  font-size: .78rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.gift-bank-card__number {
   display: block;
-  margin: 0 0 .65rem;
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 500;
+  letter-spacing: .025em;
+  line-height: 1;
+  overflow-wrap: anywhere;
 }
 
 .gift-delivery-address {
   display: block;
-  width: 100%;
+  max-width: 28rem;
   margin: 0;
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 4vw, 2rem);
+  font-size: clamp(1.7rem, 3.5vw, 2.5rem);
   font-weight: 500;
-  line-height: 1.25;
+  line-height: 1.12;
   overflow-wrap: anywhere;
 }
 
 .gift-delivery-link {
-  display: inline-flex;
-  align-items: center;
-  gap: .45rem;
-  margin-top: 1rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
 }
+
+.gift-copy-button {
+  display: inline-flex;
+  min-height: 2.9rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.25rem;
+  padding: .75rem 1.1rem;
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-button);
+  background: transparent;
+  color: var(--color-gold);
+  cursor: pointer;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.gift-copy-button:hover {
+  background: var(--color-gold);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.gift-copy-status {
+  min-height: 1.2em;
+  margin: .6rem 0 0;
+  color: var(--color-ink-soft);
+  font-size: .7rem;
+}
+
 
 /* =========================================================
    CLOSING
@@ -1612,6 +1727,7 @@ textarea:focus-visible {
   font-style: italic;
 }
 
+
 /* =========================================================
    MUSIC
 ========================================================= */
@@ -1663,6 +1779,7 @@ textarea:focus-visible {
   }
 }
 
+
 /* =========================================================
    SLOWER SCROLL REVEAL
 ========================================================= */
@@ -1671,11 +1788,11 @@ textarea:focus-visible {
   opacity: 0;
   transform: translateY(32px);
 
-transition:
-  opacity 1.6s cubic-bezier(.22, 1, .36, 1),
-  transform 1.6s cubic-bezier(.22, 1, .36, 1);
+  transition:
+    opacity 1.6s cubic-bezier(.22, 1, .36, 1),
+    transform 1.6s cubic-bezier(.22, 1, .36, 1);
 
-transition-delay: .25s;
+  transition-delay: .25s;
 }
 
 .reveal.is-visible {
@@ -1683,11 +1800,13 @@ transition-delay: .25s;
   transform: translateY(0);
 }
 
+
 /* =========================================================
    HOVER
 ========================================================= */
 
 @media (hover: hover) {
+
   #countdown .countdown-card:hover {
     border-color: rgba(163,124,69,.40);
     box-shadow:
@@ -1703,13 +1822,20 @@ transition-delay: .25s;
       inset 0 1px 0 rgba(255,255,255,.92);
     transform: translateY(-5px);
   }
+
+  .story-frame:hover img {
+    transform: scale(1.035);
+    filter: brightness(.96);
+  }
 }
+
 
 /* =========================================================
    MOBILE EVENT
 ========================================================= */
 
 @media (max-width: 767px) {
+
   .event-layout {
     gap: 2rem;
   }
@@ -1772,13 +1898,24 @@ transition-delay: .25s;
   .event-card__actions .text-link {
     justify-self: center;
   }
+
+  .gift-grid {
+    grid-template-columns: 1fr;
+    gap: .85rem;
+  }
+
+  .gift-info-card {
+    padding: 1.4rem;
+  }
 }
+
 
 /* =========================================================
    TABLET + DESKTOP
 ========================================================= */
 
 @media (min-width: 768px) {
+
   .opening-cover {
     place-items: center;
   }
@@ -1894,13 +2031,11 @@ transition-delay: .25s;
     min-height: 25rem;
   }
 
+  /* STORY: 3 kolom tablet */
   .story-gallery {
-    column-count: 3;
-    column-gap: .7rem;
-  }
-
-  .story-frame {
-    margin-bottom: .7rem;
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+    gap: .8rem;
   }
 
   .story-slider {
@@ -1919,6 +2054,11 @@ transition-delay: .25s;
   .gift-grid {
     grid-template-columns:
       repeat(2, minmax(0,1fr));
+    gap: 1.25rem;
+  }
+
+  .gift-info-card {
+    min-height: 18rem;
   }
 
   .closing {
@@ -1927,11 +2067,13 @@ transition-delay: .25s;
   }
 }
 
+
 /* =========================================================
    LARGE DESKTOP
 ========================================================= */
 
 @media (min-width: 1100px) {
+
   .opening-cover__media {
     background-position: center 42%;
   }
@@ -1956,16 +2098,30 @@ transition-delay: .25s;
     min-height: 22rem;
   }
 
+  /* STORY: 4 kolom desktop */
   .story-gallery {
-    column-count: 4;
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+    gap: .9rem;
+  }
+
+  .gift-grid {
+    margin-top: 3.25rem;
+    gap: 1.5rem;
+  }
+
+  .gift-info-card {
+    padding: 2.25rem;
   }
 }
+
 
 /* =========================================================
    VERY SMALL MOBILE
 ========================================================= */
 
 @media (max-width: 420px) {
+
   #countdown .countdown-grid {
     gap: .7rem;
   }
@@ -1978,13 +2134,23 @@ transition-delay: .25s;
   #countdown .countdown-card strong {
     font-size: clamp(2.55rem, 14vw, 3.3rem);
   }
+
+  .story-gallery {
+    gap: .55rem;
+  }
+
+  .story-frame {
+    border-radius: .85rem;
+  }
 }
+
 
 /* =========================================================
    REDUCED MOTION
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+
   html {
     scroll-behavior: auto;
   }
@@ -2010,9 +2176,9 @@ transition-delay: .25s;
   }
 }
 
+
 /* =========================================================
    RESPONSIVE / ZOOM SAFETY
-   Keeps the wedding invitation flexible at browser zoom
 ========================================================= */
 
 html {
@@ -2027,7 +2193,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Prevent flex/grid children from forcing page overflow */
 main,
 section,
 .section,
@@ -2059,7 +2224,6 @@ section,
   max-width: 100%;
 }
 
-/* Responsive shell when browser zoom is increased */
 .section-shell {
   width: min(
     calc(100% - (var(--page-gutter) * 2)),
@@ -2069,7 +2233,6 @@ section,
   padding-inline: 0;
 }
 
-/* Text must always wrap instead of forcing overflow */
 h1,
 h2,
 h3,
@@ -2090,7 +2253,6 @@ figcaption {
   word-break: normal;
 }
 
-/* Long address / account number / links */
 .venue-address,
 .gift-grid strong,
 .parent-copy,
@@ -2102,7 +2264,6 @@ figcaption {
   overflow-wrap: anywhere;
 }
 
-/* Responsive media */
 img,
 video,
 iframe,
@@ -2116,7 +2277,6 @@ video {
   height: auto;
 }
 
-/* Maps should never exceed their container */
 .venue-map {
   width: 100%;
 }
@@ -2126,7 +2286,6 @@ video {
   max-width: 100%;
 }
 
-/* Inputs need to shrink correctly at browser zoom */
 input,
 select,
 textarea,
@@ -2139,6 +2298,7 @@ button {
 .rsvp-form textarea {
   min-width: 0;
 }
+
 
 /* =========================================================
    FLEXIBLE TYPOGRAPHY
@@ -2184,6 +2344,7 @@ button {
   );
 }
 
+
 /* =========================================================
    FLEXIBLE GRID
 ========================================================= */
@@ -2206,14 +2367,10 @@ button {
   min-width: 0;
 }
 
+
 /* =========================================================
    DESKTOP / ZOOM FRIENDLY LAYOUT
 ========================================================= */
-
-/*
-   min-width alone can behave strangely when browser zoom is high.
-   min-width + min-height gives us safer responsive switching.
-*/
 
 @media (min-width: 768px) and (min-height: 500px) {
 
@@ -2233,9 +2390,9 @@ button {
   }
 }
 
+
 /* =========================================================
-   SAFETY WHEN EFFECTIVE VIEWPORT GETS SMALLER
-   Example: desktop browser at 150–200% zoom
+   ZOOM SAFETY
 ========================================================= */
 
 @media (max-width: 900px) {
@@ -2257,6 +2414,7 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
 
 /* =========================================================
    HIGH ZOOM / TABLET WIDTH
@@ -2301,14 +2459,16 @@ button {
   }
 }
 
+
 /* =========================================================
-   VERY HIGH ZOOM / VERY SMALL VIEWPORT
+   VERY HIGH ZOOM / SMALL MOBILE
 ========================================================= */
 
 @media (max-width: 480px) {
 
   :root {
     --page-gutter: 1rem;
+
     --section-space: clamp(
       4rem,
       14vw,
@@ -2359,9 +2519,9 @@ button {
   }
 }
 
+
 /* =========================================================
    EXTREME NARROW WIDTH
-   Useful with 200%+ browser zoom
 ========================================================= */
 
 @media (max-width: 360px) {
@@ -2391,6 +2551,7 @@ button {
   }
 }
 
+
 /* =========================================================
    PAWIWAHAN SCROLL REVEAL
 ========================================================= */
@@ -2411,6 +2572,7 @@ button {
 
 
 /* Veda Card */
+
 .pawiwahan-intro.reveal .veda-card {
   opacity: 0;
   transform: translateY(28px) scale(.985);
@@ -2427,6 +2589,7 @@ button {
 
 
 /* Aksara Bali */
+
 .pawiwahan-intro.reveal .pawiwahan-intro__aksara {
   opacity: 0;
   transform: translateY(20px);
@@ -2443,6 +2606,7 @@ button {
 
 
 /* Om Swastyastu */
+
 .pawiwahan-intro.reveal .pawiwahan-intro__greeting {
   opacity: 0;
   transform: translateY(18px);
@@ -2459,6 +2623,7 @@ button {
 
 
 /* Pawiwahan copy */
+
 .pawiwahan-intro.reveal .pawiwahan-intro__copy {
   opacity: 0;
   transform: translateY(18px);
@@ -2471,94 +2636,4 @@ button {
 .pawiwahan-intro.reveal.is-visible .pawiwahan-intro__copy {
   opacity: .86;
   transform: translateY(0);
-}
-
-/* =========================================================
-   GIFT BANK ACCOUNT
-========================================================= */
-
-/* =========================================================
-   GIFT BANK ACCOUNT
-========================================================= */
-
-.gift-bank-card__head {
-  display: flex;
-  align-items: center;
-  gap: .7rem;
-  margin-bottom: .8rem;
-}
-
-.gift-bank-card__head .mini-label {
-  margin: 0;
-}
-
-.gift-bank-card__icon {
-  display: grid;
-  width: 2.7rem;
-  height: 2.7rem;
-  flex: 0 0 auto;
-  place-items: center;
-  border: 1px solid rgba(163,124,69,.28);
-  border-radius: 50%;
-  background: rgba(255,255,255,.34);
-  font-size: 1.15rem;
-}
-
-/* Nama pemilik rekening */
-.gift-bank-card__name {
-  margin: 0 0 .35rem;
-  color: var(--color-ink-soft);
-  font-size: .76rem;
-  font-weight: 500;
-  letter-spacing: .04em;
-  line-height: 1.5;
-}
-
-/* Nomor rekening */
-.gift-bank-card__number {
-  display: block;
-  margin: 0;
-  color: var(--color-ink);
-  font-family: var(--font-display);
-  font-size: clamp(1.75rem, 6vw, 2.5rem);
-  font-weight: 500;
-  letter-spacing: .025em;
-  line-height: 1.1;
-  overflow-wrap: anywhere;
-}
-
-/* Copy button */
-.gift-copy-button {
-  display: inline-flex;
-  min-height: 2.8rem;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1rem;
-  padding: .7rem 1rem;
-  border: 1px solid var(--color-gold);
-  border-radius: var(--radius-button);
-  background: transparent;
-  color: var(--color-gold);
-  cursor: pointer;
-  font-size: .7rem;
-  font-weight: 600;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  transition:
-    background-color 180ms ease,
-    color 180ms ease,
-    transform 180ms ease;
-}
-
-.gift-copy-button:hover {
-  background: var(--color-gold);
-  color: var(--color-white);
-  transform: translateY(-2px);
-}
-
-.gift-copy-status {
-  min-height: 1.2em;
-  margin: .55rem 0 0;
-  color: var(--color-ink-soft);
-  font-size: .7rem;
 }
