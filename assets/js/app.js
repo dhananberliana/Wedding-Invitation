@@ -42,32 +42,15 @@ function getConfigValue(path) {
 
 function populateConfiguredText() {
   $$('[data-config]').forEach((node) => {
-    const value =
-      getConfigValue(node.dataset.config);
-
-    if (
-      value !== undefined &&
-      value !== null
-    ) {
-      node.textContent =
-        String(value);
+    const value = getConfigValue(node.dataset.config);
+    if (value !== undefined && value !== null) {
+      node.textContent = String(value);
     }
   });
 
-  const {
-    bride,
-    groom
-  } = WEDDING_CONFIG.couple;
-
-  if (
-    isConfiguredValue(bride) &&
-    isConfiguredValue(groom)
-  ) {
-    document.title =
-      `${groom} & ${bride} — Wedding Invitation`;
-  }
+  const browserTitle = WEDDING_CONFIG.site?.browserTitle;
+  document.title = browserTitle || 'Dhanan & Berliana | Undangan Pernikahan';
 }
-
 
 /* =========================================================
    GOOGLE MAPS + CALENDAR
