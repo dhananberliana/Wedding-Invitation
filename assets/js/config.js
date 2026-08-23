@@ -112,15 +112,10 @@ export const WEDDING_CONFIG = Object.freeze({
   ========================================================= */
 
   site: {
-    invitationLabel: 'Undangan Pernikahan',
-
-    greeting:
-      'Kepada keluarga & sahabat tercinta,',
-
-    openingMessage:
-      'Bersama keluarga, dengan penuh sukacita kami mengundang Anda untuk merayakan awal perjalanan kami menuju selamanya.',
-
-    closingMessage:
-      'Kehadiran dan doa restu Anda akan menjadikan hari bahagia kami semakin bermakna.'
-  }
+  invitationLabel: 'Wedding Invitation',
+  greeting: 'Dear family & friends,',
+  openingMessage: 'Together with our families, we warmly invite you to celebrate the beginning of our forever.',
+  closingMessage: 'Your presence and prayers will make our day even more meaningful.',
+  browserTitle: 'Dhanan & Berliana | Undangan Pernikahan'
+}
 });
