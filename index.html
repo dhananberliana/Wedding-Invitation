@@ -254,6 +254,40 @@
       }
     }
 
+
+    /* =========================================================
+       OPENING LOGO
+       Hanya mengatur tampilan logo pada cover pembuka.
+       Struktur RSVP / data / JavaScript tidak diubah.
+    ========================================================= */
+
+    .opening-cover__logo {
+      display: block;
+      width: clamp(7.75rem, 14vw, 10.5rem);
+      height: auto;
+      margin: 0 auto 1.15rem;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 14px rgba(0, 0, 0, .28));
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @media (max-width: 767px) {
+      .opening-cover__content {
+        position: relative;
+      }
+
+      .opening-cover__logo {
+        position: absolute;
+        top: calc(-20rem + env(safe-area-inset-top));
+        left: 50%;
+        width: clamp(6rem, 28vw, 8rem);
+        margin: 0;
+        transform: translateX(-50%);
+        z-index: 3;
+      }
+    }
+
     /* =========================================================
        OPENING TRANSITION
     ========================================================= */
@@ -591,6 +625,14 @@
     <div class="opening-cover__veil"></div>
 
     <div class="opening-cover__content">
+
+      <img
+        class="opening-cover__logo"
+        src="assets/images/db-logo-white.png"
+        alt="Dhanan & Berliana"
+        width="320"
+        height="320"
+        decoding="async">
 
       <p
         class="eyebrow"
