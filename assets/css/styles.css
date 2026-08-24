@@ -2637,3 +2637,52 @@ button {
   opacity: .86;
   transform: translateY(0);
 }
+
+/* =========================================================
+   OPENING COVER — D&B LOGO
+   Added for master Wedding-Invitation
+========================================================= */
+
+.opening-cover__logo {
+  display: block;
+  width: clamp(7rem, 12vw, 10rem);
+  height: auto;
+  margin: 0 auto 1.15rem;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 4px 14px rgba(0, 0, 0, .28))
+    drop-shadow(0 1px 3px rgba(0, 0, 0, .20));
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Mobile: logo placed in the empty area above the couple's heads */
+@media (max-width: 767px) {
+  .opening-cover__logo {
+    position: fixed;
+    z-index: 4;
+    top: calc(env(safe-area-inset-top) + 1.75rem);
+    left: 50%;
+    width: clamp(6.5rem, 27vw, 8rem);
+    margin: 0;
+    transform: translateX(-50%);
+  }
+}
+
+/* Extra-small phones */
+@media (max-width: 420px) {
+  .opening-cover__logo {
+    top: calc(env(safe-area-inset-top) + 1.35rem);
+    width: clamp(6rem, 26vw, 7.25rem);
+  }
+}
+
+/* Tablet / desktop: keep logo naturally above the opening text */
+@media (min-width: 768px) {
+  .opening-cover__logo {
+    position: static;
+    width: clamp(7.5rem, 10vw, 10rem);
+    margin-bottom: 1.35rem;
+    transform: none;
+  }
+}
