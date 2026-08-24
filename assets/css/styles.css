@@ -3357,3 +3357,91 @@ button {
     transform: none;
   }
 }
+
+/* =========================================================
+   STORY TRIP — MOBILE ALIGNMENT FIX
+   Rapikan judul "MOMEN LAINNYA"
+========================================================= */
+
+@media (max-width: 767px) {
+
+  /* Slider tetap full width */
+  .story-trip-slider {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Heading mengikuti margin konten website */
+  .story-trip-slider__heading {
+    display: block;
+
+    width: auto;
+
+    margin:
+      0
+      var(--page-gutter)
+      1.25rem;
+
+    padding: 0;
+  }
+
+  .story-trip-slider__heading .mini-label {
+    margin: 0;
+
+    color: var(--color-gold);
+
+    font-size: .72rem;
+    font-weight: 600;
+
+    letter-spacing: .2em;
+
+    line-height: 1.4;
+
+    text-transform: uppercase;
+  }
+
+  .story-trip-slider__caption {
+    width: 100%;
+    max-width: none;
+
+    margin-top: .45rem;
+
+    color: #7b7065;
+
+    font-family: var(--font-display);
+
+    font-size: .95rem;
+
+    font-style: italic;
+
+    line-height: 1.45;
+
+    text-align: left;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .story-trip-slider__heading {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .story-trip-slider__heading .mini-label {
+    font-size: .7rem;
+    letter-spacing: .18em;
+  }
+
+  .story-trip-slider__caption {
+    margin-top: .35rem;
+
+    font-size: .9rem;
+    line-height: 1.5;
+  }
+}
