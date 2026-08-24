@@ -2639,242 +2639,668 @@ button {
 }
 
 /* =========================================================
-   STORY TRIP SLIDER — 3 FOTO TERLIHAT, BANYAK FOTO
+   STORY TRIP SLIDER — FINAL
+   3 FOTO TERLIHAT DI DESKTOP, TABLET & MOBILE
 ========================================================= */
 
 .story-trip-slider {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
   margin-top: clamp(2.25rem, 6vw, 4rem);
   padding-top: clamp(1.5rem, 4vw, 2.25rem);
+
   border-top: 1px solid var(--color-line);
+
+  overflow: hidden;
 }
+
+
+/* =========================================================
+   STORY TRIP — HEADING
+========================================================= */
 
 .story-trip-slider__heading {
   display: flex;
-  align-items: end;
+
+  align-items: flex-end;
   justify-content: space-between;
+
   gap: 1rem;
-  margin-bottom: 1rem;
+
+  width: 100%;
+
+  margin-bottom: 1.25rem;
 }
+
 
 .story-trip-slider__heading .mini-label {
   margin: 0;
 }
 
+
 .story-trip-slider__caption {
+  width: auto;
   max-width: 22rem;
+
   margin: 0;
+
   color: #7b7065;
+
   font-family: var(--font-display);
+
   font-size: clamp(.95rem, 2vw, 1.1rem);
+
   font-style: italic;
+
   line-height: 1.45;
+
   text-align: right;
 }
 
+
+/* =========================================================
+   STORY TRIP — VIEWPORT
+========================================================= */
+
 .story-trip-slider__viewport {
   position: relative;
+
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
   overflow: hidden;
+
+  border-radius: .8rem;
 }
+
+
+/* =========================================================
+   STORY TRIP — TRACK
+========================================================= */
 
 .story-trip-slider__track {
   display: flex;
-  gap: .55rem;
+
   width: 100%;
+  min-width: 0;
+
+  gap: .55rem;
+
+  padding: .1rem 0 .55rem;
+
   overflow-x: auto;
   overflow-y: hidden;
-  padding: .1rem 0 .65rem;
+
   scroll-behavior: smooth;
+
   scroll-snap-type: x mandatory;
+
   scrollbar-width: none;
+
   -webkit-overflow-scrolling: touch;
+
   overscroll-behavior-inline: contain;
 }
+
 
 .story-trip-slider__track::-webkit-scrollbar {
   display: none;
 }
 
+
+/* =========================================================
+   STORY TRIP — CARD
+   DEFAULT = 3 FOTO
+========================================================= */
+
 .story-trip-slider__card {
   position: relative;
-  flex: 0 0 calc((100% - 1.1rem) / 3);
-  min-width: 0;
+
+  /*
+    3 FOTO TERLIHAT SEKALIGUS
+
+    Total gap:
+    2 x .55rem = 1.1rem
+  */
+  flex:
+    0 0
+    calc((100% - 1.1rem) / 3);
+
+  width:
+    calc((100% - 1.1rem) / 3);
+
+  min-width:
+    calc((100% - 1.1rem) / 3);
+
+  max-width:
+    calc((100% - 1.1rem) / 3);
+
   aspect-ratio: 3 / 4;
+
+  margin: 0;
+
   padding: 0;
+
   overflow: hidden;
+
   border: 0;
+
   border-radius: .8rem;
+
   background: #d8cec1;
-  box-shadow: 0 10px 26px rgba(54, 43, 31, .08);
+
+  box-shadow:
+    0 10px 26px
+    rgba(54, 43, 31, .08);
+
   cursor: zoom-in;
+
   scroll-snap-align: start;
+
   scroll-snap-stop: always;
 }
 
+
+/* =========================================================
+   STORY TRIP — IMAGE
+========================================================= */
+
 .story-trip-slider__card img {
   display: block;
+
   width: 100%;
+
   height: 100%;
+
+  max-width: none;
+
   object-fit: cover;
+
   object-position: center;
+
   transition:
-    transform .7s cubic-bezier(.22, 1, .36, 1),
+    transform .7s
+    cubic-bezier(.22, 1, .36, 1),
+
     filter .7s ease;
 }
 
+
+/* subtle overlay */
+
 .story-trip-slider__card::after {
   position: absolute;
+
   inset: 0;
+
   background:
     linear-gradient(
       180deg,
-      transparent 60%,
-      rgba(24, 20, 17, .14) 100%
+      transparent 65%,
+      rgba(24, 20, 17, .10) 100%
     );
+
   content: '';
+
   pointer-events: none;
 }
 
+
 .story-trip-slider__card:focus-visible {
   outline: 2px solid var(--color-gold);
+
   outline-offset: 3px;
 }
 
+
+/* =========================================================
+   STORY TRIP — FOOTER
+========================================================= */
+
 .story-trip-slider__footer {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 1rem;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
   align-items: center;
-  margin-top: .65rem;
+
+  width: 100%;
+
+  gap: 1rem;
+
+  margin-top: .75rem;
+
+  padding: 0;
 }
+
+
+/* =========================================================
+   STORY TRIP — PROGRESS
+========================================================= */
 
 .story-trip-slider__progress {
   position: relative;
+
   width: 100%;
+
   height: 2px;
+
   overflow: hidden;
-  background: rgba(29, 28, 26, .12);
+
+  border-radius: 999px;
+
+  background:
+    rgba(29, 28, 26, .12);
 }
+
 
 .story-trip-slider__progress span {
   display: block;
+
   width: 100%;
+
   height: 100%;
-  background: var(--color-gold);
+
+  border-radius: inherit;
+
+  background:
+    var(--color-gold);
+
   transform: scaleX(.08);
-  transform-origin: left center;
-  transition: transform .2s linear;
+
+  transform-origin:
+    left center;
+
+  transition:
+    transform .2s linear;
 }
+
+
+/* =========================================================
+   STORY TRIP — CONTROLS
+========================================================= */
 
 .story-trip-slider__controls {
   display: flex;
+
+  align-items: center;
+
   gap: .5rem;
+
+  flex: 0 0 auto;
 }
+
 
 .story-trip-slider__arrow {
   display: grid;
+
   width: 2.5rem;
+
   height: 2.5rem;
+
+  flex:
+    0 0
+    2.5rem;
+
   padding: 0;
+
   place-items: center;
-  border: 1px solid var(--color-line);
+
+  border:
+    1px solid
+    var(--color-line);
+
   border-radius: 50%;
-  background: rgba(255, 253, 249, .7);
-  color: var(--color-ink);
+
+  background:
+    rgba(255, 253, 249, .72);
+
+  color:
+    var(--color-ink);
+
   cursor: pointer;
+
   transition:
     transform 180ms ease,
     border-color 180ms ease,
     background-color 180ms ease;
 }
 
+
 .story-trip-slider__arrow:hover {
-  border-color: var(--color-gold);
-  background: var(--color-white);
-  transform: translateY(-2px);
+  border-color:
+    var(--color-gold);
+
+  background:
+    var(--color-white);
+
+  transform:
+    translateY(-2px);
 }
+
+
+.story-trip-slider__arrow:active {
+  transform:
+    scale(.95);
+}
+
+
+/* =========================================================
+   STORY TRIP — DESKTOP HOVER
+========================================================= */
 
 @media (hover: hover) {
+
   .story-trip-slider__card:hover img {
-    transform: scale(1.04);
-    filter: brightness(.96);
+    transform:
+      scale(1.04);
+
+    filter:
+      brightness(.96);
   }
 }
+
+
+/* =========================================================
+   STORY TRIP — MOBILE
+   TETAP 3 FOTO
+========================================================= */
 
 @media (max-width: 767px) {
+
   .story-trip-slider {
+    width: 100%;
+
+    max-width: 100%;
+
     margin-top: 2.5rem;
+
+    padding-top: 1.5rem;
+
+    overflow: hidden;
   }
 
-  .story-trip-slider__heading {
-    align-items: start;
-  }
 
-  .story-trip-slider__caption {
-    max-width: 13rem;
-    font-size: .88rem;
-  }
+  /* Heading dibuat turun agar tidak tabrakan */
 
-  .story-trip-slider__viewport {
-    width: calc(100% + var(--page-gutter));
-    margin-right: calc(var(--page-gutter) * -1);
-  }
-
-  .story-trip-slider__track {
-    gap: .7rem;
-    padding-right: var(--page-gutter);
-    scroll-padding-inline: 0 var(--page-gutter);
-  }
-
-  .story-trip-slider__card {
-    /*
-      One generous portrait card plus a visible peek of the next card.
-      Easier to swipe on iPhone / Android than three tiny cards.
-    */
-    flex: 0 0 78%;
-    aspect-ratio: 3 / 4;
-    border-radius: .85rem;
-  }
-
-  .story-trip-slider__footer {
-    padding-right: var(--page-gutter);
-  }
-
-  .story-trip-slider__arrow {
-    width: 2.75rem;
-    height: 2.75rem;
-  }
-}
-
-@media (max-width: 420px) {
   .story-trip-slider__heading {
     display: block;
+
+    width: 100%;
+
+    margin-bottom: 1rem;
   }
 
+
+  .story-trip-slider__heading .mini-label {
+    margin: 0;
+  }
+
+
   .story-trip-slider__caption {
+    width: 100%;
+
     max-width: none;
-    margin-top: .4rem;
+
+    margin:
+      .4rem
+      0
+      0;
+
+    font-size: .9rem;
+
+    line-height: 1.45;
+
     text-align: left;
   }
 
+
+  /*
+    INI PENTING.
+
+    Sebelumnya ada:
+
+    width: calc(100% + var(--page-gutter));
+    margin-right: -page-gutter;
+
+    Itu yang membuat slider keluar ke kanan.
+
+    Sekarang slider tetap masuk ke section.
+  */
+
+  .story-trip-slider__viewport {
+    width: 100%;
+
+    max-width: 100%;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    border-radius: .75rem;
+  }
+
+
+  .story-trip-slider__track {
+    width: 100%;
+
+    gap: .45rem;
+
+    padding:
+      0
+      0
+      .45rem;
+
+    scroll-padding-inline: 0;
+  }
+
+
+  /*
+    MOBILE TETAP 3 FOTO.
+
+    Total gap:
+    2 x .45rem = .9rem
+  */
+
   .story-trip-slider__card {
-    aspect-ratio: 3 / 4.1;
+    flex:
+      0 0
+      calc((100% - .9rem) / 3);
+
+    width:
+      calc((100% - .9rem) / 3);
+
+    min-width:
+      calc((100% - .9rem) / 3);
+
+    max-width:
+      calc((100% - .9rem) / 3);
+
+    aspect-ratio: 3 / 4;
+
+    border-radius: .7rem;
+
+    box-shadow:
+      0 7px 18px
+      rgba(54, 43, 31, .07);
+  }
+
+
+  .story-trip-slider__footer {
+    width: 100%;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto;
+
+    gap: .75rem;
+
+    margin-top: .65rem;
+
+    padding: 0;
+  }
+
+
+  .story-trip-slider__controls {
+    gap: .4rem;
+  }
+
+
+  .story-trip-slider__arrow {
+    width: 2.45rem;
+
+    height: 2.45rem;
+
+    flex-basis: 2.45rem;
   }
 }
 
 
+/* =========================================================
+   STORY TRIP — SMALL MOBILE
+========================================================= */
 
-@media (min-width: 560px) and (max-width: 767px) {
+@media (max-width: 420px) {
+
+  .story-trip-slider {
+    margin-top: 2.25rem;
+  }
+
+
+  .story-trip-slider__heading {
+    margin-bottom: .9rem;
+  }
+
+
+  .story-trip-slider__caption {
+    margin-top: .35rem;
+
+    font-size: .86rem;
+  }
+
+
+  .story-trip-slider__viewport {
+    border-radius: .7rem;
+  }
+
+
+  .story-trip-slider__track {
+    gap: .4rem;
+  }
+
+
+  /*
+    Tetap 3 foto.
+
+    Total gap:
+    .4rem x 2 = .8rem
+  */
+
   .story-trip-slider__card {
-    flex-basis: calc((100% - .7rem) / 2);
+    flex:
+      0 0
+      calc((100% - .8rem) / 3);
+
+    width:
+      calc((100% - .8rem) / 3);
+
+    min-width:
+      calc((100% - .8rem) / 3);
+
+    max-width:
+      calc((100% - .8rem) / 3);
+
+    aspect-ratio: 3 / 4;
+
+    border-radius: .65rem;
+  }
+
+
+  .story-trip-slider__footer {
+    gap: .6rem;
+
+    margin-top: .6rem;
+  }
+
+
+  .story-trip-slider__arrow {
+    width: 2.35rem;
+
+    height: 2.35rem;
+
+    flex-basis: 2.35rem;
   }
 }
+
+
+/* =========================================================
+   STORY TRIP — VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .story-trip-slider__track {
+    gap: .35rem;
+  }
+
+
+  /*
+    2 x .35rem = .7rem
+  */
+
+  .story-trip-slider__card {
+    flex:
+      0 0
+      calc((100% - .7rem) / 3);
+
+    width:
+      calc((100% - .7rem) / 3);
+
+    min-width:
+      calc((100% - .7rem) / 3);
+
+    max-width:
+      calc((100% - .7rem) / 3);
+
+    border-radius: .6rem;
+  }
+
+
+  .story-trip-slider__caption {
+    font-size: .83rem;
+  }
+
+
+  .story-trip-slider__footer {
+    gap: .5rem;
+  }
+
+
+  .story-trip-slider__arrow {
+    width: 2.25rem;
+
+    height: 2.25rem;
+
+    flex-basis: 2.25rem;
+  }
+}
+
+
+/* =========================================================
+   STORY TRIP — REDUCED MOTION
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+
   .story-trip-slider__track {
     scroll-behavior: auto;
   }
+
 
   .story-trip-slider__card img,
   .story-trip-slider__arrow,
