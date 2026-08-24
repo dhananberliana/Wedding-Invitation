@@ -254,40 +254,6 @@
       }
     }
 
-
-    /* =========================================================
-       OPENING LOGO
-       Hanya mengatur tampilan logo pada cover pembuka.
-       Struktur RSVP / data / JavaScript tidak diubah.
-    ========================================================= */
-
-    .opening-cover__logo {
-      display: block;
-      width: clamp(7.75rem, 14vw, 10.5rem);
-      height: auto;
-      margin: 0 auto 1.15rem;
-      object-fit: contain;
-      filter: drop-shadow(0 4px 14px rgba(0, 0, 0, .28));
-      pointer-events: none;
-      user-select: none;
-    }
-
-    @media (max-width: 767px) {
-      .opening-cover__content {
-        position: relative;
-      }
-
-      .opening-cover__logo {
-        position: absolute;
-        top: calc(-20rem + env(safe-area-inset-top));
-        left: 50%;
-        width: clamp(6rem, 28vw, 8rem);
-        margin: 0;
-        transform: translateX(-50%);
-        z-index: 3;
-      }
-    }
-
     /* =========================================================
        OPENING TRANSITION
     ========================================================= */
@@ -625,14 +591,6 @@
     <div class="opening-cover__veil"></div>
 
     <div class="opening-cover__content">
-
-      <img
-        class="opening-cover__logo"
-        src="assets/images/db-logo-white.png"
-        alt="Dhanan & Berliana"
-        width="320"
-        height="320"
-        decoding="async">
 
       <p
         class="eyebrow"
@@ -1563,7 +1521,228 @@
 
       </div>
 
-    </section>
+    
+
+        <!-- =====================================================
+             STORY TRIP SLIDER — 3 FOTO TERLIHAT, BANYAK FOTO
+        ====================================================== -->
+
+        <div
+          class="story-trip-slider reveal"
+          id="story-trip-slider"
+          aria-label="Slider tambahan kisah kami">
+
+          <div class="story-trip-slider__heading">
+            <p class="mini-label">
+              Momen Lainnya
+            </p>
+
+            <p class="story-trip-slider__caption">
+              Sedikit lagi cerita dari perjalanan kami.
+            </p>
+          </div>
+
+          <div class="story-trip-slider__viewport">
+
+            <div
+              class="story-trip-slider__track"
+              id="story-trip-slider-track">
+
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-01.webp"
+                aria-label="Buka foto tambahan 1">
+                <img
+                  src="assets/images/story-frame-01.webp"
+                  alt="Momen Dhanan dan Berliana 1"
+                  loading="lazy"
+                  decoding="async">
+              </button>
+
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-02.webp"
+                aria-label="Buka foto tambahan 2">
+                <img
+                  src="assets/images/story-frame-02.webp"
+                  alt="Momen Dhanan dan Berliana 2"
+                  loading="lazy"
+                  decoding="async">
+              </button>
+
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-03.webp"
+                aria-label="Buka foto tambahan 3">
+                <img
+                  src="assets/images/story-frame-03.webp"
+                  alt="Momen Dhanan dan Berliana 3"
+                  loading="lazy"
+                  decoding="async">
+              </button>
+
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-04.webp"
+                aria-label="Buka foto tambahan 4">
+                <img
+                  src="assets/images/story-frame-04.webp"
+                  alt="Momen Dhanan dan Berliana 4"
+                  loading="lazy"
+                  decoding="async">
+              </button>
+
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-05.webp"
+                aria-label="Buka foto tambahan 5">
+                <img
+                  src="assets/images/story-frame-05.webp"
+                  alt="Momen Dhanan dan Berliana 5"
+                  loading="lazy"
+                  decoding="async">
+              </button>
+
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-06.webp"
+                aria-label="Buka foto tambahan 6">
+                <img
+                  src="assets/images/story-frame-06.webp"
+                  alt="Momen Dhanan dan Berliana 6"
+                  loading="lazy"
+                  decoding="async">
+              </button>
+
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-07.webp"
+                aria-label="Buka foto tambahan 7">
+                <img
+                  src="assets/images/story-frame-07.webp"
+                  alt="Momen Dhanan dan Berliana 7"
+                  loading="lazy"
+                  decoding="async">
+              </button>
+
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-08.webp"
+                aria-label="Buka foto tambahan 8">
+                <img
+                  src="assets/images/story-frame-08.webp"
+                  alt="Momen Dhanan dan Berliana 8"
+                  loading="lazy"
+                  decoding="async">
+              </button>
+
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-09.webp"
+                aria-label="Buka foto tambahan 9">
+                <img
+                  src="assets/images/story-frame-09.webp"
+                  alt="Momen Dhanan dan Berliana 9"
+                  loading="lazy"
+                  decoding="async">
+              </button>
+
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-10.webp"
+                aria-label="Buka foto tambahan 10">
+                <img
+                  src="assets/images/story-frame-10.webp"
+                  alt="Momen Dhanan dan Berliana 10"
+                  loading="lazy"
+                  decoding="async">
+              </button>
+
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-11-v1.webp"
+                aria-label="Buka foto tambahan 11">
+                <img
+                  src="assets/images/story-frame-11-v1.webp"
+                  alt="Momen Dhanan dan Berliana 11"
+                  loading="lazy"
+                  decoding="async">
+              </button>
+
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-12-v1.webp"
+                aria-label="Buka foto tambahan 12">
+                <img
+                  src="assets/images/story-frame-12-v1.webp"
+                  alt="Momen Dhanan dan Berliana 12"
+                  loading="lazy"
+                  decoding="async">
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="story-trip-slider__footer">
+
+            <div
+              class="story-trip-slider__progress"
+              aria-hidden="true">
+              <span id="story-trip-slider-progress"></span>
+            </div>
+
+            <div
+              class="story-trip-slider__controls"
+              aria-label="Kontrol slider foto tambahan">
+
+              <button
+                class="story-trip-slider__arrow"
+                type="button"
+                data-trip-prev
+                aria-label="Foto sebelumnya">
+                ←
+              </button>
+
+              <button
+                class="story-trip-slider__arrow"
+                type="button"
+                data-trip-next
+                aria-label="Foto berikutnya">
+                →
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+</section>
 
     <!-- =====================================================
          LIGHTBOX
@@ -2203,6 +2382,192 @@
     );
   })();
 </script>
+
+
+  <!-- =======================================================
+       STORY TRIP SLIDER — 3 FOTO TERLIHAT
+  ======================================================== -->
+
+  <script>
+    (() => {
+      const slider =
+        document.getElementById('story-trip-slider');
+
+      const track =
+        document.getElementById('story-trip-slider-track');
+
+      const prevButton =
+        slider?.querySelector('[data-trip-prev]');
+
+      const nextButton =
+        slider?.querySelector('[data-trip-next]');
+
+      const cards =
+        Array.from(
+          slider?.querySelectorAll('[data-trip-card]') || []
+        );
+
+      const progress =
+        document.getElementById('story-trip-slider-progress');
+
+      const lightbox =
+        document.getElementById('story-lightbox');
+
+      const lightboxImage =
+        document.getElementById('story-lightbox-image');
+
+      if (!slider || !track || cards.length < 4) return;
+
+      const reduceMotion =
+        window.matchMedia(
+          '(prefers-reduced-motion: reduce)'
+        );
+
+      let autoTimer = null;
+
+      const getStep = () => {
+        const firstCard = cards[0];
+        const styles = window.getComputedStyle(track);
+        const gap = parseFloat(styles.columnGap || styles.gap || '0');
+
+        return firstCard.getBoundingClientRect().width + gap;
+      };
+
+      const getMaxScroll = () =>
+        Math.max(0, track.scrollWidth - track.clientWidth);
+
+      const updateProgress = () => {
+        const maxScroll = getMaxScroll();
+        const ratio =
+          maxScroll > 0
+            ? Math.min(1, Math.max(0, track.scrollLeft / maxScroll))
+            : 0;
+
+        if (progress) {
+          progress.style.transform =
+            `scaleX(${Math.max(.08, ratio)})`;
+        }
+      };
+
+      const scrollOne = (direction) => {
+        const maxScroll = getMaxScroll();
+        const step = getStep();
+        const nextLeft = track.scrollLeft + (step * direction);
+
+        if (direction > 0 && nextLeft >= maxScroll - 4) {
+          track.scrollTo({
+            left: 0,
+            behavior: reduceMotion.matches ? 'auto' : 'smooth'
+          });
+          return;
+        }
+
+        if (direction < 0 && nextLeft <= 4) {
+          track.scrollTo({
+            left: maxScroll,
+            behavior: reduceMotion.matches ? 'auto' : 'smooth'
+          });
+          return;
+        }
+
+        track.scrollBy({
+          left: step * direction,
+          behavior: reduceMotion.matches ? 'auto' : 'smooth'
+        });
+      };
+
+      const stopAuto = () => {
+        if (autoTimer === null) return;
+        window.clearInterval(autoTimer);
+        autoTimer = null;
+      };
+
+      const startAuto = () => {
+        if (
+          reduceMotion.matches ||
+          document.hidden ||
+          autoTimer !== null
+        ) {
+          return;
+        }
+
+        autoTimer =
+          window.setInterval(
+            () => scrollOne(1),
+            3400
+          );
+      };
+
+      prevButton?.addEventListener(
+        'click',
+        () => {
+          scrollOne(-1);
+          stopAuto();
+          startAuto();
+        }
+      );
+
+      nextButton?.addEventListener(
+        'click',
+        () => {
+          scrollOne(1);
+          stopAuto();
+          startAuto();
+        }
+      );
+
+      track.addEventListener(
+        'scroll',
+        updateProgress,
+        { passive: true }
+      );
+
+      track.addEventListener(
+        'pointerdown',
+        stopAuto,
+        { passive: true }
+      );
+
+      track.addEventListener(
+        'pointerup',
+        startAuto,
+        { passive: true }
+      );
+
+      cards.forEach((card) => {
+        card.addEventListener('click', () => {
+          const source = card.dataset.fullSrc;
+          const image = card.querySelector('img');
+
+          if (
+            !source ||
+            !lightbox ||
+            !lightboxImage ||
+            typeof lightbox.showModal !== 'function'
+          ) {
+            return;
+          }
+
+          lightboxImage.src = source;
+          lightboxImage.alt = image?.alt || 'Foto kisah kami';
+          lightbox.showModal();
+        });
+      });
+
+      document.addEventListener(
+        'visibilitychange',
+        () => {
+          document.hidden
+            ? stopAuto()
+            : startAuto();
+        }
+      );
+
+      updateProgress();
+      startAuto();
+    })();
+  </script>
+
 
   <!-- =======================================================
        MAIN APPLICATION
