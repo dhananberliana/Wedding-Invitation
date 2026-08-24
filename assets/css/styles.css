@@ -1,2620 +1,2933 @@
-<!doctype html>
-<html lang="id">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f3eee6">
-  <meta name="description" content="Undangan pernikahan untuk keluarga dan sahabat tercinta.">
-  <title>Dhanan & Berliana | Undangan Pernikahan</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600&family=Noto+Sans+Balinese:wght@400;500&display=swap"
-    rel="stylesheet">
-
-  <link rel="stylesheet" href="assets/css/styles.css">
-
-  <style>
-    /* =========================================================
-       APPROVED CINEMATIC HERO / OPENING
-    ========================================================= */
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      isolation: isolate;
-    }
-
-    .hero__media {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
-      background: #cfc1b2;
-    }
-
-    .hero__slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      visibility: hidden;
-      transition:
-        opacity 1.55s cubic-bezier(0.22, 1, 0.36, 1),
-        visibility 1.55s linear;
-      will-change: opacity;
-    }
-
-    .hero__slide.is-active {
-      z-index: 1;
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .hero__backdrop,
-    .hero__portrait {
-      position: absolute;
-      display: block;
-    }
-
-    .hero__backdrop {
-      display: none;
-    }
-
-    .hero__portrait {
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transform: scale(1.02);
-      transition: transform 7.5s cubic-bezier(0.22, 1, 0.36, 1);
-      will-change: transform;
-    }
-
-    .hero__slide.is-active .hero__portrait {
-      transform: scale(1.065);
-    }
-
-    .hero__overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-    }
-
-    .hero__content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero:not(.hero--entered) .hero__content > * {
-      opacity: 0;
-      transform: translate3d(0, 20px, 0);
-    }
-
-    .hero.hero--entered .hero__content > * {
-      animation: heroContentEnter .9s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-
-    .hero.hero--entered .hero__content > :nth-child(1) {
-      animation-delay: .08s;
-    }
-
-    .hero.hero--entered .hero__content > :nth-child(2) {
-      animation-delay: .18s;
-    }
-
-    .hero.hero--entered .hero__content > :nth-child(3) {
-      animation-delay: .32s;
-    }
-
-    .hero.hero--entered .hero__content > :nth-child(4) {
-      animation-delay: .46s;
-    }
-
-    @keyframes heroContentEnter {
-      from {
-        opacity: 0;
-        transform: translate3d(0, 20px, 0);
-        filter: blur(3px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-        filter: blur(0);
-      }
-    }
-
-    @keyframes heroBackdropDrift {
-      from {
-        transform: scale(1.045) translate3d(0, 0, 0);
-      }
-
-      to {
-        transform: scale(1.085) translate3d(-.35%, -.2%, 0);
-      }
-    }
-
-    @media (max-width: 767px) {
-      .hero__content {
-        width: auto;
-        max-width: 34rem;
-        margin-inline: auto;
-        padding-inline: max(1.25rem, env(safe-area-inset-left));
-        padding-right: max(1.25rem, env(safe-area-inset-right));
-      }
-
-      .hero__title {
-        max-width: 10ch;
-      }
-
-      .hero__copy {
-        max-width: 30rem;
-      }
-
-      .hero__slide:nth-child(2) .hero__portrait {
-        object-position: 48% center;
-      }
-
-      .hero__slide:nth-child(3) .hero__portrait {
-        object-position: 52% center;
-      }
-
-      .hero__slide:nth-child(4) .hero__portrait {
-        object-position: 50% center;
-      }
-
-      .hero__slide:nth-child(5) .hero__portrait {
-        object-position: 50% center;
-      }
-    }
-
-    @media (min-width: 768px) {
-      .hero__backdrop {
-        display: block;
-        inset: -4%;
-        width: 108%;
-        height: 108%;
-        object-fit: cover;
-        object-position: center;
-        filter: blur(18px) saturate(.78) brightness(.88);
-        transform: scale(1.045);
-      }
-
-      .hero__slide.is-active .hero__backdrop {
-        animation: heroBackdropDrift 9s cubic-bezier(0.22, 1, 0.36, 1) both;
-      }
-
-      .hero__portrait {
-        inset: auto clamp(1rem, 3vw, 4rem) 0 auto;
-        width: min(58vw, 920px);
-        height: 100%;
-        object-fit: contain;
-        object-position: right bottom;
-        transform: none;
-        transition: none;
-        filter: saturate(.96) contrast(1.01);
-
-        -webkit-mask-image:
-          linear-gradient(
-            to right,
-            transparent 0%,
-            rgba(0,0,0,.5) 7%,
-            #000 17%,
-            #000 100%
-          );
-
-        mask-image:
-          linear-gradient(
-            to right,
-            transparent 0%,
-            rgba(0,0,0,.5) 7%,
-            #000 17%,
-            #000 100%
-          );
-      }
-
-      .hero__slide.is-active .hero__portrait {
-        transform: none;
-      }
-
-      .hero__overlay {
-        background:
-          linear-gradient(
-            90deg,
-            rgba(19,16,13,.72) 0%,
-            rgba(19,16,13,.58) 32%,
-            rgba(19,16,13,.24) 55%,
-            rgba(19,16,13,.06) 76%,
-            rgba(19,16,13,.14) 100%
-          ),
-          linear-gradient(
-            0deg,
-            rgba(19,16,13,.34) 0%,
-            rgba(19,16,13,.03) 50%
-          );
-      }
-
-      .hero__content {
-        width: min(44rem, 46vw);
-        max-width: 44rem;
-      }
-    }
-
-    @media (min-width: 1200px) {
-      .hero__content {
-        width: min(46rem, 42vw);
-      }
-
-      .hero__copy {
-        max-width: 36rem;
-      }
-    }
-
-    /* =========================================================
-       OPENING TRANSITION
-    ========================================================= */
-
-    .opening-transition-clone {
-      position: fixed !important;
-      inset: 0 !important;
-      z-index: 9999 !important;
-      margin: 0 !important;
-      overflow: hidden;
-      pointer-events: none !important;
-      backface-visibility: hidden;
-      transform: translateZ(0);
-      will-change:
-        opacity,
-        transform,
-        filter,
-        clip-path;
-    }
-
-    .opening-transition-clone.is-leaving {
-      animation:
-        openingCurtainExit
-        1.35s
-        cubic-bezier(0.76, 0, 0.24, 1)
-        forwards;
-    }
-
-    .opening-transition-clone.is-leaving .opening-cover__content {
-      animation:
-        openingContentLift
-        .95s
-        cubic-bezier(0.22, 1, 0.36, 1)
-        forwards;
-    }
-
-    .opening-transition-clone.is-leaving .opening-cover__veil {
-      animation:
-        openingVeilGlow
-        1.1s
-        ease-out
-        forwards;
-    }
-
-    @keyframes openingCurtainExit {
-      0% {
-        opacity: 1;
-        transform: scale(1);
-        filter: blur(0);
-        clip-path: inset(0 0 0 0);
-      }
-
-      45% {
-        opacity: 1;
-        transform: scale(1.012);
-        filter: blur(0);
-        clip-path: inset(0 0 0 0);
-      }
-
-      100% {
-        opacity: 0;
-        transform: scale(1.055);
-        filter: blur(8px);
-        clip-path: inset(0 0 100% 0);
-      }
-    }
-
-    @keyframes openingContentLift {
-      0% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-      }
-
-      100% {
-        opacity: 0;
-        transform: translate3d(0, -24px, 0);
-      }
-    }
-
-    @keyframes openingVeilGlow {
-      0% {
-        opacity: 1;
-      }
-
-      55% {
-        opacity: .76;
-      }
-
-      100% {
-        opacity: 0;
-      }
-    }
-
-    /* =========================================================
-       PAWIWAHAN
-    ========================================================= */
-
-    .pawiwahan-intro {
-      max-width: 46rem;
-      margin: 0 auto clamp(2.25rem, 5vw, 4rem);
-      text-align: center;
-    }
-
-    .pawiwahan-intro__aksara {
-      margin: 0 0 .85rem;
-      color: currentColor;
-      font-family:
-        "Noto Sans Balinese",
-        "Noto Sans",
-        sans-serif;
-      font-size: clamp(1.75rem, 4vw, 2.6rem);
-      font-weight: 400;
-      line-height: 1.45;
-      letter-spacing: .02em;
-    }
-
-    .pawiwahan-intro__greeting {
-      margin: 0 0 1rem;
-      color: #7A3E3E;
-      font-family:
-        "Cormorant Garamond",
-        Georgia,
-        serif;
-      font-size: clamp(1.45rem, 3vw, 2rem);
-      font-weight: 600;
-      line-height: 1.2;
-    }
-
-    .pawiwahan-intro__copy {
-      max-width: 42rem;
-      margin: 0 auto;
-      font-size: clamp(.92rem, 1.35vw, 1.02rem);
-      line-height: 1.9;
-      text-wrap: pretty;
-      opacity: .86;
-    }
-
-    .pawiwahan-intro::after {
-      display: block;
-      width: 3.5rem;
-      height: 1px;
-      margin:
-        clamp(1.5rem, 3vw, 2rem)
-        auto
-        0;
-      background: currentColor;
-      content: "";
-      opacity: .25;
-    }
-
-    /* =========================================================
-       VEDA CARD
-    ========================================================= */
-
-    .veda-card {
-      margin:
-        0
-        auto
-        clamp(2rem, 5vw, 3rem);
-
-      padding:
-        clamp(1.7rem, 4vw, 2.5rem)
-        clamp(1.2rem, 4vw, 2.35rem);
-
-      border:
-        1px
-        solid
-        rgba(91,71,46,.15);
-
-      border-radius: 1.25rem;
-      background: #D8C5A6;
-      box-shadow:
-        0
-        18px
-        48px
-        rgba(63,48,30,.07);
-
-      color: #49382D;
-    }
-
-    .veda-card__verse {
-      max-width: 38rem;
-      margin: 0 auto;
-      font-family:
-        "Cormorant Garamond",
-        Georgia,
-        serif;
-      font-size: clamp(1.25rem, 3vw, 1.75rem);
-      font-weight: 500;
-      line-height: 1.42;
-    }
-
-    .veda-card__translation {
-      max-width: 36rem;
-      margin: 1rem auto 0;
-      font-size: clamp(.86rem, 1.25vw, .98rem);
-      line-height: 1.75;
-      opacity: .78;
-    }
-
-    .veda-card__source {
-      display: inline-flex;
-      align-items: center;
-      gap: .55rem;
-      margin-top: 1.25rem;
-      color: #A88652;
-      font-size: .7rem;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
-    .veda-card__source cite {
-      font-style: normal;
-    }
-
-    /* =========================================================
-       COUPLE NAMES
-    ========================================================= */
-
-    .couple-profile {
-      text-align: center;
-    }
-
-    .couple-profile .mini-label,
-    .couple-profile .parent-copy {
-      width: 100%;
-      margin-inline: auto;
-      text-align: center;
-    }
-
-    .couple-profile h3 {
-      width: 100%;
-      margin-inline: auto;
-      font-size: clamp(1.55rem, 3.8vw, 2.5rem);
-      line-height: 1.08;
-      text-align: center;
-    }
-
-    .parent-copy__relation {
-      display: inline-block;
-      margin-bottom: .25rem;
-    }
-
-    @media (max-width: 767px) {
-      .pawiwahan-intro {
-        margin-bottom: 2.5rem;
-      }
-
-      .pawiwahan-intro__copy {
-        line-height: 1.8;
-      }
-
-      .veda-card {
-        border-radius: 1rem;
-      }
-    }
-
-    @media (min-width: 768px) {
-      .couple-grid > .pawiwahan-intro {
-        grid-column: 1 / -1;
-        width: min(100%, 56rem);
-        justify-self: center;
-        margin-bottom:
-          clamp(3rem, 5vw, 4.5rem);
-        padding-inline:
-          clamp(1.5rem, 4vw, 3rem);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .opening-transition-clone.is-leaving {
-        animation:
-          openingReducedExit
-          .2s
-          linear
-          forwards;
-      }
-
-      .opening-transition-clone.is-leaving .opening-cover__content,
-      .opening-transition-clone.is-leaving .opening-cover__veil {
-        animation: none;
-      }
-
-      @keyframes openingReducedExit {
-        to {
-          opacity: 0;
-        }
-      }
-
-      .hero__slide {
-        transition: opacity .2s linear;
-      }
-
-      .hero__portrait,
-      .hero__backdrop {
-        transform: none !important;
-        transition: none !important;
-        animation: none !important;
-      }
-
-      .hero:not(.hero--entered) .hero__content > *,
-      .hero.hero--entered .hero__content > * {
-        opacity: 1;
-        transform: none;
-        filter: none;
-        animation: none;
-      }
-    }
-  </style>
-</head>
-
-<body class="is-locked">
-
-  <noscript>
-    <div class="noscript-banner">
-      Mohon aktifkan JavaScript untuk menggunakan fitur konfirmasi kehadiran dan undangan interaktif.
-    </div>
-  </noscript>
-
-  <!-- =======================================================
-       OPENING
-  ======================================================== -->
-
-  <section
-    class="opening-cover"
-    id="opening-cover"
-    aria-label="Pembuka undangan pernikahan">
-
-    <div
-      class="opening-cover__media"
-      aria-hidden="true">
-    </div>
-
-    <div class="opening-cover__veil"></div>
-
-    <div class="opening-cover__content">
-
-      <img
-        class="opening-cover__logo"
-        src="assets/images/db-logo-white.png"
-        alt="Dhanan & Berliana"
-        width="320"
-        height="320"
-        decoding="async">
-
-      <p
-        class="eyebrow"
-        data-config="site.invitationLabel">
-        Undangan Pernikahan
-      </p>
-
-      <h1 class="opening-cover__names">
-        <span>Dhanan</span>
-        <span class="ampersand">&amp;</span>
-        <span>Berliana</span>
-      </h1>
-
-      <p class="opening-cover__guest">
-        Untuk keluarga &amp; sahabat tercinta
-      </p>
-
-      <button
-        class="button button--light"
-        type="button"
-        id="open-invitation">
-        Buka Undangan
-      </button>
-
-    </div>
-
-  </section>
-
-  <main>
-
-    <!-- =====================================================
-         HERO
-    ====================================================== -->
-
-    <section
-      class="hero"
-      id="home"
-      aria-labelledby="hero-title">
-
-      <div
-        class="hero__media"
-        aria-hidden="true">
-
-        <div class="hero__slide is-active">
-
-          <img
-            class="hero__backdrop"
-            src="assets/images/hero-v1.webp"
-            alt=""
-            fetchpriority="high"
-            decoding="async">
-
-          <img
-            class="hero__portrait"
-            src="assets/images/hero-v1.webp"
-            alt=""
-            fetchpriority="high"
-            decoding="async">
-
-        </div>
-
-        <div class="hero__slide">
-
-          <img
-            class="hero__backdrop"
-            src="assets/images/story-frame-01.webp"
-            alt=""
-            loading="eager"
-            decoding="async">
-
-          <img
-            class="hero__portrait"
-            src="assets/images/story-frame-01.webp"
-            alt=""
-            loading="eager"
-            decoding="async">
-
-        </div>
-
-        <div class="hero__slide">
-
-          <img
-            class="hero__backdrop"
-            src="assets/images/story-frame-03.webp"
-            alt=""
-            loading="eager"
-            decoding="async">
-
-          <img
-            class="hero__portrait"
-            src="assets/images/story-frame-03.webp"
-            alt=""
-            loading="eager"
-            decoding="async">
-
-        </div>
-
-        <div class="hero__slide">
-
-          <img
-            class="hero__backdrop"
-            src="assets/images/story-frame-05.webp"
-            alt=""
-            loading="eager"
-            decoding="async">
-
-          <img
-            class="hero__portrait"
-            src="assets/images/story-frame-05.webp"
-            alt=""
-            loading="eager"
-            decoding="async">
-
-        </div>
-
-        <div class="hero__slide">
-
-          <img
-            class="hero__backdrop"
-            src="assets/images/story-frame-12-v1.webp"
-            alt=""
-            loading="eager"
-            decoding="async">
-
-          <img
-            class="hero__portrait"
-            src="assets/images/story-frame-12-v1.webp"
-            alt=""
-            loading="eager"
-            decoding="async">
-
-        </div>
-
-        <div class="hero__slide">
-
-          <img
-            class="hero__backdrop"
-            src="assets/images/story-frame-14-v1.webp"
-            alt=""
-            loading="eager"
-            decoding="async">
-
-          <img
-            class="hero__portrait"
-            src="assets/images/story-frame-14-v1.webp"
-            alt=""
-            loading="eager"
-            decoding="async">
-
-        </div>
-
-      </div>
-
-      <div class="hero__overlay"></div>
-
-      <div class="hero__content reveal">
-
-        <p
-          class="eyebrow"
-          data-config="site.greeting">
-          Kepada keluarga &amp; sahabat tercinta,
-        </p>
-
-        <h2
-          class="hero__title"
-          id="hero-title">
-
-          <span>Dhanan</span>
-          <span class="ampersand">&amp;</span>
-          <span>Berliana</span>
-
-        </h2>
-
-        <p
-          class="hero__copy"
-          data-config="site.openingMessage">
-          Bersama keluarga, dengan penuh sukacita kami mengundang Anda untuk merayakan awal perjalanan kami menuju selamanya.
-        </p>
-
-        <a
-          class="scroll-cue"
-          href="#couple"
-          aria-label="Lihat detail pernikahan">
-          Lihat Selengkapnya
-        </a>
-
-      </div>
-
-    </section>
-
-    <!-- =====================================================
-         PAWIWAHAN + COUPLE
-    ====================================================== -->
-
-    <section
-      class="section section--paper"
-      id="couple"
-      aria-labelledby="couple-title">
-
-      <div class="section-shell couple-grid">
-
-        <div
-          class="pawiwahan-intro reveal"
-          aria-label="Pawiwahan ceremonial greeting">
-
-          <blockquote class="veda-card">
-
-            <p class="veda-card__verse">
-              Ihaiva stam mā vi yauṣṭaṃ viśvam āyur vy aśnutam,
-              krīḻantau putrair naptṛbhir modamānau sve gṛhe.
-            </p>
-
-            <p class="veda-card__translation">
-              “Wahai pasangan suami-istri, semoga kalian tetap bersatu dan tidak pernah terpisahkan.
-              Semoga kalian menjalani seluruh kehidupan bersama, bergembira di rumah kalian bersama anak dan cucu.”
-            </p>
-
-            <footer class="veda-card__source">
-              <span aria-hidden="true">✦</span>
-              <cite>Rg Veda X.85.42</cite>
-            </footer>
-
-          </blockquote>
-
-          <p
-            class="pawiwahan-intro__aksara"
-            lang="ban-Bali">
-            ᬒᬁ ᬲ᭄ᬯᬲ᭄ᬢ᭄ᬬᬲ᭄ᬢᬸ
-          </p>
-
-          <p class="pawiwahan-intro__greeting">
-            Om Swastyastu
-          </p>
-
-          <p class="pawiwahan-intro__copy">
-            Atas Asung Kertha Wara Nugraha Ida Sang Hyang Widhi Wasa/Tuhan Yang Maha Esa
-            kami bermaksud mengundang Bapak/Ibu/Saudara/i pada Upacara Manusa Yadnya
-            Pawiwahan (Pernikahan) kami.
-          </p>
-
-        </div>
-
-        <div class="couple-copy reveal">
-
-          <p class="eyebrow eyebrow--dark">
-            Dua Jiwa, Satu Kisah
-          </p>
-
-          <h2
-            class="display-title"
-            id="couple-title">
-            Sang Mempelai
-          </h2>
-
-          <p class="body-copy">
-            Dengan penuh rasa syukur dan cinta, kami mengundang Anda untuk menjadi saksi
-            di hari istimewa yang menandai awal perjalanan kami dalam mengarungi kehidupan bersama.
-          </p>
-
-          <div class="couple-names">
-
-            <article class="couple-profile">
-
-              <img
-                class="couple-portrait couple-portrait--groom"
-                src="assets/images/groom.webp"
-                alt="Potret mempelai pria"
-                loading="lazy"
-                decoding="async">
-
-              <p class="mini-label">
-                Sang Mempelai Pria
-              </p>
-
-              <h3 data-config="couple.groom">
-                XXX
-              </h3>
-
-              <p class="parent-copy">
-                <span class="parent-copy__relation">
-                  Putra dari
-                </span>
-                <br>
-                <span data-config="couple.groomFather">
-                  XXX
-                </span>
-                &amp;
-                <span data-config="couple.groomMother">
-                  XXX
-                </span>
-              </p>
-
-            </article>
-
-            <article class="couple-profile">
-
-              <img
-                class="couple-portrait couple-portrait--bride"
-                src="assets/images/bride.webp"
-                alt="Potret mempelai wanita"
-                loading="lazy"
-                decoding="async">
-
-              <p class="mini-label">
-                Sang Mempelai Wanita
-              </p>
-
-              <h3 data-config="couple.bride">
-                XXX
-              </h3>
-
-              <p class="parent-copy">
-                <span class="parent-copy__relation">
-                  Putri dari
-                </span>
-                <br>
-                <span data-config="couple.brideFather">
-                  XXX
-                </span>
-                &amp;
-                <span data-config="couple.brideMother">
-                  XXX
-                </span>
-              </p>
-
-            </article>
-
-          </div>
-
-        </div>
-
-        <!-- STORY SLIDER -->
-
-        <div
-          class="story-slider reveal"
-          id="story-slider"
-          aria-label="Slider foto kisah kami">
-
-          <div class="story-slider__viewport">
-
-            <div class="story-slider__track">
-
-              <figure
-                class="story-slider__slide"
-                data-story-slide>
-
-                <img
-                  src="assets/images/story-slider-01.webp"
-                  alt="Dhanan dan Berliana berpelukan dalam busana adat Bali"
-                  loading="lazy"
-                  decoding="async">
-
-              </figure>
-
-              <figure
-                class="story-slider__slide"
-                data-story-slide>
-
-                <img
-                  src="assets/images/story-slider-02.webp"
-                  alt="Potret formal Dhanan dan Berliana dalam busana adat"
-                  loading="lazy"
-                  decoding="async">
-
-              </figure>
-
-              <figure
-                class="story-slider__slide"
-                data-story-slide>
-
-                <img
-                  src="assets/images/story-slider-03.webp"
-                  alt="Potret Dhanan dan Berliana bernuansa tradisional"
-                  loading="lazy"
-                  decoding="async">
-
-              </figure>
-
-              <figure
-                class="story-slider__slide"
-                data-story-slide>
-
-                <img
-                  src="assets/images/story-slider-04.webp"
-                  alt="Potret romantis close-up Dhanan dan Berliana"
-                  loading="lazy"
-                  decoding="async">
-
-              </figure>
-
-            </div>
-
-          </div>
-
-          <div class="story-slider__footer">
-
-            <p class="story-slider__caption">
-              Kisah kami, selamanya bersama.
-            </p>
-
-            <div
-              class="story-slider__controls"
-              aria-label="Kontrol slider">
-
-              <button
-                class="story-slider__arrow"
-                type="button"
-                data-story-prev
-                aria-label="Foto sebelumnya">
-                ←
-              </button>
-
-              <div
-                class="story-slider__dots"
-                aria-label="Pilih foto">
-
-                <button
-                  type="button"
-                  data-story-dot="0"
-                  aria-label="Tampilkan foto 1"
-                  aria-current="true">
-                </button>
-
-                <button
-                  type="button"
-                  data-story-dot="1"
-                  aria-label="Tampilkan foto 2"
-                  aria-current="false">
-                </button>
-
-                <button
-                  type="button"
-                  data-story-dot="2"
-                  aria-label="Tampilkan foto 3"
-                  aria-current="false">
-                </button>
-
-                <button
-                  type="button"
-                  data-story-dot="3"
-                  aria-label="Tampilkan foto 4"
-                  aria-current="false">
-                </button>
-
-              </div>
-
-              <button
-                class="story-slider__arrow"
-                type="button"
-                data-story-next
-                aria-label="Foto berikutnya">
-                →
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- =====================================================
-         COUNTDOWN
-    ====================================================== -->
-
-    <section
-      class="section section--dark"
-      id="countdown"
-      aria-labelledby="countdown-title">
-
-      <div class="section-shell reveal">
-
-        <p class="eyebrow">
-          Menghitung hari menuju hari bahagia kami
-        </p>
-
-        <h2
-          class="display-title display-title--light"
-          id="countdown-title">
-          Menuju Hari Bahagia
-        </h2>
-
-        <div
-          class="countdown-grid"
-          aria-live="polite">
-
-          <div class="countdown-card">
-            <strong id="countdown-days">
-              --
-            </strong>
-            <span>
-              Hari
-            </span>
-          </div>
-
-          <div class="countdown-card">
-            <strong id="countdown-hours">
-              --
-            </strong>
-            <span>
-              Jam
-            </span>
-          </div>
-
-          <div class="countdown-card">
-            <strong id="countdown-minutes">
-              --
-            </strong>
-            <span>
-              Menit
-            </span>
-          </div>
-
-          <div class="countdown-card">
-            <strong id="countdown-seconds">
-              --
-            </strong>
-            <span>
-              Detik
-            </span>
-          </div>
-
-        </div>
-
-        <p
-          class="countdown-note"
-          id="countdown-note">
-        </p>
-
-      </div>
-
-    </section>
-
-    <!-- =====================================================
-         EVENT / RESEPSI
-         Sudah disinkronkan dengan CSS final
-    ====================================================== -->
-
-    <section
-      class="section section--paper"
-      id="event"
-      aria-labelledby="event-title">
-
-      <div class="section-shell event-layout">
-
-        <div class="event-copy reveal">
-
-          <p class="eyebrow eyebrow--dark">
-            Simpan Tanggalnya
-          </p>
-
-          <h2
-            class="display-title"
-            id="event-title">
-            Hari Pernikahan
-          </h2>
-
-          <p class="body-copy">
-            Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
-            Bapak/Ibu/Saudara/i berkenan hadir untuk merayakan hari istimewa
-            dan menjadi bagian dari perjalanan baru kami.
-          </p>
-
-        </div>
-
-        <div class="event-cards reveal">
-
-          <article class="event-card">
-
-            <h3 class="event-card__label">
-              Resepsi
-            </h3>
-
-            <div class="event-card__item">
-
-              <p class="mini-label">
-                Tanggal
-              </p>
-
-              <strong data-config="event.date">
-                Kamis, 10 Desember 2026
-              </strong>
-
-            </div>
-
-            <div class="event-card__item">
-
-              <p class="mini-label">
-                Waktu
-              </p>
-
-              <strong data-config="event.time">
-                16.00 – 22.00 WITA
-              </strong>
-
-              <p>
-                Mohon hadir sesuai waktu yang telah ditentukan.
-              </p>
-
-            </div>
-
-            <div class="event-card__item">
-
-              <p class="mini-label">
-                Lokasi
-              </p>
-
-              <strong data-config="event.venueName">
-                Banjar Dauh Peken - Penarungan Mengwi
-              </strong>
-
-              <p data-config="event.venueAddress">
-                XXX
-              </p>
-
-            </div>
-
-            <div class="event-card__actions">
-
-              <a
-                class="button button--dark"
-                id="calendar-link"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer">
-                Simpan ke Kalender
-              </a>
-
-              <a
-                class="text-link"
-                id="event-maps-link"
-                href="https://www.google.com/maps/search/?api=1&query=XXX"
-                target="_blank"
-                rel="noopener noreferrer">
-                Lihat Lokasi
-                <span aria-hidden="true">
-                  ↗
-                </span>
-              </a>
-
-            </div>
-
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- =====================================================
-         VENUE
-    ====================================================== -->
-
-    <section
-      class="section section--sand"
-      id="venue"
-      aria-labelledby="venue-title">
-
-      <div class="section-shell venue-card reveal">
-
-        <div class="venue-card__copy">
-
-          <p class="eyebrow eyebrow--dark">
-            Lokasi Perayaan
-          </p>
-
-          <h2
-            class="display-title"
-            id="venue-title">
-            Lokasi Acara
-          </h2>
-
-          <p
-            class="venue-address"
-            data-config="event.venueAddress">
-            XXX
-          </p>
-
-          <a
-            class="text-link"
-            id="maps-link"
-            href="https://www.google.com/maps/search/?api=1&query=XXX"
-            target="_blank"
-            rel="noopener noreferrer">
-            Buka di Google Maps
-            <span aria-hidden="true">
-              ↗
-            </span>
-          </a>
-
-        </div>
-
-        <div class="venue-map">
-          
-          <div class="map-wrapper">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3947.0566637181873!2d115.22009099999998!3d-8.396087999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOMKwMjMnNDUuOSJTIDExNcKwMTMnMTIuMyJF!5e0!3m2!1sid!2sid!4v1787456059374!5m2!1sid!2sid"
-            title="Lokasi Acara Pernikahan"
-            loading="lazy"
-            allowfullscreen
-            referrerpolicy="strict-origin-when-cross-origin">
-          </iframe>
-        </div>
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- =====================================================
-         STORY GALLERY
-    ====================================================== -->
-
-    <section
-      class="story"
-      aria-labelledby="story-title">
-
-      <div class="section-shell story-heading reveal">
-
-        <p class="eyebrow eyebrow--dark">
-          Sekilas Tentang Kami
-        </p>
-
-        <h2
-          class="display-title"
-          id="story-title">
-          Kisah Kami dalam Bingkai
-        </h2>
-
-        <p class="story-gallery__intro">
-          Kumpulan momen dari perjalanan pranikah kami.
-          Ketuk foto untuk melihatnya lebih besar.
-        </p>
-
-      </div>
-
-      <div class="section-shell">
-<div
-  class="story-gallery reveal"
-  id="story-gallery"
-  aria-label="Galeri foto kisah kami">
-
-  <button
-    class="story-frame"
-    type="button"
-    data-story-frame
-    data-full-src="assets/images/story-frame-01.webp"
-    aria-label="Buka foto 1 dari 13">
-
-    <img
-      src="assets/images/story-frame-01.webp"
-      alt="Dhanan dan Berliana berpelukan dalam busana adat Bali"
-      loading="lazy"
-      decoding="async">
-
-  </button>
-
-  <button
-    class="story-frame"
-    type="button"
-    data-story-frame
-    data-full-src="assets/images/story-frame-02.webp"
-    aria-label="Buka foto 2 dari 13">
-
-    <img
-      src="assets/images/story-frame-02.webp"
-      alt="Dhanan dan Berliana berbagi momen bahagia di bawah sorotan cahaya"
-      loading="lazy"
-      decoding="async">
-
-  </button>
-
-  <button
-    class="story-frame"
-    type="button"
-    data-story-frame
-    data-full-src="assets/images/story-frame-03.webp"
-    aria-label="Buka foto 3 dari 13">
-
-    <img
-      src="assets/images/story-frame-03.webp"
-      alt="Potret formal pranikah Dhanan dan Berliana"
-      loading="lazy"
-      decoding="async">
-
-  </button>
-
-  <button
-    class="story-frame"
-    type="button"
-    data-story-frame
-    data-full-src="assets/images/story-frame-04.webp"
-    aria-label="Buka foto 4 dari 13">
-
-    <img
-      src="assets/images/story-frame-04.webp"
-      alt="Dhanan dan Berliana berpose di dekat pintu kayu berukir"
-      loading="lazy"
-      decoding="async">
-
-  </button>
-
-  <button
-    class="story-frame"
-    type="button"
-    data-story-frame
-    data-full-src="assets/images/story-frame-05.webp"
-    aria-label="Buka foto 5 dari 13">
-
-    <img
-      src="assets/images/story-frame-05.webp"
-      alt="Potret romantis di balik selendang tipis yang lembut"
-      loading="lazy"
-      decoding="async">
-
-  </button>
-
-  <button
-    class="story-frame"
-    type="button"
-    data-story-frame
-    data-full-src="assets/images/story-frame-06.webp"
-    aria-label="Buka foto 6 dari 13">
-
-    <img
-      src="assets/images/story-frame-06.webp"
-      alt="Potret close-up pranikah di bawah veil"
-      loading="lazy"
-      decoding="async">
-
-  </button>
-
-  <button
-    class="story-frame"
-    type="button"
-    data-story-frame
-    data-full-src="assets/images/story-frame-07.webp"
-    aria-label="Buka foto 7 dari 13">
-
-    <img
-      src="assets/images/story-frame-07.webp"
-      alt="Potret dengan selendang tipis dan Berliana menatap ke arah kamera"
-      loading="lazy"
-      decoding="async">
-
-  </button>
-
-  <button
-    class="story-frame"
-    type="button"
-    data-story-frame
-    data-full-src="assets/images/story-frame-08.webp"
-    aria-label="Buka foto 8 dari 13">
-
-    <img
-      src="assets/images/story-frame-08.webp"
-      alt="Potret artistik Dhanan dan Berliana dengan efek gerak"
-      loading="lazy"
-      decoding="async">
-
-  </button>
-
-  <button
-    class="story-frame"
-    type="button"
-    data-story-frame
-    data-full-src="assets/images/story-frame-09.webp"
-    aria-label="Buka foto 9 dari 13">
-
-    <img
-      src="assets/images/story-frame-09.webp"
-      alt="Potret pranikah tradisional dalam posisi duduk"
-      loading="lazy"
-      decoding="async">
-
-  </button>
-
-  <button
-    class="story-frame"
-    type="button"
-    data-story-frame
-    data-full-src="assets/images/story-frame-10.webp"
-    aria-label="Buka foto 10 dari 13">
-
-    <img
-      src="assets/images/story-frame-10.webp"
-      alt="Potret solo mempelai pria dalam busana adat Bali"
-      loading="lazy"
-      decoding="async">
-
-  </button>
-
-  <button
-    class="story-frame"
-    type="button"
-    data-story-frame
-    data-full-src="assets/images/bride.webp"
-    aria-label="Buka foto solo mempelai wanita">
-
-    <img
-      src="assets/images/bride.webp"
-      alt="Potret solo mempelai wanita dalam busana adat Bali"
-      loading="lazy"
-      decoding="async">
-
-  </button>
-
-
-  <button
-    class="story-frame"
-    type="button"
-    data-story-frame
-    data-full-src="assets/images/story-frame-11-v1.webp"
-    aria-label="Buka foto 11 dari 13">
-
-    <img
-      src="assets/images/story-frame-11-v1.webp"
-      alt="Potret solo mempelai wanita dalam busana adat Bali"
-      loading="lazy"
-      decoding="async">
-
-  </button>
-
-  <button
-    class="story-frame"
-    type="button"
-    data-story-frame
-    data-full-src="assets/images/story-frame-12-v1.webp"
-    aria-label="Buka foto 12 dari 13">
-
-    <img
-      src="assets/images/story-frame-12-v1.webp"
-      alt="Potret studio Dhanan dan Berliana bergandengan tangan"
-      loading="lazy"
-      decoding="async">
-
-  </button>
-
-</div>
-
-      </div>
-
-    
-
-        <!-- =====================================================
-             STORY TRIP SLIDER — 3 FOTO TERLIHAT, BANYAK FOTO
-        ====================================================== -->
-
-        <div
-          class="story-trip-slider reveal"
-          id="story-trip-slider"
-          aria-label="Slider tambahan kisah kami">
-
-          <div class="story-trip-slider__heading">
-            <p class="mini-label">
-              Momen Lainnya
-            </p>
-
-            <p class="story-trip-slider__caption">
-              Sedikit lagi cerita dari perjalanan kami.
-            </p>
-          </div>
-
-          <div class="story-trip-slider__viewport">
-
-            <div
-              class="story-trip-slider__track"
-              id="story-trip-slider-track">
-
-              <button
-                class="story-trip-slider__card"
-                type="button"
-                data-trip-card
-                data-full-src="assets/images/story-frame-01.webp"
-                aria-label="Buka foto tambahan 1">
-                <img
-                  src="assets/images/story-frame-01.webp"
-                  alt="Momen Dhanan dan Berliana 1"
-                  loading="lazy"
-                  decoding="async">
-              </button>
-
-              <button
-                class="story-trip-slider__card"
-                type="button"
-                data-trip-card
-                data-full-src="assets/images/story-frame-02.webp"
-                aria-label="Buka foto tambahan 2">
-                <img
-                  src="assets/images/story-frame-02.webp"
-                  alt="Momen Dhanan dan Berliana 2"
-                  loading="lazy"
-                  decoding="async">
-              </button>
-
-              <button
-                class="story-trip-slider__card"
-                type="button"
-                data-trip-card
-                data-full-src="assets/images/story-frame-03.webp"
-                aria-label="Buka foto tambahan 3">
-                <img
-                  src="assets/images/story-frame-03.webp"
-                  alt="Momen Dhanan dan Berliana 3"
-                  loading="lazy"
-                  decoding="async">
-              </button>
-
-              <button
-                class="story-trip-slider__card"
-                type="button"
-                data-trip-card
-                data-full-src="assets/images/story-frame-04.webp"
-                aria-label="Buka foto tambahan 4">
-                <img
-                  src="assets/images/story-frame-04.webp"
-                  alt="Momen Dhanan dan Berliana 4"
-                  loading="lazy"
-                  decoding="async">
-              </button>
-
-              <button
-                class="story-trip-slider__card"
-                type="button"
-                data-trip-card
-                data-full-src="assets/images/story-frame-05.webp"
-                aria-label="Buka foto tambahan 5">
-                <img
-                  src="assets/images/story-frame-05.webp"
-                  alt="Momen Dhanan dan Berliana 5"
-                  loading="lazy"
-                  decoding="async">
-              </button>
-
-              <button
-                class="story-trip-slider__card"
-                type="button"
-                data-trip-card
-                data-full-src="assets/images/story-frame-06.webp"
-                aria-label="Buka foto tambahan 6">
-                <img
-                  src="assets/images/story-frame-06.webp"
-                  alt="Momen Dhanan dan Berliana 6"
-                  loading="lazy"
-                  decoding="async">
-              </button>
-
-              <button
-                class="story-trip-slider__card"
-                type="button"
-                data-trip-card
-                data-full-src="assets/images/story-frame-07.webp"
-                aria-label="Buka foto tambahan 7">
-                <img
-                  src="assets/images/story-frame-07.webp"
-                  alt="Momen Dhanan dan Berliana 7"
-                  loading="lazy"
-                  decoding="async">
-              </button>
-
-              <button
-                class="story-trip-slider__card"
-                type="button"
-                data-trip-card
-                data-full-src="assets/images/story-frame-08.webp"
-                aria-label="Buka foto tambahan 8">
-                <img
-                  src="assets/images/story-frame-08.webp"
-                  alt="Momen Dhanan dan Berliana 8"
-                  loading="lazy"
-                  decoding="async">
-              </button>
-
-              <button
-                class="story-trip-slider__card"
-                type="button"
-                data-trip-card
-                data-full-src="assets/images/story-frame-09.webp"
-                aria-label="Buka foto tambahan 9">
-                <img
-                  src="assets/images/story-frame-09.webp"
-                  alt="Momen Dhanan dan Berliana 9"
-                  loading="lazy"
-                  decoding="async">
-              </button>
-
-              <button
-                class="story-trip-slider__card"
-                type="button"
-                data-trip-card
-                data-full-src="assets/images/story-frame-10.webp"
-                aria-label="Buka foto tambahan 10">
-                <img
-                  src="assets/images/story-frame-10.webp"
-                  alt="Momen Dhanan dan Berliana 10"
-                  loading="lazy"
-                  decoding="async">
-              </button>
-
-              <button
-                class="story-trip-slider__card"
-                type="button"
-                data-trip-card
-                data-full-src="assets/images/bride.webp"
-                aria-label="Buka foto tambahan mempelai wanita">
-                <img
-                  src="assets/images/bride.webp"
-                  alt="Potret solo Berliana dalam busana adat Bali"
-                  loading="lazy"
-                  decoding="async">
-              </button>
-
-
-              <button
-                class="story-trip-slider__card"
-                type="button"
-                data-trip-card
-                data-full-src="assets/images/story-frame-11-v1.webp"
-                aria-label="Buka foto tambahan 11">
-                <img
-                  src="assets/images/story-frame-11-v1.webp"
-                  alt="Momen Dhanan dan Berliana 11"
-                  loading="lazy"
-                  decoding="async">
-              </button>
-
-              <button
-                class="story-trip-slider__card"
-                type="button"
-                data-trip-card
-                data-full-src="assets/images/story-frame-12-v1.webp"
-                aria-label="Buka foto tambahan 12">
-                <img
-                  src="assets/images/story-frame-12-v1.webp"
-                  alt="Momen Dhanan dan Berliana 12"
-                  loading="lazy"
-                  decoding="async">
-              </button>
-
-            </div>
-
-          </div>
-
-          <div class="story-trip-slider__footer">
-
-            <div
-              class="story-trip-slider__progress"
-              aria-hidden="true">
-              <span id="story-trip-slider-progress"></span>
-            </div>
-
-            <div
-              class="story-trip-slider__controls"
-              aria-label="Kontrol slider foto tambahan">
-
-              <button
-                class="story-trip-slider__arrow"
-                type="button"
-                data-trip-prev
-                aria-label="Foto sebelumnya">
-                ←
-              </button>
-
-              <button
-                class="story-trip-slider__arrow"
-                type="button"
-                data-trip-next
-                aria-label="Foto berikutnya">
-                →
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-</section>
-
-    <!-- =====================================================
-         LIGHTBOX
-    ====================================================== -->
-
-    <dialog
-      class="story-lightbox"
-      id="story-lightbox"
-      aria-label="Penampil foto kisah kami">
-
-      <button
-        class="story-lightbox__close"
-        type="button"
-        data-story-lightbox-close
-        aria-label="Tutup penampil foto">
-        ×
-      </button>
-
-      <div class="story-lightbox__stage">
-
-        <img
-          class="story-lightbox__image"
-          id="story-lightbox-image"
-          src=""
-          alt="">
-
-      </div>
-
-    </dialog>
-    
-    <!-- =====================================================
-         GIFT
-    ====================================================== -->
-
-    <section
-  class="section section--sand"
-  id="gift"
-  aria-labelledby="gift-title">
-
-  <div class="section-shell gift-card reveal">
-
-    <div class="gift-heading">
-      <p class="eyebrow eyebrow--dark">
-        Dengan Cinta
-      </p>
-
-      <h2
-        class="display-title"
-        id="gift-title">
-        Ingin Memberikan Hadiah?
-      </h2>
-
-      <p class="body-copy">
-        Kehadiran dan doa Anda merupakan hadiah terindah bagi kami.
-        Jika ingin mengirimkan tanda kasih, informasi berikut kami sediakan
-        untuk memudahkan Anda.
-      </p>
-    </div>
-
-    <div class="gift-grid">
-
-      <!-- BANK ACCOUNT -->
-      <article class="gift-info-card gift-bank-card">
-
-        <div class="gift-bank-card__head">
-
-          <span
-            class="gift-bank-card__icon"
-            aria-hidden="true">
-            💳
-          </span>
-
-          <span class="mini-label">
-            Nomor Rekening
-          </span>
-
-        </div>
-
-        <p
-          class="gift-bank-card__name"
-          data-config="gift.bankAccountName">
-          a.n. Dhanan Arieyasa
-        </p>
-
-        <strong
-          class="gift-bank-card__number"
-          id="bank-account-number"
-          data-config="gift.bankAccount">
-          XXX
-        </strong>
-
-        <button
-          class="gift-copy-button"
-          id="copy-bank-account"
-          type="button"
-          aria-label="Salin nomor rekening">
-          Salin Nomor Rekening
-        </button>
-
-        <p
-          class="gift-copy-status"
-          id="gift-copy-status"
-          aria-live="polite">
-        </p>
-
-      </article>
-
-      <!-- DELIVERY ADDRESS -->
-      <article class="gift-info-card gift-delivery-card">
-
-        <div class="gift-delivery-card__head">
-
-          <span
-            class="gift-delivery-card__icon"
-            aria-hidden="true">
-            📍
-          </span>
-
-          <span class="mini-label">
-            Alamat Pengiriman Hadiah
-          </span>
-
-        </div>
-
-        <strong
-          class="gift-delivery-address"
-          data-config="gift.deliveryAddress">
-          XXX
-        </strong>
-
-        <a
-          class="text-link gift-delivery-link"
-          id="gift-delivery-link"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer">
-
-          Buka Lokasi Pengiriman
-          <span aria-hidden="true">↗</span>
-
-        </a>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-    <!-- =====================================================
-         RSVP
-    ====================================================== -->
-
-    <section
-      class="section section--dark"
-      id="rsvp"
-      aria-labelledby="rsvp-title">
-
-      <div class="section-shell rsvp-layout">
-
-        <div class="rsvp-intro reveal">
-
-          <p class="eyebrow">
-            Mohon Konfirmasi
-          </p>
-
-          <h2
-            class="display-title display-title--light"
-            id="rsvp-title">
-            Apakah Anda Akan Hadir?
-          </h2>
-
-          <p class="body-copy body-copy--light">
-            Konfirmasi kehadiran Anda sangat membantu kami mempersiapkan acara dengan baik.
-            Mohon isi satu konfirmasi untuk Anda dan rombongan.
-          </p>
-
-        </div>
-
-        <form
-          class="rsvp-form reveal"
-          id="rsvp-form"
-          novalidate>
-
-          <div class="field-group">
-
-            <label for="full-name">
-              Nama Lengkap
-            </label>
-
-            <input
-              id="full-name"
-              name="fullName"
-              type="text"
-              autocomplete="name"
-              maxlength="120"
-              required
-              placeholder="Masukkan nama lengkap Anda">
-
-            <p
-              class="field-error"
-              id="full-name-error"
-              aria-live="polite">
-            </p>
-
-          </div>
-
-          <fieldset class="field-group fieldset-reset">
-
-            <legend>
-              Konfirmasi Kehadiran
-            </legend>
-
-            <div class="attendance-options">
-
-              <label class="choice-card">
-
-                <input
-                  type="radio"
-                  name="attendance"
-                  value="attending"
-                  required>
-
-                <span>
-                  Hadir
-                </span>
-
-              </label>
-
-              <label class="choice-card">
-
-                <input
-                  type="radio"
-                  name="attendance"
-                  value="not-attending"
-                  required>
-
-                <span>
-                  Tidak Hadir
-                </span>
-
-              </label>
-
-            </div>
-
-            <p
-              class="field-error"
-              id="attendance-error"
-              aria-live="polite">
-            </p>
-
-          </fieldset>
-
-          <div
-            class="field-group"
-            id="guest-count-group">
-
-            <label for="guest-count">
-              Jumlah Tamu yang Hadir
-            </label>
-
-            <input
-              id="guest-count"
-              name="guests"
-              type="number"
-              min="1"
-              max="10"
-              step="1"
-              inputmode="numeric"
-              value="1"
-              aria-describedby="guest-count-hint">
-
-            <p
-              class="field-hint"
-              id="guest-count-hint">
-              Masukkan jumlah tamu yang akan hadir (1–10).
-            </p>
-
-          </div>
-
-          <div class="field-group">
-
-            <label for="message">
-              Ucapan &amp; Pesan
-            </label>
-
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              maxlength="1000"
-              placeholder="Tuliskan doa dan ucapan hangat untuk kami"></textarea>
-
-          </div>
-
-          <button
-            class="button button--light button--full"
-            id="rsvp-submit"
-            type="submit">
-            Kirim Konfirmasi
-          </button>
-
-          <p
-            class="form-status"
-            id="rsvp-status"
-            role="status"
-            aria-live="polite">
-          </p>
-
-        </form>
-
-      </div>
-
-    </section>
-
-    <!-- =====================================================
-         WISHES
-    ====================================================== -->
-
-    <section
-      class="section section--paper"
-      id="wishes"
-      aria-labelledby="wishes-title">
-
-      <div class="section-shell wishes-shell">
-
-        <div class="wishes-heading reveal">
-
-          <p class="eyebrow eyebrow--dark">
-            Dari Hati
-          </p>
-
-          <h2
-            class="display-title"
-            id="wishes-title">
-            Ucapan Pernikahan
-          </h2>
-
-          <p class="body-copy">
-            Ucapan dari keluarga dan sahabat akan tampil di sini.
-          </p>
-
-        </div>
-
-        <div
-          class="wishes-list"
-          id="wishes-list"
-          aria-live="polite">
-
-          <p class="wishes-empty">
-            Belum ada ucapan. Jadilah yang pertama memberikan ucapan.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    
-
-    <!-- =====================================================
-         CLOSING
-    ====================================================== -->
-
-    <section
-      class="closing"
-      id="closing"
-      aria-labelledby="closing-title">
-
-      <img
-        class="closing__image"
-        src="assets/images/closing.webp"
-        alt="Potret penutup kedua mempelai"
-        loading="lazy"
-        decoding="async">
-
-      <div class="closing__overlay"></div>
-
-      <div class="closing__content reveal">
-
-        <p class="eyebrow">
-          Dengan Cinta dan Rasa Syukur
-        </p>
-
-        <h2
-          class="display-title display-title--light"
-          id="closing-title">
-
-          <span>
-            Dhanan
-          </span>
-
-          <span class="ampersand">
-            &amp;
-          </span>
-
-          <span>
-            Berliana
-          </span>
-
-        </h2>
-
-        <p data-config="site.closingMessage">
-          Kehadiran dan doa restu Anda akan menjadikan hari bahagia kami semakin bermakna.
-        </p>
-
-        <p class="closing__signature">
-          Sampai jumpa di hari bahagia kami.
-        </p>
-
-        <p class="closing__credit">
-          © Invitation by Berliana
-        </p>
-
-      </div>
-
-    </section>
-
-  </main>
-
-  <!-- =======================================================
-       MUSIC
-  ======================================================== -->
-
-  <button
-    class="music-toggle"
-    id="music-toggle"
-    type="button"
-    aria-pressed="false"
-    aria-label="Putar musik latar">
-
-    <span
-      class="music-toggle__icon"
-      aria-hidden="true">
-      ♪
-    </span>
-
-    <span class="music-toggle__label">
-      Musik
-    </span>
-
-  </button>
-
-  <audio
-  id="background-music"
-  preload="metadata"
-  loop
-  playsinline>
-  <source
-    src="assets/audio/bermuara.mp3"
-    type="audio/mpeg">
-</audio>
-
-  <!-- =======================================================
-       HERO SLIDESHOW
-  ======================================================== -->
-
-  <script>
-    (() => {
-      const openButton =
-        document.getElementById('open-invitation');
-
-      const hero =
-        document.getElementById('home');
-
-      const heroSlides =
-        Array.from(
-          document.querySelectorAll('.hero__slide')
-        );
-
-      if (!hero || heroSlides.length < 2) return;
-
-      const reduceMotion =
-        window.matchMedia(
-          '(prefers-reduced-motion: reduce)'
-        );
-
-      let currentIndex = 0;
-      let timerId = null;
-
-      let hasOpened =
-        !document.body.classList.contains('is-locked');
-
-      const enterHero = () => {
-        if (
-          hero.classList.contains('hero--entered')
-        ) {
-          return;
-        }
-
-        window.setTimeout(
-          () => {
-            hero.classList.add('hero--entered');
-          },
-          reduceMotion.matches ? 0 : 760
-        );
-      };
-
-      const showSlide = (nextIndex) => {
-        if (nextIndex === currentIndex) return;
-
-        heroSlides[currentIndex]
-          .classList
-          .remove('is-active');
-
-        currentIndex = nextIndex;
-
-        heroSlides[currentIndex]
-          .classList
-          .add('is-active');
-      };
-
-      const stopSlideshow = () => {
-        if (timerId === null) return;
-
-        window.clearInterval(timerId);
-        timerId = null;
-      };
-
-      const startSlideshow = () => {
-        if (
-          !hasOpened ||
-          reduceMotion.matches ||
-          document.hidden ||
-          timerId !== null
-        ) {
-          return;
-        }
-
-        timerId =
-          window.setInterval(
-            () => {
-              showSlide(
-                (currentIndex + 1) %
-                heroSlides.length
-              );
-            },
-            2500
-          );
-      };
-
-      openButton?.addEventListener(
-        'click',
-        () => {
-          hasOpened = true;
-
-          enterHero();
-          startSlideshow();
-        },
-        { once: true }
-      );
-
-      document.addEventListener(
-        'visibilitychange',
-        () => {
-          document.hidden
-            ? stopSlideshow()
-            : startSlideshow();
-        }
-      );
-
-      if (
-        typeof reduceMotion.addEventListener === 'function'
-      ) {
-        reduceMotion.addEventListener(
-          'change',
-          (event) => {
-
-            if (event.matches) {
-              stopSlideshow();
-              enterHero();
-            } else {
-              startSlideshow();
-            }
-
-          }
-        );
-      }
-
-      if (hasOpened) {
-        enterHero();
-      }
-
-      startSlideshow();
-    })();
-  </script>
-
-  <!-- =======================================================
-       OPENING + MUSIC TRANSITION
-  ======================================================== -->
-
- <script>
-  (() => {
-    const cover = document.getElementById('opening-cover');
-    const openButton = document.getElementById('open-invitation');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    if (!cover || !openButton) return;
-
-    const createTransitionClone = () => {
-      const clone = cover.cloneNode(true);
-
-      clone.removeAttribute('id');
-      clone.setAttribute('aria-hidden', 'true');
-      clone.classList.add('opening-transition-clone');
-
-      clone
-        .querySelectorAll('[id]')
-        .forEach((element) => {
-          element.removeAttribute('id');
-        });
-
-      document.body.appendChild(clone);
-
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          clone.classList.add('is-leaving');
-        });
-      });
-
-      window.setTimeout(
-        () => {
-          clone.remove();
-        },
-        reduceMotion.matches ? 300 : 1550
-      );
-    };
-
-    openButton.addEventListener(
-      'click',
-      () => {
-        createTransitionClone();
-      },
-      { once: true }
+:root {
+  --color-paper: #f3eee6;
+  --color-paper-soft: #faf7f1;
+  --color-sand: #ded0bd;
+  --color-sand-soft: #e8dfd2;
+  --color-ink: #1d1c1a;
+  --color-ink-soft: #49443d;
+  --color-gold: #a37c45;
+  --color-gold-light: #c7a674;
+  --color-line: rgba(29, 28, 26, 0.18);
+  --color-line-light: rgba(255, 255, 255, 0.24);
+  --color-white: #fffdf9;
+
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --content-width: 1120px;
+  --page-gutter: clamp(1.25rem, 5vw, 4rem);
+  --section-space: clamp(5rem, 12vw, 9rem);
+
+  --radius-card: .875rem;
+  --radius-control: .625rem;
+  --radius-button: .75rem;
+
+  --shadow-soft: 0 24px 80px rgba(34, 28, 20, 0.12);
+  --transition: 480ms cubic-bezier(.2,.7,.2,1);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-paper);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  color: var(--color-ink);
+  background: var(--color-paper);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body.is-locked {
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--color-gold-light);
+  color: var(--color-ink);
+}
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+.noscript-banner {
+  position: fixed;
+  z-index: 1000;
+  inset: 0 0 auto;
+  padding: .8rem 1rem;
+  background: var(--color-ink);
+  color: var(--color-white);
+  text-align: center;
+  font-size: .82rem;
+}
+
+.section {
+  position: relative;
+  overflow: hidden;
+  padding: var(--section-space) 0;
+}
+
+.section--paper {
+  background: var(--color-paper-soft);
+}
+
+.section--dark {
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+.section--sand {
+  background: var(--color-sand-soft);
+}
+
+.section-shell {
+  width: min(100%, var(--content-width));
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+
+.eyebrow,
+.mini-label {
+  margin: 0 0 1rem;
+  color: var(--color-gold-light);
+  font-family: var(--font-body);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.eyebrow--dark,
+.mini-label {
+  color: var(--color-gold);
+}
+
+.display-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 14vw, 6.5rem);
+  font-weight: 500;
+  letter-spacing: -.045em;
+  line-height: .88;
+}
+
+.display-title--light {
+  color: var(--color-white);
+}
+
+.body-copy {
+  max-width: 42rem;
+  margin: 1.7rem 0 0;
+  color: var(--color-ink-soft);
+  font-size: clamp(.96rem, 2.6vw, 1.08rem);
+}
+
+.body-copy--light {
+  color: rgba(255, 253, 249, .72);
+}
+
+.ampersand {
+  color: var(--color-gold-light);
+  font-style: italic;
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   BUTTONS + LINKS
+========================================================= */
+
+.button {
+  display: inline-flex;
+  min-height: 3.2rem;
+  align-items: center;
+  justify-content: center;
+  padding: .85rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-button);
+  appearance: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  line-height: 1.2;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button:focus-visible,
+.text-link:focus-visible,
+.music-toggle:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 3px;
+}
+
+.button--light {
+  border-color: rgba(255,255,255,.55);
+  background: rgba(255,253,249,.94);
+  color: var(--color-ink);
+}
+
+.button--light:hover {
+  background: var(--color-white);
+}
+
+.button--dark {
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+.button--dark:hover {
+  background: #36322d;
+}
+
+.button--full {
+  width: 100%;
+}
+
+.button:disabled {
+  cursor: wait;
+  opacity: .6;
+  transform: none;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border-bottom: 1px solid currentColor;
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  line-height: 2;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   OPENING COVER
+========================================================= */
+
+.opening-cover {
+  position: fixed;
+  z-index: 900;
+  inset: 0;
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  place-items: end center;
+  overflow: hidden;
+  background: #332d27;
+  color: var(--color-white);
+  transition: opacity 700ms ease, visibility 700ms ease;
+}
+
+.opening-cover.is-open {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.opening-cover__media {
+  position: absolute;
+  inset: 0;
+  background: url('../images/hero.webp') center 35% / cover no-repeat;
+  transform: scale(1.02);
+  animation: coverZoom 11s ease-out both;
+}
+
+.opening-cover__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(16,14,12,.06) 20%,
+      rgba(16,14,12,.35) 64%,
+      rgba(16,14,12,.78) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(16,14,12,.12),
+      transparent 55%
     );
-  })();
-</script>
+}
+
+.opening-cover__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 38rem;
+  padding:
+    3rem
+    var(--page-gutter)
+    max(2rem, env(safe-area-inset-bottom));
+  text-align: center;
+}
+
+.opening-cover__names {
+  display: grid;
+  gap: .15rem;
+  margin: .4rem 0 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 14vw, 5.8rem);
+  font-weight: 500;
+  letter-spacing: -.055em;
+  line-height: .75;
+}
+
+.opening-cover__names .ampersand {
+  font-size: .68em;
+}
+
+.opening-cover__guest {
+  margin: 0 0 1.5rem;
+  color: rgba(255,255,255,.82);
+  font-size: .86rem;
+}
+
+@keyframes coverZoom {
+  from {
+    transform: scale(1.02);
+  }
+
+  to {
+    transform: scale(1.09);
+  }
+}
 
 
-  <!-- =======================================================
-       STORY TRIP SLIDER — 3 FOTO TERLIHAT
-  ======================================================== -->
+/* =========================================================
+   HERO
+========================================================= */
 
-  <script>
-    (() => {
-      const slider =
-        document.getElementById('story-trip-slider');
+.hero {
+  position: relative;
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  place-items: end start;
+  overflow: hidden;
+  background: var(--color-ink);
+  color: var(--color-white);
+}
 
-      const track =
-        document.getElementById('story-trip-slider-track');
+.hero__image,
+.closing__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-      const prevButton =
-        slider?.querySelector('[data-trip-prev]');
+.hero__image {
+  object-position: 50% 35%;
+}
 
-      const nextButton =
-        slider?.querySelector('[data-trip-next]');
+.hero__overlay,
+.closing__overlay {
+  position: absolute;
+  inset: 0;
+}
 
-      const cards =
-        Array.from(
-          slider?.querySelectorAll('[data-trip-card]') || []
-        );
+.hero__overlay {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(17,15,13,.08) 10%,
+      rgba(17,15,13,.18) 45%,
+      rgba(17,15,13,.8) 100%
+    );
+}
 
-      const progress =
-        document.getElementById('story-trip-slider-progress');
+.hero__content {
+  position: relative;
+  z-index: 2;
+  width: min(100%, var(--content-width));
+  margin-inline: auto;
+  padding:
+    4rem
+    var(--page-gutter)
+    max(3rem, env(safe-area-inset-bottom));
+}
 
-      const lightbox =
-        document.getElementById('story-lightbox');
+.hero__title {
+  display: grid;
+  gap: .1rem;
+  max-width: 38rem;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 13vw, 6.5rem);
+  font-weight: 500;
+  letter-spacing: -.06em;
+  line-height: .88;
+}
 
-      const lightboxImage =
-        document.getElementById('story-lightbox-image');
+.hero__title .ampersand {
+  margin-left: 1.5rem;
+  font-size: .55em;
+}
 
-      if (!slider || !track || cards.length < 4) return;
+.hero__copy {
+  max-width: 30rem;
+  margin: 1.8rem 0 0;
+  color: rgba(255,255,255,.82);
+  font-size: .95rem;
+}
 
-      const reduceMotion =
-        window.matchMedia(
-          '(prefers-reduced-motion: reduce)'
-        );
+.scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+  margin-top: 1.8rem;
+  color: rgba(255,255,255,.8);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
 
-      let autoTimer = null;
-
-      const getStep = () => {
-        const firstCard = cards[0];
-        const styles = window.getComputedStyle(track);
-        const gap = parseFloat(styles.columnGap || styles.gap || '0');
-
-        return firstCard.getBoundingClientRect().width + gap;
-      };
-
-      const getMaxScroll = () =>
-        Math.max(0, track.scrollWidth - track.clientWidth);
-
-      const updateProgress = () => {
-        const maxScroll = getMaxScroll();
-        const ratio =
-          maxScroll > 0
-            ? Math.min(1, Math.max(0, track.scrollLeft / maxScroll))
-            : 0;
-
-        if (progress) {
-          progress.style.transform =
-            `scaleX(${Math.max(.08, ratio)})`;
-        }
-      };
-
-      const scrollOne = (direction) => {
-        const maxScroll = getMaxScroll();
-        const step = getStep();
-        const nextLeft = track.scrollLeft + (step * direction);
-
-        if (direction > 0 && nextLeft >= maxScroll - 4) {
-          track.scrollTo({
-            left: 0,
-            behavior: reduceMotion.matches ? 'auto' : 'smooth'
-          });
-          return;
-        }
-
-        if (direction < 0 && nextLeft <= 4) {
-          track.scrollTo({
-            left: maxScroll,
-            behavior: reduceMotion.matches ? 'auto' : 'smooth'
-          });
-          return;
-        }
-
-        track.scrollBy({
-          left: step * direction,
-          behavior: reduceMotion.matches ? 'auto' : 'smooth'
-        });
-      };
-
-      const stopAuto = () => {
-        if (autoTimer === null) return;
-        window.clearInterval(autoTimer);
-        autoTimer = null;
-      };
-
-      const startAuto = () => {
-        if (
-          reduceMotion.matches ||
-          document.hidden ||
-          autoTimer !== null
-        ) {
-          return;
-        }
-
-        autoTimer =
-          window.setInterval(
-            () => scrollOne(1),
-            3400
-          );
-      };
-
-      prevButton?.addEventListener(
-        'click',
-        () => {
-          scrollOne(-1);
-          stopAuto();
-          startAuto();
-        }
-      );
-
-      nextButton?.addEventListener(
-        'click',
-        () => {
-          scrollOne(1);
-          stopAuto();
-          startAuto();
-        }
-      );
-
-      track.addEventListener(
-        'scroll',
-        updateProgress,
-        { passive: true }
-      );
-
-      track.addEventListener(
-        'pointerdown',
-        stopAuto,
-        { passive: true }
-      );
-
-      track.addEventListener(
-        'pointerup',
-        startAuto,
-        { passive: true }
-      );
-
-      cards.forEach((card) => {
-        card.addEventListener('click', () => {
-          const source = card.dataset.fullSrc;
-          const image = card.querySelector('img');
-
-          if (
-            !source ||
-            !lightbox ||
-            !lightboxImage ||
-            typeof lightbox.showModal !== 'function'
-          ) {
-            return;
-          }
-
-          lightboxImage.src = source;
-          lightboxImage.alt = image?.alt || 'Foto kisah kami';
-          lightbox.showModal();
-        });
-      });
-
-      document.addEventListener(
-        'visibilitychange',
-        () => {
-          document.hidden
-            ? stopAuto()
-            : startAuto();
-        }
-      );
-
-      updateProgress();
-      startAuto();
-    })();
-  </script>
+.scroll-cue::before {
+  width: 2.2rem;
+  height: 1px;
+  background: currentColor;
+  content: '';
+}
 
 
-  <!-- =======================================================
-       MAIN APPLICATION
-  ======================================================== -->
+/* =========================================================
+   COUPLE
+========================================================= */
 
-  <script
-    type="module"
-    src="assets/js/app.js">
-  </script>
+.couple-grid {
+  display: grid;
+  gap: 3.5rem;
+}
 
-</body>
-</html>
+.couple-copy {
+  align-self: center;
+}
+
+.couple-names {
+  display: grid;
+  gap: 1.6rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.couple-names article {
+  min-width: 0;
+}
+
+.couple-names h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 9vw, 3.4rem);
+  font-weight: 500;
+  letter-spacing: -.03em;
+  line-height: .95;
+}
+
+.parent-copy {
+  margin: .7rem 0 0;
+  color: var(--color-ink-soft);
+  font-size: .83rem;
+}
+
+.couple-profile {
+  display: flex;
+  flex-direction: column;
+}
+
+.couple-portrait {
+  display: block;
+  width: min(58vw, 12.5rem);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto 1.15rem;
+  border: 3px solid rgba(163,124,69,.22);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 30%;
+  box-shadow: 0 16px 40px rgba(29,28,26,.10);
+}
+
+.editorial-figure {
+  margin: 0;
+}
+
+.editorial-figure img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: var(--shadow-soft);
+}
+
+.editorial-figure figcaption {
+  margin-top: .8rem;
+  color: #766b5f;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+#countdown {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-block: 1px solid rgba(163,124,69,.10);
+  background:
+    radial-gradient(
+      circle at 88% 12%,
+      rgba(199,166,116,.13),
+      transparent 24rem
+    ),
+    linear-gradient(
+      180deg,
+      #fbf8f3 0%,
+      #f5eadf 100%
+    );
+  color: var(--color-ink);
+}
+
+#countdown::before {
+  position: absolute;
+  z-index: -1;
+  top: -10rem;
+  right: -9rem;
+  width: clamp(18rem, 34vw, 31rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(163,124,69,.20);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 38px rgba(163,124,69,.035),
+    0 0 0 76px rgba(163,124,69,.02);
+  content: '';
+  pointer-events: none;
+}
+
+#countdown::after {
+  position: absolute;
+  z-index: -1;
+  left: -9rem;
+  bottom: -11rem;
+  width: 24rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(111,52,57,.07) 0%,
+      rgba(111,52,57,0) 68%
+    );
+  content: '';
+  pointer-events: none;
+}
+
+#countdown .section-shell {
+  position: relative;
+  z-index: 1;
+}
+
+#countdown .eyebrow {
+  color: var(--color-gold);
+}
+
+#countdown .display-title,
+#countdown .display-title--light {
+  color: #603b38;
+}
+
+#countdown .countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem;
+  margin-top: 2.5rem;
+}
+
+#countdown .countdown-card {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  min-height: 168px;
+  place-content: center;
+  overflow: hidden;
+  padding: 2.5rem .85rem 1.35rem;
+  border: 1px solid rgba(163,124,69,.24);
+  border-radius: 999px 999px 26px 26px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.78),
+      rgba(255,250,245,.96)
+    ),
+    #fffaf5;
+  box-shadow:
+    0 18px 50px rgba(89,61,43,.075),
+    inset 0 1px 0 rgba(255,255,255,.85);
+  text-align: center;
+  transition:
+    transform 280ms ease,
+    box-shadow 280ms ease,
+    border-color 280ms ease;
+}
+
+#countdown .countdown-card::before {
+  position: absolute;
+  top: 1.25rem;
+  left: 50%;
+  width: 2rem;
+  height: 1px;
+  background: rgba(163,124,69,.58);
+  content: '';
+  transform: translateX(-50%);
+}
+
+#countdown .countdown-card::after {
+  position: absolute;
+  inset: .45rem;
+  border: 1px solid rgba(163,124,69,.07);
+  border-radius: inherit;
+  content: '';
+  pointer-events: none;
+}
+
+#countdown .countdown-card strong {
+  display: block;
+  margin: 0;
+  color: #6f3439;
+  font-family: var(--font-display);
+  font-size: clamp(2.85rem, 12vw, 4.8rem);
+  font-weight: 500;
+  letter-spacing: -.035em;
+  line-height: .82;
+}
+
+#countdown .countdown-card span {
+  display: block;
+  margin-top: .72rem;
+  color: #98744a;
+  font-size: .64rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+#countdown .countdown-note {
+  min-height: 1.5em;
+  margin: 1.5rem 0 0;
+  color: #75685d;
+  font-size: .78rem;
+  text-align: center;
+}
+
+
+/* =========================================================
+   EVENT / RESEPSI
+========================================================= */
+
+.event-layout {
+  position: relative;
+  display: grid;
+  gap: 2.75rem;
+}
+
+.event-layout::before {
+  position: absolute;
+  z-index: 0;
+  top: -5rem;
+  right: -7rem;
+  width: clamp(15rem, 36vw, 29rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(163,124,69,.10);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 35px rgba(163,124,69,.025),
+    0 0 0 70px rgba(163,124,69,.015);
+  content: '';
+  pointer-events: none;
+}
+
+.event-layout > * {
+  position: relative;
+  z-index: 1;
+}
+
+.event-cards {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.event-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: clamp(2rem, 6vw, 3.2rem);
+  border: 1px solid rgba(163,124,69,.28);
+  border-radius: 1.5rem;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(199,166,116,.13),
+      transparent 22rem
+    ),
+    radial-gradient(
+      circle at 0% 100%,
+      rgba(163,124,69,.06),
+      transparent 20rem
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255,253,249,.96),
+      rgba(243,238,230,.96)
+    );
+  box-shadow:
+    0 24px 70px rgba(65,47,28,.09),
+    inset 0 1px 0 rgba(255,255,255,.85);
+  isolation: isolate;
+  transition:
+    transform 320ms cubic-bezier(.2,.7,.2,1),
+    border-color 320ms ease,
+    box-shadow 320ms ease;
+}
+
+.event-card::before {
+  position: absolute;
+  z-index: -1;
+  inset: .65rem;
+  border: 1px solid rgba(163,124,69,.11);
+  border-radius: 1.1rem;
+  content: '';
+  pointer-events: none;
+}
+
+.event-card::after {
+  position: absolute;
+  z-index: -1;
+  top: -4.5rem;
+  right: -4.5rem;
+  width: 11rem;
+  height: 11rem;
+  border: 1px solid rgba(163,124,69,.16);
+  border-radius:
+    62% 38% 64% 36% /
+    39% 58% 42% 61%;
+  box-shadow:
+    -1.2rem 1.2rem 0 -1.15rem rgba(163,124,69,.22),
+    -2rem 2rem 0 -1.9rem rgba(163,124,69,.17),
+    -2.8rem 2.8rem 0 -2.65rem rgba(163,124,69,.12);
+  content: '';
+  transform: rotate(25deg);
+  pointer-events: none;
+}
+
+.event-card__label {
+  position: relative;
+  margin: 0 0 2.25rem;
+  padding-bottom: 1.5rem;
+  color: var(--color-gold);
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 11vw, 4.6rem);
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -.045em;
+  line-height: .85;
+}
+
+.event-card__label::after {
+  display: block;
+  width: 6.5rem;
+  height: 1px;
+  margin-top: 1.3rem;
+  background:
+    linear-gradient(
+      90deg,
+      var(--color-gold),
+      rgba(163,124,69,.18)
+    );
+  content: '';
+}
+
+.event-card__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0,1fr);
+  gap: 1.1rem;
+  align-items: center;
+  padding: 1.35rem 0;
+  border-bottom: 1px solid rgba(163,124,69,.16);
+}
+
+.event-card__item::before {
+  display: grid;
+  width: 3.25rem;
+  height: 3.25rem;
+  grid-row: 1 / span 3;
+  grid-column: 1;
+  place-items: center;
+  border: 1px solid rgba(163,124,69,.31);
+  border-radius: 50%;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.88),
+      rgba(232,223,210,.62)
+    );
+  box-shadow:
+    inset 0 0 0 5px rgba(163,124,69,.035);
+  color: var(--color-gold);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1;
+  content: '✦';
+}
+
+.event-card__item:nth-of-type(1)::before {
+  content: '◇';
+}
+
+.event-card__item:nth-of-type(2)::before {
+  content: '◷';
+}
+
+.event-card__item:nth-of-type(3)::before {
+  content: '⌖';
+}
+
+.event-card__item:last-of-type {
+  border-bottom: 0;
+}
+
+.event-card__item .mini-label {
+  grid-column: 2;
+  margin: 0 0 .2rem;
+  color: var(--color-gold);
+  font-size: .64rem;
+  font-weight: 700;
+  letter-spacing: .19em;
+  line-height: 1.2;
+}
+
+.event-card__item strong {
+  grid-column: 2;
+  display: block;
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 6.4vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -.025em;
+  line-height: 1.03;
+}
+
+.event-card__item p {
+  grid-column: 2;
+  margin: .35rem 0 0;
+  color: var(--color-ink-soft);
+  font-size: .82rem;
+  line-height: 1.65;
+}
+
+.event-card__actions {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .85rem 1.3rem;
+  margin-top: 2rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid rgba(163,124,69,.16);
+}
+
+.event-card__actions::before {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  padding: 0 .75rem;
+  background: var(--color-paper);
+  color: var(--color-gold-light);
+  content: '✦';
+  font-family: var(--font-display);
+  font-size: .8rem;
+  line-height: 1;
+  transform: translateX(-50%);
+}
+
+.event-card__actions .button {
+  width: auto;
+  min-height: 3.05rem;
+  margin: 0;
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-white);
+  box-shadow: 0 8px 20px rgba(29,28,26,.10);
+}
+
+.event-card__actions .button:hover {
+  border-color: #3b3630;
+  background: #3b3630;
+}
+
+.event-card__actions .text-link {
+  justify-self: start;
+  border-color: rgba(163,124,69,.55);
+  color: var(--color-gold);
+}
+
+
+/* =========================================================
+   VENUE
+========================================================= */
+
+.venue-card {
+  display: grid;
+  gap: 2rem;
+}
+
+.venue-address {
+  max-width: 32rem;
+  margin: 1.5rem 0;
+  color: var(--color-ink-soft);
+  font-size: 1rem;
+}
+
+.venue-card__visual {
+  position: relative;
+  display: grid;
+  min-height: 16rem;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(29,28,26,.18);
+  background:
+    linear-gradient(
+      135deg,
+      transparent 45%,
+      rgba(163,124,69,.16) 45% 46%,
+      transparent 46%
+    ),
+    linear-gradient(
+      45deg,
+      transparent 53%,
+      rgba(163,124,69,.16) 53% 54%,
+      transparent 54%
+    ),
+    var(--color-sand);
+}
+
+.venue-pin {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: 4.5rem;
+  height: 4.5rem;
+  place-items: center;
+  border: 1px solid var(--color-gold);
+  border-radius: 50%;
+  background: rgba(243,238,230,.78);
+  color: var(--color-gold);
+  font-size: 1.7rem;
+}
+
+.venue-line {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  border: 1px dashed rgba(29,28,26,.25);
+  border-radius: 50%;
+  transform: rotate(-12deg);
+}
+
+.venue-caption {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.venue-map {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(29,28,26,.14);
+  border-radius: var(--radius-card);
+  background: #d8d0c6;
+}
+
+.venue-map iframe {
+  display: block;
+  width: 100%;
+  min-height: 20rem;
+  border: 0;
+  aspect-ratio: 4 / 3;
+}
+
+
+/* =========================================================
+   STORY — CLEAN RESPONSIVE GRID
+========================================================= */
+
+.story {
+  padding: var(--section-space) 0;
+  background: var(--color-paper-soft);
+}
+
+.story-heading {
+  padding-bottom: clamp(2.5rem, 7vw, 4.5rem);
+}
+
+.story-gallery__intro {
+  max-width: 38rem;
+  margin: 1.25rem 0 0;
+  color: #766a5e;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.8vw, 1.2rem);
+  font-style: italic;
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   STORY GALLERY GRID
+========================================================= */
+
+.story-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .7rem;
+  width: 100%;
+  padding-bottom: 1rem;
+}
+
+
+/* =========================================================
+   STORY PHOTO CARD
+========================================================= */
+
+.story-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 1rem;
+  background: #ddd4c8;
+  cursor: zoom-in;
+
+  /* Semua thumbnail dibuat konsisten */
+  aspect-ratio: 3 / 4;
+}
+
+.story-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  /* Foto memenuhi card tanpa merusak grid */
+  object-fit: cover;
+  object-position: center;
+
+  transition:
+    transform .7s cubic-bezier(.22, 1, .36, 1),
+    filter .7s ease;
+}
+
+.story-frame:hover img,
+.story-frame:focus-visible img {
+  transform: scale(1.035);
+  filter: brightness(.96);
+}
+
+.story-frame:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   STORY LIGHTBOX
+========================================================= */
+
+.story-lightbox {
+  width: min(94vw, 58rem);
+  max-width: none;
+  max-height: 94vh;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+}
+
+.story-lightbox::backdrop {
+  background: rgba(17,15,13,.92);
+  backdrop-filter: blur(6px);
+}
+
+.story-lightbox__stage {
+  display: grid;
+  width: 100%;
+  max-height: 90vh;
+  place-items: center;
+}
+
+.story-lightbox__image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 88vh;
+  border-radius: var(--radius-button);
+  object-fit: contain;
+  box-shadow: 0 24px 80px rgba(0,0,0,.38);
+}
+
+.story-lightbox__close {
+  position: absolute;
+  z-index: 2;
+  top: .6rem;
+  right: .6rem;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.45);
+  border-radius: 50%;
+  background: rgba(17,15,13,.72);
+  color: #fff;
+  font: 300 1.8rem/1 var(--font-body);
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   STORY SLIDER
+========================================================= */
+
+.story-slider {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.story-slider__viewport {
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: #d9d0c4;
+}
+
+.story-slider__track {
+  display: flex;
+  width: 100%;
+  transition: transform .65s cubic-bezier(.2,.7,.2,1);
+  will-change: transform;
+}
+
+.story-slider__slide {
+  flex: 0 0 100%;
+  margin: 0;
+}
+
+.story-slider__slide img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+}
+
+.story-slider__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: .9rem;
+}
+
+.story-slider__caption {
+  margin: 0;
+  color: #766a5e;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: italic;
+}
+
+.story-slider__controls {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+.story-slider__arrow {
+  display: grid;
+  width: 2.3rem;
+  height: 2.3rem;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.story-slider__dots {
+  display: flex;
+  gap: .4rem;
+}
+
+.story-slider__dots button {
+  width: .45rem;
+  height: .45rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #b5aa9d;
+  cursor: pointer;
+}
+
+.story-slider__dots button[aria-current='true'] {
+  background: var(--color-ink);
+  transform: scale(1.35);
+}
+
+.story-feature {
+  margin: 0;
+}
+
+.story-feature img {
+  display: block;
+  width: 100%;
+  max-height: 72rem;
+  border-radius: var(--radius-card);
+  object-fit: cover;
+  object-position: center;
+}
+
+.story-feature figcaption {
+  margin-top: .85rem;
+  color: #85796c;
+  font-family: var(--font-display);
+  font-size: .95rem;
+  font-style: italic;
+}
+
+
+/* =========================================================
+   RSVP
+========================================================= */
+
+.rsvp-layout {
+  display: grid;
+  gap: 3rem;
+}
+
+.rsvp-form {
+  display: grid;
+  gap: 1.3rem;
+  padding: 1.4rem;
+  border: 1px solid var(--color-line-light);
+  border-radius: var(--radius-card);
+  background: rgba(255,255,255,.045);
+}
+
+.field-group {
+  display: grid;
+  gap: .55rem;
+}
+
+.field-group label,
+.fieldset-reset legend {
+  padding: 0;
+  color: rgba(255,255,255,.72);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.fieldset-reset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.rsvp-form input[type='text'],
+.rsvp-form select,
+.rsvp-form textarea {
+  width: 100%;
+  min-height: 3.25rem;
+  padding: .9rem 1rem;
+  border: 1px solid rgba(255,255,255,.24);
+  border-radius: var(--radius-control);
+  outline: none;
+  background: rgba(255,255,255,.04);
+  color: var(--color-white);
+  font-size: 16px;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.rsvp-form textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.rsvp-form input::placeholder,
+.rsvp-form textarea::placeholder {
+  color: rgba(255,255,255,.35);
+}
+
+.rsvp-form select {
+  color-scheme: dark;
+}
+
+.rsvp-form input[type='text']:focus,
+.rsvp-form select:focus,
+.rsvp-form textarea:focus {
+  border-color: var(--color-gold-light);
+  background: rgba(255,255,255,.07);
+}
+
+.rsvp-form input[type='number'] {
+  width: 100%;
+  min-height: 4.2rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: var(--radius-control);
+  outline: 0;
+  background: #f7f3ec;
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.rsvp-form input[type='number']:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 2px rgba(199,163,95,.18);
+}
+
+.attendance-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+}
+
+.choice-card {
+  position: relative;
+  cursor: pointer;
+}
+
+.choice-card input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.choice-card span {
+  display: grid;
+  min-height: 3.4rem;
+  place-items: center;
+  padding: .8rem;
+  border: 1px solid rgba(255,255,255,.24);
+  border-radius: var(--radius-control);
+  color: rgba(255,255,255,.76);
+  font-size: .78rem;
+  text-align: center;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.choice-card input:checked + span {
+  border-color: var(--color-gold-light);
+  background: var(--color-gold-light);
+  color: var(--color-ink);
+}
+
+.choice-card input:focus-visible + span {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 3px;
+}
+
+.field-error,
+.form-status {
+  min-height: 1.35em;
+  margin: 0;
+  font-size: .74rem;
+}
+
+.field-error {
+  color: #eab6a3;
+}
+
+.form-status {
+  color: rgba(255,255,255,.7);
+  text-align: center;
+}
+
+.form-status.is-success {
+  color: #d6dcb4;
+}
+
+.form-status.is-error {
+  color: #eab6a3;
+}
+
+.field-hint {
+  margin: .55rem 0 0;
+  color: rgba(255,255,255,.62);
+  font-size: .72rem;
+}
+
+#guest-count-group[hidden] {
+  display: none;
+}
+
+
+/* =========================================================
+   WISHES
+========================================================= */
+
+.wishes-shell {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.wishes-list {
+  display: grid;
+  gap: .85rem;
+}
+
+.wish-card {
+  position: relative;
+  padding: 1.4rem 0 1.4rem 2rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.wish-card::before {
+  position: absolute;
+  top: 1.2rem;
+  left: 0;
+  color: var(--color-gold);
+  content: '“';
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  line-height: 1;
+}
+
+.wish-card h3 {
+  margin: 0 0 .45rem;
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.wish-card p {
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: .92rem;
+}
+
+.wish-card time {
+  display: block;
+  margin-top: .8rem;
+  color: #897e70;
+  font-size: .64rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.wishes-empty {
+  margin: 0;
+  padding: 1.4rem 0;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  color: #7c7165;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+
+/* =========================================================
+   GIFT
+========================================================= */
+
+.gift-card {
+  text-align: left;
+}
+
+.gift-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 2.75rem;
+}
+
+.gift-info-card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(1.5rem, 4vw, 2rem);
+  border: 1px solid rgba(163,124,69,.22);
+  border-radius: 1.15rem;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,253,249,.44),
+      rgba(255,255,255,.18)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.5);
+  overflow: hidden;
+}
+
+.gift-info-card::after {
+  position: absolute;
+  top: -3.5rem;
+  right: -3.5rem;
+  width: 8rem;
+  height: 8rem;
+  border: 1px solid rgba(163,124,69,.10);
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+}
+
+.gift-bank-card__head,
+.gift-delivery-card__head {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: 1.25rem;
+}
+
+.gift-bank-card__head .mini-label,
+.gift-delivery-card__head .mini-label {
+  margin: 0;
+}
+
+.gift-bank-card__icon,
+.gift-delivery-card__icon {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 2.75rem;
+  place-items: center;
+  border: 1px solid rgba(163,124,69,.28);
+  border-radius: 50%;
+  background: rgba(255,255,255,.34);
+  font-size: 1rem;
+}
+
+.gift-bank-card__name {
+  margin: 0 0 .45rem;
+  color: var(--color-ink-soft);
+  font-size: .78rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.gift-bank-card__number {
+  display: block;
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 500;
+  letter-spacing: .025em;
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+
+.gift-delivery-address {
+  display: block;
+  max-width: 28rem;
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+}
+
+.gift-delivery-link {
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+.gift-copy-button {
+  display: inline-flex;
+  min-height: 2.9rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.25rem;
+  padding: .75rem 1.1rem;
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-button);
+  background: transparent;
+  color: var(--color-gold);
+  cursor: pointer;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.gift-copy-button:hover {
+  background: var(--color-gold);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.gift-copy-status {
+  min-height: 1.2em;
+  margin: .6rem 0 0;
+  color: var(--color-ink-soft);
+  font-size: .7rem;
+}
+
+
+/* =========================================================
+   CLOSING
+========================================================= */
+
+.closing {
+  position: relative;
+  display: grid;
+  min-height: 80vh;
+  min-height: 80svh;
+  place-items: end start;
+  overflow: hidden;
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+.closing__image {
+  object-position: center;
+}
+
+.closing__overlay {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(16,14,12,.08),
+      rgba(16,14,12,.82)
+    );
+}
+
+.closing__content {
+  position: relative;
+  z-index: 2;
+  width: min(100%, var(--content-width));
+  margin-inline: auto;
+  padding:
+    5rem
+    var(--page-gutter)
+    max(4rem, env(safe-area-inset-bottom));
+}
+
+.closing__content > p:not(.eyebrow) {
+  max-width: 31rem;
+  color: rgba(255,255,255,.76);
+}
+
+#closing-title {
+  max-width: 46rem;
+  font-size: clamp(2.2rem, 8.5vw, 4.2rem);
+  letter-spacing: -.035em;
+  line-height: .92;
+}
+
+.closing__signature {
+  margin-top: 2rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-style: italic;
+}
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+.music-toggle {
+  position: fixed;
+  z-index: 700;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  display: inline-flex;
+  min-height: 2.9rem;
+  align-items: center;
+  gap: .5rem;
+  padding: .55rem .85rem;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: var(--radius-button);
+  background: rgba(29,28,26,.86);
+  box-shadow: 0 10px 30px rgba(0,0,0,.18);
+  color: var(--color-white);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.music-toggle__icon {
+  display: grid;
+  width: 1.6rem;
+  height: 1.6rem;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.32);
+  border-radius: 50%;
+}
+
+.music-toggle__label {
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.music-toggle[aria-pressed='true'] .music-toggle__icon {
+  animation: pulseMusic 1.6s ease-in-out infinite;
+  background: var(--color-gold);
+}
+
+@keyframes pulseMusic {
+  50% {
+    transform: scale(.9);
+  }
+}
+
+
+/* =========================================================
+   SLOWER SCROLL REVEAL
+========================================================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+
+  transition:
+    opacity 1.6s cubic-bezier(.22, 1, .36, 1),
+    transform 1.6s cubic-bezier(.22, 1, .36, 1);
+
+  transition-delay: .25s;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+@media (hover: hover) {
+
+  #countdown .countdown-card:hover {
+    border-color: rgba(163,124,69,.40);
+    box-shadow:
+      0 24px 58px rgba(89,61,43,.11),
+      inset 0 1px 0 rgba(255,255,255,.92);
+    transform: translateY(-4px);
+  }
+
+  .event-card:hover {
+    border-color: rgba(163,124,69,.42);
+    box-shadow:
+      0 30px 75px rgba(65,47,28,.13),
+      inset 0 1px 0 rgba(255,255,255,.92);
+    transform: translateY(-5px);
+  }
+
+  .story-frame:hover img {
+    transform: scale(1.035);
+    filter: brightness(.96);
+  }
+}
+
+
+/* =========================================================
+   MOBILE EVENT
+========================================================= */
+
+@media (max-width: 767px) {
+
+  .event-layout {
+    gap: 2rem;
+  }
+
+  .event-card {
+    padding: 2.25rem 1.25rem 1.5rem;
+    border-radius: 1.25rem;
+  }
+
+  .event-card::before {
+    inset: .45rem;
+    border-radius: .95rem;
+  }
+
+  .event-card::after {
+    top: -5rem;
+    right: -5rem;
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .event-card__label {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.1rem;
+    font-size: clamp(2.8rem, 14vw, 3.8rem);
+  }
+
+  .event-card__label::after {
+    width: 4.5rem;
+    margin-top: 1rem;
+  }
+
+  .event-card__item {
+    grid-template-columns: 3rem minmax(0,1fr);
+    gap: .9rem;
+    padding: 1.15rem 0;
+  }
+
+  .event-card__item::before {
+    width: 2.8rem;
+    height: 2.8rem;
+    font-size: 1rem;
+  }
+
+  .event-card__item strong {
+    font-size: clamp(1.55rem, 7.2vw, 2rem);
+  }
+
+  .event-card__actions {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .event-card__actions .button {
+    width: 100%;
+  }
+
+  .event-card__actions .text-link {
+    justify-self: center;
+  }
+
+  .gift-grid {
+    grid-template-columns: 1fr;
+    gap: .85rem;
+  }
+
+  .gift-info-card {
+    padding: 1.4rem;
+  }
+}
+
+
+/* =========================================================
+   TABLET + DESKTOP
+========================================================= */
+
+@media (min-width: 768px) {
+
+  .opening-cover {
+    place-items: center;
+  }
+
+  .opening-cover__content {
+    padding-bottom: 3rem;
+  }
+
+  .opening-cover__names {
+    font-size: clamp(4.2rem, 8vw, 6.5rem);
+  }
+
+  .hero__content {
+    padding-bottom: 5rem;
+  }
+
+  .hero__title {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .hero__title .ampersand {
+    margin-left: 0;
+  }
+
+  .couple-grid,
+  .event-layout,
+  .venue-card,
+  .rsvp-layout,
+  .wishes-shell {
+    grid-template-columns:
+      minmax(0,1fr)
+      minmax(0,1fr);
+    align-items: center;
+  }
+
+  .couple-grid {
+    gap: clamp(4rem, 8vw, 7rem);
+  }
+
+  .couple-names {
+    grid-template-columns:
+      repeat(2, minmax(0,1fr));
+  }
+
+  .couple-portrait {
+    width: 15rem;
+  }
+
+  .editorial-figure {
+    justify-self: end;
+    width: min(100%, 28rem);
+  }
+
+  #countdown .countdown-grid {
+    grid-template-columns:
+      repeat(4, minmax(0,1fr));
+    gap: 1rem;
+  }
+
+  #countdown .countdown-card {
+    min-height: 220px;
+    padding: 3rem 1rem 1.65rem;
+  }
+
+  #countdown .countdown-card strong {
+    font-size: clamp(3.5rem, 6vw, 5.15rem);
+  }
+
+  .event-layout,
+  .venue-card,
+  .rsvp-layout,
+  .wishes-shell {
+    gap: clamp(3.5rem, 7vw, 6rem);
+  }
+
+  .event-layout {
+    grid-template-columns:
+      minmax(0,.78fr)
+      minmax(0,1fr);
+    gap: clamp(4rem, 8vw, 7rem);
+  }
+
+  .event-cards {
+    grid-template-columns: minmax(0,1fr);
+    align-items: stretch;
+  }
+
+  .event-card {
+    min-height: 100%;
+  }
+
+  .event-card__item {
+    grid-template-columns:
+      4rem minmax(0,1fr);
+    gap: 1.25rem;
+    padding: 1.55rem 0;
+  }
+
+  .event-card__item::before {
+    width: 3.6rem;
+    height: 3.6rem;
+  }
+
+  .event-card__actions {
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+
+  .venue-map iframe {
+    min-height: 25rem;
+  }
+
+  /* STORY: 3 kolom tablet */
+  .story-gallery {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+    gap: .8rem;
+  }
+
+  .story-slider {
+    justify-self: end;
+    width: min(100%, 30rem);
+  }
+
+  .story-slider__slide img {
+    aspect-ratio: 3 / 4;
+  }
+
+  .rsvp-form {
+    padding: 2rem;
+  }
+
+  .gift-grid {
+    grid-template-columns:
+      repeat(2, minmax(0,1fr));
+    gap: 1.25rem;
+  }
+
+  .gift-info-card {
+    min-height: 18rem;
+  }
+
+  .closing {
+    min-height: 90vh;
+    min-height: 90svh;
+  }
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1100px) {
+
+  .opening-cover__media {
+    background-position: center 42%;
+  }
+
+  .hero__image {
+    object-position: center 42%;
+  }
+
+  .hero__copy {
+    font-size: 1rem;
+  }
+
+  .event-card {
+    padding: 3.4rem;
+  }
+
+  .event-card__label {
+    font-size: 4.6rem;
+  }
+
+  .venue-card__visual {
+    min-height: 22rem;
+  }
+
+  /* STORY: 4 kolom desktop */
+  .story-gallery {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+    gap: .9rem;
+  }
+
+  .gift-grid {
+    margin-top: 3.25rem;
+    gap: 1.5rem;
+  }
+
+  .gift-info-card {
+    padding: 2.25rem;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+  #countdown .countdown-grid {
+    gap: .7rem;
+  }
+
+  #countdown .countdown-card {
+    min-height: 150px;
+    padding: 2.2rem .65rem 1.15rem;
+  }
+
+  #countdown .countdown-card strong {
+    font-size: clamp(2.55rem, 14vw, 3.3rem);
+  }
+
+  .story-gallery {
+    gap: .55rem;
+  }
+
+  .story-frame {
+    border-radius: .85rem;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .event-card,
+  .story-frame img,
+  .story-slider__track {
+    transition: none;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE / ZOOM SAFETY
+========================================================= */
+
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+main,
+section,
+.section,
+.section-shell,
+.hero,
+.hero__content,
+.couple-grid,
+.couple-copy,
+.couple-names,
+.couple-profile,
+.event-layout,
+.event-cards,
+.event-card,
+.venue-card,
+.venue-card__copy,
+.venue-map,
+.rsvp-layout,
+.rsvp-form,
+.wishes-shell,
+.wishes-list,
+.gift-card,
+.gift-grid,
+.closing,
+.closing__content,
+.story,
+.story-gallery,
+.story-slider {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.section-shell {
+  width: min(
+    calc(100% - (var(--page-gutter) * 2)),
+    var(--content-width)
+  );
+
+  padding-inline: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+strong,
+a,
+button,
+label,
+legend,
+blockquote,
+figcaption {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.venue-address,
+.gift-grid strong,
+.parent-copy,
+.event-card__item strong,
+.event-card__item p,
+.body-copy,
+.hero__copy,
+.closing__content p {
+  overflow-wrap: anywhere;
+}
+
+img,
+video,
+iframe,
+svg,
+canvas {
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
+.venue-map {
+  width: 100%;
+}
+
+.venue-map iframe {
+  width: 100%;
+  max-width: 100%;
+}
+
+input,
+select,
+textarea,
+button {
+  max-width: 100%;
+}
+
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form textarea {
+  min-width: 0;
+}
+
+
+/* =========================================================
+   FLEXIBLE TYPOGRAPHY
+========================================================= */
+
+.display-title {
+  font-size: clamp(
+    2.4rem,
+    8vw,
+    6.5rem
+  );
+}
+
+.hero__title {
+  font-size: clamp(
+    2.6rem,
+    9vw,
+    6.5rem
+  );
+}
+
+.opening-cover__names {
+  font-size: clamp(
+    2.8rem,
+    10vw,
+    5.8rem
+  );
+}
+
+.event-card__label {
+  font-size: clamp(
+    2.4rem,
+    8vw,
+    4.6rem
+  );
+}
+
+.event-card__item strong {
+  font-size: clamp(
+    1.45rem,
+    4vw,
+    2.5rem
+  );
+}
+
+
+/* =========================================================
+   FLEXIBLE GRID
+========================================================= */
+
+.couple-grid,
+.event-layout,
+.venue-card,
+.rsvp-layout,
+.wishes-shell,
+.gift-grid {
+  min-width: 0;
+}
+
+.couple-grid > *,
+.event-layout > *,
+.venue-card > *,
+.rsvp-layout > *,
+.wishes-shell > *,
+.gift-grid > * {
+  min-width: 0;
+}
+
+
+/* =========================================================
+   DESKTOP / ZOOM FRIENDLY LAYOUT
+========================================================= */
+
+@media (min-width: 768px) and (min-height: 500px) {
+
+  .couple-grid,
+  .venue-card,
+  .rsvp-layout,
+  .wishes-shell {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+  }
+
+  .event-layout {
+    grid-template-columns:
+      minmax(0, .78fr)
+      minmax(0, 1fr);
+  }
+}
+
+
+/* =========================================================
+   ZOOM SAFETY
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .event-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .venue-card {
+    grid-template-columns: 1fr;
+  }
+
+  .rsvp-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .wishes-shell {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================================
+   HIGH ZOOM / TABLET WIDTH
+========================================================= */
+
+@media (max-width: 700px) {
+
+  :root {
+    --page-gutter: clamp(
+      1rem,
+      4vw,
+      1.5rem
+    );
+  }
+
+  .section-shell {
+    width: calc(
+      100% -
+      (var(--page-gutter) * 2)
+    );
+  }
+
+  .couple-names {
+    grid-template-columns: 1fr;
+  }
+
+  .gift-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event-card__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .event-card__actions .button {
+    width: 100%;
+  }
+
+  .event-card__actions .text-link {
+    justify-self: start;
+  }
+}
+
+
+/* =========================================================
+   VERY HIGH ZOOM / SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  :root {
+    --page-gutter: 1rem;
+
+    --section-space: clamp(
+      4rem,
+      14vw,
+      6rem
+    );
+  }
+
+  .display-title {
+    font-size: clamp(
+      2.3rem,
+      12vw,
+      3.8rem
+    );
+  }
+
+  .event-card {
+    padding:
+      2rem
+      1.1rem
+      1.4rem;
+  }
+
+  .event-card__item {
+    grid-template-columns:
+      2.75rem
+      minmax(0, 1fr);
+  }
+
+  .event-card__item::before {
+    width: 2.55rem;
+    height: 2.55rem;
+  }
+
+  .attendance-options {
+    grid-template-columns: 1fr;
+  }
+
+  .music-toggle__label {
+    display: none;
+  }
+
+  .music-toggle {
+    width: 3rem;
+    height: 3rem;
+    justify-content: center;
+    padding: 0;
+    border-radius: 50%;
+  }
+}
+
+
+/* =========================================================
+   EXTREME NARROW WIDTH
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .section-shell {
+    width: calc(100% - 1.5rem);
+  }
+
+  .event-card__item {
+    grid-template-columns: 1fr;
+  }
+
+  .event-card__item::before {
+    grid-row: auto;
+    grid-column: 1;
+    margin-bottom: .2rem;
+  }
+
+  .event-card__item .mini-label,
+  .event-card__item strong,
+  .event-card__item p {
+    grid-column: 1;
+  }
+
+  #countdown .countdown-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+/* =========================================================
+   PAWIWAHAN SCROLL REVEAL
+========================================================= */
+
+.pawiwahan-intro.reveal {
+  opacity: 0;
+  transform: translateY(34px);
+
+  transition:
+    opacity 1.35s cubic-bezier(.22, 1, .36, 1),
+    transform 1.35s cubic-bezier(.22, 1, .36, 1);
+}
+
+.pawiwahan-intro.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Veda Card */
+
+.pawiwahan-intro.reveal .veda-card {
+  opacity: 0;
+  transform: translateY(28px) scale(.985);
+
+  transition:
+    opacity 1.25s cubic-bezier(.22, 1, .36, 1) .15s,
+    transform 1.25s cubic-bezier(.22, 1, .36, 1) .15s;
+}
+
+.pawiwahan-intro.reveal.is-visible .veda-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+
+/* Aksara Bali */
+
+.pawiwahan-intro.reveal .pawiwahan-intro__aksara {
+  opacity: 0;
+  transform: translateY(20px);
+
+  transition:
+    opacity 1.1s cubic-bezier(.22, 1, .36, 1) .45s,
+    transform 1.1s cubic-bezier(.22, 1, .36, 1) .45s;
+}
+
+.pawiwahan-intro.reveal.is-visible .pawiwahan-intro__aksara {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Om Swastyastu */
+
+.pawiwahan-intro.reveal .pawiwahan-intro__greeting {
+  opacity: 0;
+  transform: translateY(18px);
+
+  transition:
+    opacity 1.1s cubic-bezier(.22, 1, .36, 1) .65s,
+    transform 1.1s cubic-bezier(.22, 1, .36, 1) .65s;
+}
+
+.pawiwahan-intro.reveal.is-visible .pawiwahan-intro__greeting {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Pawiwahan copy */
+
+.pawiwahan-intro.reveal .pawiwahan-intro__copy {
+  opacity: 0;
+  transform: translateY(18px);
+
+  transition:
+    opacity 1.2s cubic-bezier(.22, 1, .36, 1) .85s,
+    transform 1.2s cubic-bezier(.22, 1, .36, 1) .85s;
+}
+
+.pawiwahan-intro.reveal.is-visible .pawiwahan-intro__copy {
+  opacity: .86;
+  transform: translateY(0);
+}
+
+/* =========================================================
+   STORY TRIP SLIDER — 3 FOTO TERLIHAT, BANYAK FOTO
+========================================================= */
+
+.story-trip-slider {
+  width: 100%;
+  margin-top: clamp(2.25rem, 6vw, 4rem);
+  padding-top: clamp(1.5rem, 4vw, 2.25rem);
+  border-top: 1px solid var(--color-line);
+}
+
+.story-trip-slider__heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.story-trip-slider__heading .mini-label {
+  margin: 0;
+}
+
+.story-trip-slider__caption {
+  max-width: 22rem;
+  margin: 0;
+  color: #7b7065;
+  font-family: var(--font-display);
+  font-size: clamp(.95rem, 2vw, 1.1rem);
+  font-style: italic;
+  line-height: 1.45;
+  text-align: right;
+}
+
+.story-trip-slider__viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.story-trip-slider__track {
+  display: flex;
+  gap: .55rem;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: .1rem 0 .65rem;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-inline: contain;
+}
+
+.story-trip-slider__track::-webkit-scrollbar {
+  display: none;
+}
+
+.story-trip-slider__card {
+  position: relative;
+  flex: 0 0 calc((100% - 1.1rem) / 3);
+  min-width: 0;
+  aspect-ratio: 3 / 4;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: .8rem;
+  background: #d8cec1;
+  box-shadow: 0 10px 26px rgba(54, 43, 31, .08);
+  cursor: zoom-in;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.story-trip-slider__card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition:
+    transform .7s cubic-bezier(.22, 1, .36, 1),
+    filter .7s ease;
+}
+
+.story-trip-slider__card::after {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 60%,
+      rgba(24, 20, 17, .14) 100%
+    );
+  content: '';
+  pointer-events: none;
+}
+
+.story-trip-slider__card:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+.story-trip-slider__footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  margin-top: .65rem;
+}
+
+.story-trip-slider__progress {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  overflow: hidden;
+  background: rgba(29, 28, 26, .12);
+}
+
+.story-trip-slider__progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--color-gold);
+  transform: scaleX(.08);
+  transform-origin: left center;
+  transition: transform .2s linear;
+}
+
+.story-trip-slider__controls {
+  display: flex;
+  gap: .5rem;
+}
+
+.story-trip-slider__arrow {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+  background: rgba(255, 253, 249, .7);
+  color: var(--color-ink);
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.story-trip-slider__arrow:hover {
+  border-color: var(--color-gold);
+  background: var(--color-white);
+  transform: translateY(-2px);
+}
+
+@media (hover: hover) {
+  .story-trip-slider__card:hover img {
+    transform: scale(1.04);
+    filter: brightness(.96);
+  }
+}
+
+@media (max-width: 767px) {
+  .story-trip-slider {
+    margin-top: 2.5rem;
+  }
+
+  .story-trip-slider__heading {
+    align-items: start;
+  }
+
+  .story-trip-slider__caption {
+    max-width: 13rem;
+    font-size: .88rem;
+  }
+
+  .story-trip-slider__viewport {
+    width: calc(100% + var(--page-gutter));
+    margin-right: calc(var(--page-gutter) * -1);
+  }
+
+  .story-trip-slider__track {
+    gap: .7rem;
+    padding-right: var(--page-gutter);
+    scroll-padding-inline: 0 var(--page-gutter);
+  }
+
+  .story-trip-slider__card {
+    /*
+      One generous portrait card plus a visible peek of the next card.
+      Easier to swipe on iPhone / Android than three tiny cards.
+    */
+    flex: 0 0 78%;
+    aspect-ratio: 3 / 4;
+    border-radius: .85rem;
+  }
+
+  .story-trip-slider__footer {
+    padding-right: var(--page-gutter);
+  }
+
+  .story-trip-slider__arrow {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .story-trip-slider__heading {
+    display: block;
+  }
+
+  .story-trip-slider__caption {
+    max-width: none;
+    margin-top: .4rem;
+    text-align: left;
+  }
+
+  .story-trip-slider__card {
+    aspect-ratio: 3 / 4.1;
+  }
+}
+
+
+
+@media (min-width: 560px) and (max-width: 767px) {
+  .story-trip-slider__card {
+    flex-basis: calc((100% - .7rem) / 2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-trip-slider__track {
+    scroll-behavior: auto;
+  }
+
+  .story-trip-slider__card img,
+  .story-trip-slider__arrow,
+  .story-trip-slider__progress span {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   OPENING COVER — D&B LOGO
+   Added for master Wedding-Invitation
+========================================================= */
+
+.opening-cover__logo {
+  display: block;
+  width: clamp(7rem, 12vw, 10rem);
+  height: auto;
+  margin: 0 auto 1.15rem;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 4px 14px rgba(0, 0, 0, .28))
+    drop-shadow(0 1px 3px rgba(0, 0, 0, .20));
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Mobile: logo placed in the empty area above the couple's heads */
+@media (max-width: 767px) {
+  .opening-cover__logo {
+    position: fixed;
+    z-index: 4;
+    top: calc(env(safe-area-inset-top) + 1.75rem);
+    left: 50%;
+    width: clamp(6.5rem, 27vw, 8rem);
+    margin: 0;
+    transform: translateX(-50%);
+  }
+}
+
+/* Extra-small phones */
+@media (max-width: 420px) {
+  .opening-cover__logo {
+    top: calc(env(safe-area-inset-top) + 1.35rem);
+    width: clamp(6rem, 26vw, 7.25rem);
+  }
+}
+
+/* Tablet / desktop: keep logo naturally above the opening text */
+@media (min-width: 768px) {
+  .opening-cover__logo {
+    position: static;
+    width: clamp(7.5rem, 10vw, 10rem);
+    margin-bottom: 1.35rem;
+    transform: none;
+  }
+}
