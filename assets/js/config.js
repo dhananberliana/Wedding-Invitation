@@ -22,7 +22,7 @@ export const WEDDING_CONFIG = Object.freeze({
     time: '15.00 – 22.00 WITA',
     venueName: 'Petang, Bali',
 
-    displayDateTime: 'Kamis, 10 Desember 2026 • 16.00 WITA',
+    displayDateTime: 'Jumat, 11 Desember 2026 • 16.00 WITA',
 
     start: '2026-12-10T16:00:00+08:00',
     end: '2026-12-10T22:00:00+08:00',
