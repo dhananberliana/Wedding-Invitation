@@ -18,8 +18,8 @@ export const WEDDING_CONFIG = Object.freeze({
   event: {
     title: 'Resepsi Pernikahan Dhanan & Berliana',
 
-    date: 'Kamis, 10 Desember 2026',
-    time: '16.00 – 22.00 WITA',
+    date: 'Jumat, 11 Desember 2026',
+    time: '15.00 – 22.00 WITA',
     venueName: 'Petang, Bali',
 
     displayDateTime: 'Kamis, 10 Desember 2026 • 16.00 WITA',
@@ -66,8 +66,8 @@ export const WEDDING_CONFIG = Object.freeze({
 
       title: 'Resepsi Pernikahan Dhanan & Berliana',
 
-      displayDate: 'Kamis, 10 Desember 2026',
-      displayTime: '16.00 – 22.00 WITA',
+      displayDate: 'Jumat, 11 Desember 2026',
+      displayTime: '15.00 – 22.00 WITA',
 
       start: '2026-12-10T16:00:00+08:00',
       end: '2026-12-10T22:00:00+08:00',
