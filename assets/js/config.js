@@ -19,7 +19,7 @@ export const WEDDING_CONFIG = Object.freeze({
     title: 'Resepsi Pernikahan Dhanan & Berliana',
 
     date: 'Jumat, 11 Desember 2026',
-    time: '15.00 – 22.00 WITA',
+    time: '16.00 – 22.00 WITA',
     venueName: 'Petang, Bali',
 
     displayDateTime: 'Jumat, 11 Desember 2026 • 16.00 WITA',
