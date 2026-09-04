@@ -24,8 +24,8 @@ export const WEDDING_CONFIG = Object.freeze({
 
     displayDateTime: 'Jumat, 11 Desember 2026 • 16.00 WITA',
 
-    start: '2026-12-10T16:00:00+08:00',
-    end: '2026-12-10T22:00:00+08:00',
+    start: '2026-12-11T16:00:00+08:00',
+    end: '2026-12-11T22:00:00+08:00',
 
     venueAddress: 'Petang, Bali',
 
@@ -36,51 +36,6 @@ export const WEDDING_CONFIG = Object.freeze({
       'Dengan penuh sukacita, kami mengundang keluarga dan sahabat untuk hadir dan memberikan doa restu pada resepsi pernikahan Dhanan & Berliana.'
   },
 
-  /* =========================================================
-     ADDITIONAL EVENTS
-  ========================================================= */
-
-  events: {
-    ngidi: {
-      label: 'Ngidi',
-
-      title: 'Ngidi — Dhanan & Berliana',
-
-      displayDate: 'Rabu, 09 Desember 2026',
-      displayTime: '09.00 – 22.00 WITA',
-
-      start: '2026-12-09T09:00:00+08:00',
-      end: '2026-12-09T22:00:00+08:00',
-
-      venueAddress: 'Petang, Bali',
-
-      mapsUrl:
-        'https://maps.app.goo.gl/P7p5qe1bmp2mH7tQ6?g_st=aw',
-
-      description:
-        'Acara Ngidi pernikahan Dhanan & Berliana.'
-    },
-
-    reception: {
-      label: 'Resepsi',
-
-      title: 'Resepsi Pernikahan Dhanan & Berliana',
-
-      displayDate: 'Jumat, 11 Desember 2026',
-      displayTime: '15.00 – 22.00 WITA',
-
-      start: '2026-12-10T16:00:00+08:00',
-      end: '2026-12-10T22:00:00+08:00',
-
-      venueAddress: 'Petang, Bali',
-
-      mapsUrl:
-        'https://maps.app.goo.gl/P7p5qe1bmp2mH7tQ6?g_st=aw',
-
-      description:
-        'Resepsi pernikahan Dhanan & Berliana.'
-    }
-  },
 
   /* =========================================================
      GIFT
