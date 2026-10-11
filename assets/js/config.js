@@ -53,5 +53,30 @@ export const WEDDING_CONFIG = Object.freeze({
     }
   },
 
-  // lanjut gift, integration, site...
+  gift: {
+    bankAccountName: 'BCA a.n. Dhanan Arieyasa',
+    bankAccount: '7705388041',
+
+    deliveryAddress:
+      'Banjar Dauh Peken, Penarungan - Mengwi',
+
+    deliveryAddressUrl:
+      'https://maps.app.goo.gl/Zb91ZEPLCAct3JPA9'
+  },
+
+  integration: {
+    appsScriptUrl:
+      'https://script.google.com/macros/s/AKfycbxvHSZSthEdaz7coZlBKwaLHXf7FK72mNjWSds5fhEg6yQSc2mWw1FM3xrmlu-LbF0n/exec'
+  },
+
+  site: {
+    invitationLabel: 'Wedding Invitation',
+    greeting: 'Dear family & friends,',
+    openingMessage:
+      'Together with our families, we warmly invite you to celebrate the beginning of our forever.',
+    closingMessage:
+      'Your presence and prayers will make our day even more meaningful.',
+    browserTitle:
+      'Dhanan & Berliana | Undangan Pernikahan'
+  }
 });
