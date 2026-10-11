@@ -566,72 +566,7 @@
   </style>
 </head>
 
-<body class="is-loading is-locked">
-
-  <!-- =======================================================
-       WEDDING PRELOADER
-  ======================================================== -->
-
-  <div
-    class="wedding-loader"
-    id="wedding-loader"
-    role="status"
-    aria-live="polite"
-    aria-label="Memuat undangan pernikahan">
-
-    <div class="wedding-loader__inner">
-
-      <div class="wedding-loader__photo" aria-hidden="true">
-
-        <img
-          class="wedding-loader__image wedding-loader__image--main"
-          src="assets/images/story-frame-01.webp"
-          alt="">
-
-        <img
-          class="wedding-loader__image wedding-loader__image--overlay"
-          src="assets/images/story-frame-05.webp"
-          alt="">
-
-        <div class="wedding-loader__photo-shade"></div>
-
-      </div>
-
-      <div class="wedding-loader__copy">
-
-        <p class="wedding-loader__eyebrow">
-          THE WEDDING OF
-        </p>
-
-        <p class="wedding-loader__names">
-          Dhanan
-          <span>&amp;</span>
-          Berliana
-        </p>
-
-      </div>
-
-      <div
-        class="wedding-loader__progress"
-        aria-hidden="true">
-
-        <span
-          class="wedding-loader__progress-bar"
-          id="wedding-loader-progress">
-        </span>
-
-      </div>
-
-      <p
-        class="wedding-loader__percent"
-        id="wedding-loader-percent">
-        0%
-      </p>
-
-    </div>
-
-  </div>
-
+<body class="is-locked">
 
   <noscript>
     <div class="noscript-banner">
@@ -1378,7 +1313,7 @@
     </section>
 
     <!-- =====================================================
-         STORY GALLERY — SINGLE COVER + MODAL SLIDER
+         STORY GALLERY
     ====================================================== -->
 
     <section
@@ -1398,215 +1333,484 @@
         </h2>
 
         <p class="story-gallery__intro">
-          Satu bingkai, banyak cerita. Ketuk foto untuk melihat perjalanan kami.
+          Kumpulan momen dari perjalanan pranikah kami.
+          Ketuk foto untuk melihatnya lebih besar.
         </p>
 
       </div>
 
       <div class="section-shell">
+<div
+  class="story-gallery reveal"
+  id="story-gallery"
+  aria-label="Galeri foto kisah kami">
 
-        <button
-          class="story-launch reveal"
-          type="button"
-          id="story-gallery-trigger"
-          aria-haspopup="dialog"
-          aria-controls="story-gallery-modal">
+  <button
+    class="story-frame"
+    type="button"
+    data-story-frame
+    data-full-src="assets/images/story-frame-01.webp"
+    aria-label="Buka foto 1 dari 13">
 
-          <span class="story-launch__media">
+    <img
+      src="assets/images/story-frame-01.webp"
+      alt="Dhanan dan Berliana berpelukan dalam busana adat Bali"
+      loading="lazy"
+      decoding="async">
 
-            <img
-              src="assets/images/story-frame-01.webp"
-              alt="Buka galeri foto kisah Dhanan dan Berliana"
-              loading="lazy"
-              decoding="async">
+  </button>
 
-          </span>
+  <button
+    class="story-frame"
+    type="button"
+    data-story-frame
+    data-full-src="assets/images/story-frame-02.webp"
+    aria-label="Buka foto 2 dari 13">
 
-          <span
-            class="story-launch__overlay"
-            aria-hidden="true">
-          </span>
+    <img
+      src="assets/images/story-frame-02.webp"
+      alt="Dhanan dan Berliana berbagi momen bahagia di bawah sorotan cahaya"
+      loading="lazy"
+      decoding="async">
 
-          <span class="story-launch__content">
+  </button>
 
-            <span class="story-launch__label">
-              OUR MOMENTS
-            </span>
+  <button
+    class="story-frame"
+    type="button"
+    data-story-frame
+    data-full-src="assets/images/story-frame-03.webp"
+    aria-label="Buka foto 3 dari 13">
 
-            <strong class="story-launch__title">
-              Buka Kisah Kami
-            </strong>
+    <img
+      src="assets/images/story-frame-03.webp"
+      alt="Potret formal pranikah Dhanan dan Berliana"
+      loading="lazy"
+      decoding="async">
 
-            <span class="story-launch__copy">
-              Ketuk untuk melihat galeri
-              <span aria-hidden="true">→</span>
-            </span>
+  </button>
 
-          </span>
+  <button
+    class="story-frame"
+    type="button"
+    data-story-frame
+    data-full-src="assets/images/story-frame-04.webp"
+    aria-label="Buka foto 4 dari 13">
 
-        </button>
+    <img
+      src="assets/images/story-frame-04.webp"
+      alt="Dhanan dan Berliana berpose di dekat pintu kayu berukir"
+      loading="lazy"
+      decoding="async">
+
+  </button>
+
+  <button
+    class="story-frame"
+    type="button"
+    data-story-frame
+    data-full-src="assets/images/story-frame-05.webp"
+    aria-label="Buka foto 5 dari 13">
+
+    <img
+      src="assets/images/story-frame-05.webp"
+      alt="Potret romantis di balik selendang tipis yang lembut"
+      loading="lazy"
+      decoding="async">
+
+  </button>
+
+  <button
+    class="story-frame"
+    type="button"
+    data-story-frame
+    data-full-src="assets/images/story-frame-06.webp"
+    aria-label="Buka foto 6 dari 13">
+
+    <img
+      src="assets/images/story-frame-06.webp"
+      alt="Potret close-up pranikah di bawah veil"
+      loading="lazy"
+      decoding="async">
+
+  </button>
+
+  <button
+    class="story-frame"
+    type="button"
+    data-story-frame
+    data-full-src="assets/images/story-frame-07.webp"
+    aria-label="Buka foto 7 dari 13">
+
+    <img
+      src="assets/images/story-frame-07.webp"
+      alt="Potret dengan selendang tipis dan Berliana menatap ke arah kamera"
+      loading="lazy"
+      decoding="async">
+
+  </button>
+
+  <button
+    class="story-frame"
+    type="button"
+    data-story-frame
+    data-full-src="assets/images/story-frame-08.webp"
+    aria-label="Buka foto 8 dari 13">
+
+    <img
+      src="assets/images/story-frame-08.webp"
+      alt="Potret artistik Dhanan dan Berliana dengan efek gerak"
+      loading="lazy"
+      decoding="async">
+
+  </button>
+
+  <button
+    class="story-frame"
+    type="button"
+    data-story-frame
+    data-full-src="assets/images/story-frame-09.webp"
+    aria-label="Buka foto 9 dari 13">
+
+    <img
+      src="assets/images/story-frame-09.webp"
+      alt="Potret pranikah tradisional dalam posisi duduk"
+      loading="lazy"
+      decoding="async">
+
+  </button>
+
+  <button
+    class="story-frame"
+    type="button"
+    data-story-frame
+    data-full-src="assets/images/story-frame-10.webp"
+    aria-label="Buka foto 10 dari 13">
+
+    <img
+      src="assets/images/story-frame-10.webp"
+      alt="Potret solo mempelai pria dalam busana adat Bali"
+      loading="lazy"
+      decoding="async">
+
+  </button>
+
+  <button
+    class="story-frame"
+    type="button"
+    data-story-frame
+    data-full-src="assets/images/bride.webp"
+    aria-label="Buka foto solo mempelai wanita">
+
+    <img
+      src="assets/images/bride.webp"
+      alt="Potret solo mempelai wanita dalam busana adat Bali"
+      loading="lazy"
+      decoding="async">
+
+  </button>
+
+
+  <button
+    class="story-frame"
+    type="button"
+    data-story-frame
+    data-full-src="assets/images/story-frame-11-v1.webp"
+    aria-label="Buka foto 11 dari 13">
+
+    <img
+      src="assets/images/story-frame-11-v1.webp"
+      alt="Potret solo mempelai wanita dalam busana adat Bali"
+      loading="lazy"
+      decoding="async">
+
+  </button>
+
+  <button
+    class="story-frame"
+    type="button"
+    data-story-frame
+    data-full-src="assets/images/story-frame-12-v1.webp"
+    aria-label="Buka foto 12 dari 13">
+
+    <img
+      src="assets/images/story-frame-12-v1.webp"
+      alt="Potret studio Dhanan dan Berliana bergandengan tangan"
+      loading="lazy"
+      decoding="async">
+
+  </button>
+
+</div>
 
       </div>
 
+    
 
-      <!-- FULLSCREEN GALLERY -->
+        <!-- =====================================================
+             STORY TRIP SLIDER — 3 FOTO TERLIHAT, BANYAK FOTO
+        ====================================================== -->
 
-      <dialog
-        class="story-modal"
-        id="story-gallery-modal"
-        aria-label="Galeri foto kisah Dhanan dan Berliana">
+        <div
+          class="story-trip-slider reveal"
+          id="story-trip-slider"
+          aria-label="Slider tambahan kisah kami">
 
-        <div class="story-modal__shell">
+          <div class="story-trip-slider__heading">
+            <p class="mini-label">
+              Momen Lainnya
+            </p>
 
-          <div class="story-modal__topbar">
-
-            <div class="story-modal__brand">
-              <span>THE WEDDING OF</span>
-              <strong>Dhanan &amp; Berliana</strong>
-            </div>
-
-            <button
-              class="story-modal__close"
-              type="button"
-              data-story-modal-close
-              aria-label="Tutup galeri">
-              ×
-            </button>
-
+            <p class="story-trip-slider__caption">
+              Sedikit lagi cerita dari perjalanan kami.
+            </p>
           </div>
 
+          <div class="story-trip-slider__viewport">
 
-          <div
-            class="story-modal__viewport"
-            data-story-modal-viewport>
+            <div
+              class="story-trip-slider__track"
+              id="story-trip-slider-track">
 
-            <div class="story-modal__track">
-
-              <figure class="story-modal__slide">
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-01.webp"
+                aria-label="Buka foto tambahan 1">
                 <img
                   src="assets/images/story-frame-01.webp"
-                  alt="Dhanan dan Berliana berpelukan dalam busana adat Bali">
-              </figure>
+                  alt="Momen Dhanan dan Berliana 1"
+                  loading="lazy"
+                  decoding="async">
+              </button>
 
-              <figure class="story-modal__slide">
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-02.webp"
+                aria-label="Buka foto tambahan 2">
                 <img
                   src="assets/images/story-frame-02.webp"
-                  alt="Dhanan dan Berliana berbagi momen bahagia di bawah sorotan cahaya">
-              </figure>
+                  alt="Momen Dhanan dan Berliana 2"
+                  loading="lazy"
+                  decoding="async">
+              </button>
 
-              <figure class="story-modal__slide">
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-03.webp"
+                aria-label="Buka foto tambahan 3">
                 <img
                   src="assets/images/story-frame-03.webp"
-                  alt="Potret formal pranikah Dhanan dan Berliana">
-              </figure>
+                  alt="Momen Dhanan dan Berliana 3"
+                  loading="lazy"
+                  decoding="async">
+              </button>
 
-              <figure class="story-modal__slide">
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-04.webp"
+                aria-label="Buka foto tambahan 4">
                 <img
                   src="assets/images/story-frame-04.webp"
-                  alt="Dhanan dan Berliana berpose di dekat pintu kayu berukir">
-              </figure>
+                  alt="Momen Dhanan dan Berliana 4"
+                  loading="lazy"
+                  decoding="async">
+              </button>
 
-              <figure class="story-modal__slide">
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-05.webp"
+                aria-label="Buka foto tambahan 5">
                 <img
                   src="assets/images/story-frame-05.webp"
-                  alt="Potret romantis di balik selendang tipis yang lembut">
-              </figure>
+                  alt="Momen Dhanan dan Berliana 5"
+                  loading="lazy"
+                  decoding="async">
+              </button>
 
-              <figure class="story-modal__slide">
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-06.webp"
+                aria-label="Buka foto tambahan 6">
                 <img
                   src="assets/images/story-frame-06.webp"
-                  alt="Potret close-up pranikah di bawah veil">
-              </figure>
+                  alt="Momen Dhanan dan Berliana 6"
+                  loading="lazy"
+                  decoding="async">
+              </button>
 
-              <figure class="story-modal__slide">
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-07.webp"
+                aria-label="Buka foto tambahan 7">
                 <img
                   src="assets/images/story-frame-07.webp"
-                  alt="Berliana menatap kamera dalam potret pranikah">
-              </figure>
+                  alt="Momen Dhanan dan Berliana 7"
+                  loading="lazy"
+                  decoding="async">
+              </button>
 
-              <figure class="story-modal__slide">
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-08.webp"
+                aria-label="Buka foto tambahan 8">
                 <img
                   src="assets/images/story-frame-08.webp"
-                  alt="Potret artistik Dhanan dan Berliana">
-              </figure>
+                  alt="Momen Dhanan dan Berliana 8"
+                  loading="lazy"
+                  decoding="async">
+              </button>
 
-              <figure class="story-modal__slide">
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-09.webp"
+                aria-label="Buka foto tambahan 9">
                 <img
                   src="assets/images/story-frame-09.webp"
-                  alt="Potret pranikah tradisional Dhanan dan Berliana">
-              </figure>
+                  alt="Momen Dhanan dan Berliana 9"
+                  loading="lazy"
+                  decoding="async">
+              </button>
 
-              <figure class="story-modal__slide">
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-10.webp"
+                aria-label="Buka foto tambahan 10">
                 <img
                   src="assets/images/story-frame-10.webp"
-                  alt="Potret solo Dhanan dalam busana adat Bali">
-              </figure>
+                  alt="Momen Dhanan dan Berliana 10"
+                  loading="lazy"
+                  decoding="async">
+              </button>
 
-              <figure class="story-modal__slide">
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/bride.webp"
+                aria-label="Buka foto tambahan mempelai wanita">
                 <img
                   src="assets/images/bride.webp"
-                  alt="Potret solo Berliana dalam busana adat Bali">
-              </figure>
+                  alt="Potret solo Berliana dalam busana adat Bali"
+                  loading="lazy"
+                  decoding="async">
+              </button>
 
-              <figure class="story-modal__slide">
+
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-11-v1.webp"
+                aria-label="Buka foto tambahan 11">
                 <img
                   src="assets/images/story-frame-11-v1.webp"
-                  alt="Potret pranikah Berliana">
-              </figure>
+                  alt="Momen Dhanan dan Berliana 11"
+                  loading="lazy"
+                  decoding="async">
+              </button>
 
-              <figure class="story-modal__slide">
+              <button
+                class="story-trip-slider__card"
+                type="button"
+                data-trip-card
+                data-full-src="assets/images/story-frame-12-v1.webp"
+                aria-label="Buka foto tambahan 12">
                 <img
                   src="assets/images/story-frame-12-v1.webp"
-                  alt="Potret studio Dhanan dan Berliana bergandengan tangan">
-              </figure>
+                  alt="Momen Dhanan dan Berliana 12"
+                  loading="lazy"
+                  decoding="async">
+              </button>
 
             </div>
 
           </div>
 
+          <div class="story-trip-slider__footer">
 
-          <div class="story-modal__footer">
-
-            <button
-              class="story-modal__arrow"
-              type="button"
-              data-story-modal-prev
-              aria-label="Foto sebelumnya">
-              ←
-            </button>
-
-            <div class="story-modal__status">
-
-              <span
-                class="story-modal__counter"
-                data-story-modal-counter>
-                1 / 13
-              </span>
-
-              <span
-                class="story-modal__hint">
-                Geser untuk melihat foto
-              </span>
-
+            <div
+              class="story-trip-slider__progress"
+              aria-hidden="true">
+              <span id="story-trip-slider-progress"></span>
             </div>
 
-            <button
-              class="story-modal__arrow"
-              type="button"
-              data-story-modal-next
-              aria-label="Foto berikutnya">
-              →
-            </button>
+            <div
+              class="story-trip-slider__controls"
+              aria-label="Kontrol slider foto tambahan">
+
+              <button
+                class="story-trip-slider__arrow"
+                type="button"
+                data-trip-prev
+                aria-label="Foto sebelumnya">
+                ←
+              </button>
+
+              <button
+                class="story-trip-slider__arrow"
+                type="button"
+                data-trip-next
+                aria-label="Foto berikutnya">
+                →
+              </button>
+
+            </div>
 
           </div>
 
         </div>
 
-      </dialog>
+</section>
 
-    </section>
+    <!-- =====================================================
+         LIGHTBOX
+    ====================================================== -->
 
+    <dialog
+      class="story-lightbox"
+      id="story-lightbox"
+      aria-label="Penampil foto kisah kami">
 
+      <button
+        class="story-lightbox__close"
+        type="button"
+        data-story-lightbox-close
+        aria-label="Tutup penampil foto">
+        ×
+      </button>
+
+      <div class="story-lightbox__stage">
+
+        <img
+          class="story-lightbox__image"
+          id="story-lightbox-image"
+          src=""
+          alt="">
+
+      </div>
+
+    </dialog>
+    
     <!-- =====================================================
          GIFT
     ====================================================== -->
@@ -2033,139 +2237,6 @@
 </audio>
 
   <!-- =======================================================
-       WEDDING PRELOADER SCRIPT
-  ======================================================== -->
-
-  <script>
-    (() => {
-      const loader =
-        document.getElementById('wedding-loader');
-
-      const progressBar =
-        document.getElementById('wedding-loader-progress');
-
-      const percentText =
-        document.getElementById('wedding-loader-percent');
-
-      if (!loader || !progressBar || !percentText) {
-        document.body.classList.remove('is-loading');
-        return;
-      }
-
-      const priorityAssets = [
-        'assets/images/hero.webp',
-        'assets/images/hero-v1.webp',
-        'assets/images/db-logo-white.png',
-        'assets/images/story-frame-01.webp',
-        'assets/images/story-frame-03.webp',
-        'assets/images/story-frame-05.webp',
-        'assets/images/story-frame-12-v1.webp'
-      ];
-
-      const startedAt = performance.now();
-      const minimumDuration = 1600;
-      const maximumDuration = 5500;
-
-      let completed = 0;
-      let shownProgress = 0;
-      let finished = false;
-
-      const paint = (value) => {
-        shownProgress =
-          Math.max(
-            shownProgress,
-            Math.min(100, Math.round(value))
-          );
-
-        progressBar.style.transform =
-          `scaleX(${shownProgress / 100})`;
-
-        percentText.textContent =
-          `${shownProgress}%`;
-      };
-
-      const preloadImage = (source) =>
-        new Promise((resolve) => {
-          const image = new Image();
-
-          const settle = () => {
-            completed += 1;
-
-            paint(
-              Math.min(
-                92,
-                (completed / priorityAssets.length) * 92
-              )
-            );
-
-            resolve();
-          };
-
-          image.onload = settle;
-          image.onerror = settle;
-          image.src = source;
-        });
-
-      const hideLoader = () => {
-        if (finished) return;
-        finished = true;
-
-        paint(100);
-
-        const elapsed =
-          performance.now() - startedAt;
-
-        const remaining =
-          Math.max(
-            0,
-            minimumDuration - elapsed
-          );
-
-        window.setTimeout(() => {
-          loader.classList.add('is-finished');
-          loader.setAttribute('aria-hidden', 'true');
-
-          /*
-            is-loading hanya milik preloader.
-            is-locked tetap dipertahankan sampai
-            tombol "Buka Undangan" ditekan.
-          */
-          document.body.classList.remove('is-loading');
-
-          window.setTimeout(() => {
-            loader.remove();
-          }, 950);
-        }, remaining);
-      };
-
-      const fakeProgress =
-        window.setInterval(() => {
-          if (finished) {
-            window.clearInterval(fakeProgress);
-            return;
-          }
-
-          if (shownProgress < 88) {
-            paint(shownProgress + 2);
-          }
-        }, 90);
-
-      Promise
-        .all(priorityAssets.map(preloadImage))
-        .then(() => {
-          window.clearInterval(fakeProgress);
-          hideLoader();
-        });
-
-      window.setTimeout(() => {
-        window.clearInterval(fakeProgress);
-        hideLoader();
-      }, maximumDuration);
-    })();
-  </script>
-
-
-  <!-- =======================================================
        HERO SLIDESHOW
   ======================================================== -->
 
@@ -2351,7 +2422,189 @@
 </script>
 
 
+  <!-- =======================================================
+       STORY TRIP SLIDER — 3 FOTO TERLIHAT
+  ======================================================== -->
 
+  <script>
+    (() => {
+      const slider =
+        document.getElementById('story-trip-slider');
+
+      const track =
+        document.getElementById('story-trip-slider-track');
+
+      const prevButton =
+        slider?.querySelector('[data-trip-prev]');
+
+      const nextButton =
+        slider?.querySelector('[data-trip-next]');
+
+      const cards =
+        Array.from(
+          slider?.querySelectorAll('[data-trip-card]') || []
+        );
+
+      const progress =
+        document.getElementById('story-trip-slider-progress');
+
+      const lightbox =
+        document.getElementById('story-lightbox');
+
+      const lightboxImage =
+        document.getElementById('story-lightbox-image');
+
+      if (!slider || !track || cards.length < 4) return;
+
+      const reduceMotion =
+        window.matchMedia(
+          '(prefers-reduced-motion: reduce)'
+        );
+
+      let autoTimer = null;
+
+      const getStep = () => {
+        const firstCard = cards[0];
+        const styles = window.getComputedStyle(track);
+        const gap = parseFloat(styles.columnGap || styles.gap || '0');
+
+        return firstCard.getBoundingClientRect().width + gap;
+      };
+
+      const getMaxScroll = () =>
+        Math.max(0, track.scrollWidth - track.clientWidth);
+
+      const updateProgress = () => {
+        const maxScroll = getMaxScroll();
+        const ratio =
+          maxScroll > 0
+            ? Math.min(1, Math.max(0, track.scrollLeft / maxScroll))
+            : 0;
+
+        if (progress) {
+          progress.style.transform =
+            `scaleX(${Math.max(.08, ratio)})`;
+        }
+      };
+
+      const scrollOne = (direction) => {
+        const maxScroll = getMaxScroll();
+        const step = getStep();
+        const nextLeft = track.scrollLeft + (step * direction);
+
+        if (direction > 0 && nextLeft >= maxScroll - 4) {
+          track.scrollTo({
+            left: 0,
+            behavior: reduceMotion.matches ? 'auto' : 'smooth'
+          });
+          return;
+        }
+
+        if (direction < 0 && nextLeft <= 4) {
+          track.scrollTo({
+            left: maxScroll,
+            behavior: reduceMotion.matches ? 'auto' : 'smooth'
+          });
+          return;
+        }
+
+        track.scrollBy({
+          left: step * direction,
+          behavior: reduceMotion.matches ? 'auto' : 'smooth'
+        });
+      };
+
+      const stopAuto = () => {
+        if (autoTimer === null) return;
+        window.clearInterval(autoTimer);
+        autoTimer = null;
+      };
+
+      const startAuto = () => {
+        if (
+          reduceMotion.matches ||
+          document.hidden ||
+          autoTimer !== null
+        ) {
+          return;
+        }
+
+        autoTimer =
+          window.setInterval(
+            () => scrollOne(1),
+            3400
+          );
+      };
+
+      prevButton?.addEventListener(
+        'click',
+        () => {
+          scrollOne(-1);
+          stopAuto();
+          startAuto();
+        }
+      );
+
+      nextButton?.addEventListener(
+        'click',
+        () => {
+          scrollOne(1);
+          stopAuto();
+          startAuto();
+        }
+      );
+
+      track.addEventListener(
+        'scroll',
+        updateProgress,
+        { passive: true }
+      );
+
+      track.addEventListener(
+        'pointerdown',
+        stopAuto,
+        { passive: true }
+      );
+
+      track.addEventListener(
+        'pointerup',
+        startAuto,
+        { passive: true }
+      );
+
+      cards.forEach((card) => {
+        card.addEventListener('click', () => {
+          const source = card.dataset.fullSrc;
+          const image = card.querySelector('img');
+
+          if (
+            !source ||
+            !lightbox ||
+            !lightboxImage ||
+            typeof lightbox.showModal !== 'function'
+          ) {
+            return;
+          }
+
+          lightboxImage.src = source;
+          lightboxImage.alt = image?.alt || 'Foto kisah kami';
+          lightbox.showModal();
+        });
+      });
+
+      document.addEventListener(
+        'visibilitychange',
+        () => {
+          document.hidden
+            ? stopAuto()
+            : startAuto();
+        }
+      );
+
+      updateProgress();
+      startAuto();
+    })();
+  </script>
 
 
   <!-- =======================================================
