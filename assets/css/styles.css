@@ -3663,21 +3663,55 @@ body.is-story-detail-open {
 
 .story-stack-card__open {
   display: inline-flex;
-  min-width: 13rem;
-  min-height: 3.25rem;
   align-items: center;
   justify-content: center;
   gap: .75rem;
   justify-self: center;
-  padding: .8rem 1.5rem;
-  border: 1px solid rgba(255,255,255,.65);
-  border-radius: .8rem;
-  background: rgba(255,255,255,.04);
+  min-width: 13.5rem;
+  min-height: 3.2rem;
+  padding: .9rem 1.4rem;
+  border: 1px solid rgba(255,255,255,.58);
+  border-radius: .95rem;
+  background: rgba(255,255,255,.06);
   color: #fff;
   cursor: pointer;
-  font-size: .8rem;
+  font-size: .88rem;
   font-weight: 600;
-  letter-spacing: .12em;
+  letter-spacing: .04em;
+  transition:
+    background .25s ease,
+    transform .25s ease,
+    border-color .25s ease;
+}
+
+.story-stack-card__open:hover {
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.75);
+  transform: translateY(-1px);
+}
+
+.story-stack-card__open-icon,
+.story-stack-card__open-chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.story-stack-card__open-icon svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.story-stack-card__open-text {
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.story-stack-card__open-chevron svg {
+  width: .95rem;
+  height: .95rem;
+  opacity: .9;
 }
 
 .story-stack-card__viewer:focus-visible,
