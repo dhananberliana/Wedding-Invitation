@@ -3663,55 +3663,21 @@ body.is-story-detail-open {
 
 .story-stack-card__open {
   display: inline-flex;
+  min-width: 13rem;
+  min-height: 3.25rem;
   align-items: center;
   justify-content: center;
   gap: .75rem;
   justify-self: center;
-  min-width: 13.5rem;
-  min-height: 3.2rem;
-  padding: .9rem 1.4rem;
-  border: 1px solid rgba(255,255,255,.58);
-  border-radius: .95rem;
-  background: rgba(255,255,255,.06);
+  padding: .8rem 1.5rem;
+  border: 1px solid rgba(255,255,255,.65);
+  border-radius: .8rem;
+  background: rgba(255,255,255,.04);
   color: #fff;
   cursor: pointer;
-  font-size: .88rem;
+  font-size: .8rem;
   font-weight: 600;
-  letter-spacing: .04em;
-  transition:
-    background .25s ease,
-    transform .25s ease,
-    border-color .25s ease;
-}
-
-.story-stack-card__open:hover {
-  background: rgba(255,255,255,.12);
-  border-color: rgba(255,255,255,.75);
-  transform: translateY(-1px);
-}
-
-.story-stack-card__open-icon,
-.story-stack-card__open-chevron {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-}
-
-.story-stack-card__open-icon svg {
-  width: 1.1rem;
-  height: 1.1rem;
-}
-
-.story-stack-card__open-text {
-  line-height: 1;
-  white-space: nowrap;
-}
-
-.story-stack-card__open-chevron svg {
-  width: .95rem;
-  height: .95rem;
-  opacity: .9;
+  letter-spacing: .12em;
 }
 
 .story-stack-card__viewer:focus-visible,
@@ -4081,6 +4047,55 @@ body.is-story-detail-open {
   .story-detail-modal__image {
     max-width: 94vw;
     max-height: 69svh;
+  }
+}
+
+
+/* =========================================================
+   EVENT — CALENDAR + MAPS BUTTONS
+   Lokasi sekarang digabung ke Hari Pernikahan.
+========================================================= */
+
+.event-card__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .85rem;
+  align-items: stretch;
+}
+
+.event-card__actions .button {
+  width: 100%;
+  min-height: 3.2rem;
+  margin: 0;
+  text-align: center;
+}
+
+.button--outline-dark {
+  border-color: rgba(29, 28, 26, .55);
+  background: transparent;
+  color: var(--color-ink);
+}
+
+.button--outline-dark:hover {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+.event-map-button__icon {
+  display: inline-flex;
+  margin-right: .45rem;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+@media (max-width: 767px) {
+  .event-card__actions {
+    grid-template-columns: 1fr;
+  }
+
+  .event-card__actions .button {
+    width: 100%;
   }
 }
 
