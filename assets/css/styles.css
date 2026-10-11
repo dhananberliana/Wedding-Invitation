@@ -4099,3 +4099,289 @@ body.is-story-detail-open {
   }
 }
 
+
+/* =========================================================
+   EVENT SECTION — INVITATION CARD REDESIGN
+   Inspired by the reference, adapted to the wedding site's
+   warm neutral / gold tone.
+========================================================= */
+
+.event-layout {
+  justify-items: center;
+  gap: 2.2rem;
+}
+
+.event-copy {
+  max-width: 42rem;
+  text-align: center;
+  justify-self: center;
+}
+
+.event-copy .body-copy {
+  max-width: 38rem;
+  margin-inline: auto;
+}
+
+.event-cards {
+  width: 100%;
+  justify-items: center;
+}
+
+.event-card--invitation {
+  width: min(100%, 42rem);
+  padding: clamp(1.4rem, 4vw, 2rem);
+  border: 1px solid rgba(163,124,69,.24);
+  border-radius:
+    4rem 4rem 3rem 3rem /
+    3rem 3rem 3rem 3rem;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(255,255,255,.72),
+      rgba(255,255,255,0) 26%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255,252,247,.98),
+      rgba(244,239,230,.98)
+    );
+  box-shadow:
+    0 20px 60px rgba(69,50,29,.10),
+    inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+.event-card--invitation::before {
+  inset: .7rem;
+  border-color: rgba(163,124,69,.18);
+  border-radius:
+    3.35rem 3.35rem 2.45rem 2.45rem /
+    2.4rem 2.4rem 2.4rem 2.4rem;
+}
+
+.event-card--invitation::after {
+  content: none;
+}
+
+.event-card__inner {
+  display: grid;
+  gap: 1.05rem;
+  padding: .2rem .8rem .35rem;
+  text-align: center;
+}
+
+.event-card__kicker {
+  margin: 0;
+  color: var(--color-gold);
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.event-card--invitation .event-card__label {
+  margin: 0;
+  padding: 0;
+  color: var(--color-ink);
+  font-size: clamp(3rem, 9vw, 4.7rem);
+  line-height: .92;
+  text-align: center;
+}
+
+.event-card--invitation .event-card__label::after {
+  content: none;
+}
+
+.event-card__date,
+.event-card__time {
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 5.4vw, 2.55rem);
+  line-height: 1.18;
+}
+
+.event-card__time {
+  margin-top: -.25rem;
+}
+
+.event-card__venue-block {
+  display: grid;
+  gap: .7rem;
+  max-width: 28rem;
+  margin: .8rem auto 0;
+  padding-top: 1.35rem;
+  border-top: 1px solid rgba(163,124,69,.18);
+}
+
+.event-card__venue-block strong {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: clamp(1.05rem, 3.2vw, 1.32rem);
+  font-weight: 700;
+  letter-spacing: .16em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.event-card__venue-block p {
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: .96rem;
+  line-height: 1.85;
+}
+
+.event-card--invitation .event-card__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .85rem;
+  max-width: 28rem;
+  width: 100%;
+  margin: 1rem auto 0;
+  padding-top: 1.35rem;
+  border-top: 1px solid rgba(163,124,69,.18);
+}
+
+.event-card--invitation .event-card__actions::before {
+  content: none;
+}
+
+.event-card--invitation .event-card__actions .button {
+  display: inline-flex;
+  width: 100%;
+  min-height: 3.45rem;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  border-radius: 1rem;
+  font-size: .88rem;
+  letter-spacing: .08em;
+}
+
+.event-card--invitation .button--dark {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+.event-card--invitation .button--outline-dark {
+  border-color: rgba(29,28,26,.32);
+  background: transparent;
+  color: var(--color-ink);
+}
+
+.event-card--invitation .button--outline-dark:hover {
+  border-color: var(--color-ink);
+  background: rgba(29,28,26,.05);
+  color: var(--color-ink);
+}
+
+.event-card__button-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.event-card__ornament {
+  display: block;
+  width: min(100%, 23rem);
+  height: 3.4rem;
+  margin: 0 auto;
+  opacity: .95;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.98) 0 12px, rgba(222,197,156,.9) 13px 20px, rgba(0,0,0,0) 21px),
+    radial-gradient(circle at 40% 47%, rgba(255,255,255,.95) 0 8px, rgba(209,181,136,.85) 9px 14px, rgba(0,0,0,0) 15px),
+    radial-gradient(circle at 60% 47%, rgba(255,255,255,.95) 0 8px, rgba(209,181,136,.85) 9px 14px, rgba(0,0,0,0) 15px),
+    radial-gradient(circle at 27% 44%, rgba(234,219,194,.85) 0 6px, rgba(0,0,0,0) 7px),
+    radial-gradient(circle at 73% 44%, rgba(234,219,194,.85) 0 6px, rgba(0,0,0,0) 7px),
+    linear-gradient(28deg, rgba(163,124,69,.55) 0 1px, rgba(0,0,0,0) 1px) 17% 58% / 18% 26% no-repeat,
+    linear-gradient(-28deg, rgba(163,124,69,.55) 0 1px, rgba(0,0,0,0) 1px) 83% 58% / 18% 26% no-repeat,
+    linear-gradient(12deg, rgba(163,124,69,.42) 0 1px, rgba(0,0,0,0) 1px) 7% 60% / 16% 22% no-repeat,
+    linear-gradient(-12deg, rgba(163,124,69,.42) 0 1px, rgba(0,0,0,0) 1px) 93% 60% / 16% 22% no-repeat;
+}
+
+.event-card__ornament--top {
+  margin-bottom: .7rem;
+}
+
+.event-card__ornament--bottom {
+  margin-top: .95rem;
+  transform: scaleY(-1);
+}
+
+@media (max-width: 767px) {
+  .event-layout {
+    gap: 1.8rem;
+  }
+
+  .event-card--invitation {
+    width: min(100%, 25rem);
+    padding: 1.15rem;
+    border-radius:
+      3rem 3rem 2.1rem 2.1rem /
+      2.4rem 2.4rem 2rem 2rem;
+  }
+
+  .event-card--invitation::before {
+    inset: .55rem;
+    border-radius:
+      2.5rem 2.5rem 1.7rem 1.7rem /
+      2rem 2rem 1.7rem 1.7rem;
+  }
+
+  .event-card__inner {
+    padding: .15rem .35rem .15rem;
+    gap: .9rem;
+  }
+
+  .event-card__kicker {
+    font-size: .72rem;
+    letter-spacing: .18em;
+  }
+
+  .event-card--invitation .event-card__label {
+    font-size: clamp(2.55rem, 12vw, 3.7rem);
+  }
+
+  .event-card__date,
+  .event-card__time {
+    font-size: clamp(1.45rem, 7vw, 2rem);
+  }
+
+  .event-card__venue-block {
+    max-width: 100%;
+    gap: .55rem;
+    padding-top: 1.1rem;
+  }
+
+  .event-card__venue-block strong {
+    font-size: 1rem;
+    letter-spacing: .11em;
+    line-height: 1.5;
+  }
+
+  .event-card__venue-block p {
+    font-size: .9rem;
+    line-height: 1.7;
+  }
+
+  .event-card--invitation .event-card__actions {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    gap: .75rem;
+    padding-top: 1.15rem;
+  }
+
+  .event-card--invitation .event-card__actions .button {
+    min-height: 3.2rem;
+    font-size: .82rem;
+  }
+
+  .event-card__ornament {
+    width: min(100%, 16rem);
+    height: 2.85rem;
+  }
+}
+
