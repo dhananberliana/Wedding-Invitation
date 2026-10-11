@@ -529,130 +529,491 @@ function setupStorySlider() {
 ========================================================= */
 
 function setupStoryGallery() {
-  const gallery =
-    $('#story-gallery');
+  const stackCard =
+    $('#story-stack-card');
 
-  const lightbox =
-    $('#story-lightbox');
+  const trigger =
+    $('#story-gallery-trigger');
 
-  const lightboxImage =
-    $('#story-lightbox-image');
+  const openButton =
+    $('[data-story-stack-open]');
+
+  const frontImage =
+    $('#story-stack-front');
+
+  const middleImage =
+    $('#story-stack-middle');
+
+  const backImage =
+    $('#story-stack-back');
+
+  const stackProgress =
+    $('#story-stack-progress');
+
+  const modal =
+    $('#story-gallery-modal');
+
+  const viewport =
+    $('[data-story-modal-viewport]', modal);
+
+  const track =
+    $('.story-detail-modal__track', modal);
+
+  const slides =
+    $$('.story-detail-modal__slide', modal);
+
+  const prev =
+    $('[data-story-modal-prev]', modal);
+
+  const next =
+    $('[data-story-modal-next]', modal);
 
   const closeButton =
-    $(
-      '[data-story-lightbox-close]',
-      lightbox || document
-    );
+    $('[data-story-modal-close]', modal);
 
+  const counter =
+    $('[data-story-modal-counter]', modal);
 
   if (
-    !gallery ||
-    !lightbox ||
-    !lightboxImage
+    !stackCard ||
+    !trigger ||
+    !frontImage ||
+    !middleImage ||
+    !backImage ||
+    !modal ||
+    !viewport ||
+    !track ||
+    !slides.length
   ) {
     return;
   }
 
+  const gallery = [
+    'assets/images/story-frame-01.webp',
+    'assets/images/story-frame-02.webp',
+    'assets/images/story-frame-03.webp',
+    'assets/images/story-frame-04.webp',
+    'assets/images/story-frame-05.webp',
+    'assets/images/story-frame-06.webp',
+    'assets/images/story-frame-07.webp',
+    'assets/images/story-frame-08.webp',
+    'assets/images/story-frame-09.webp',
+    'assets/images/story-frame-10.webp',
+    'assets/images/bride.webp',
+    'assets/images/story-frame-11-v1.webp',
+    'assets/images/story-frame-12-v1.webp'
+  ];
 
-  const closeLightbox = () => {
+  let stackIndex = 0;
+  let modalIndex = 0;
 
-    if (lightbox.open) {
+  let stackTimer = null;
+  let modalTimer = null;
 
-      if (
-        typeof lightbox.close ===
-        'function'
-      ) {
-        lightbox.close();
+  let touchStartX = null;
+  let touchStartY = null;
 
-      } else {
-        lightbox.removeAttribute(
-          'open'
-        );
-      }
+  const reduceMotion =
+    window
+      .matchMedia?.(
+        '(prefers-reduced-motion: reduce)'
+      )
+      .matches;
 
+
+  /* =====================================================
+     AUTO STACK PREVIEW
+  ====================================================== */
+
+  const renderStack = () => {
+    const frontIndex =
+      stackIndex % gallery.length;
+
+    const middleIndex =
+      (stackIndex + 1) % gallery.length;
+
+    const backIndex =
+      (stackIndex + 2) % gallery.length;
+
+    frontImage.src =
+      gallery[frontIndex];
+
+    middleImage.src =
+      gallery[middleIndex];
+
+    backImage.src =
+      gallery[backIndex];
+
+    frontImage.alt =
+      `Foto kisah kami ${frontIndex + 1}`;
+
+    if (stackProgress) {
+      const ratio =
+        (frontIndex + 1) /
+        gallery.length;
+
+      stackProgress.style.transform =
+        `scaleX(${ratio})`;
     }
 
-    lightboxImage.removeAttribute(
-      'src'
+    stackCard.classList.remove(
+      'is-changing'
     );
 
-    lightboxImage.alt = '';
+    void stackCard.offsetWidth;
+
+    stackCard.classList.add(
+      'is-changing'
+    );
   };
 
 
-  $$(
-    '[data-story-frame]',
-    gallery
-  ).forEach((frame) => {
+  const stopStackAuto = () => {
+    if (!stackTimer) return;
 
-    frame.addEventListener(
-      'click',
-      () => {
-
-        const image =
-          $('img', frame);
-
-        if (!image) return;
-
-
-        lightboxImage.src =
-          frame.dataset.fullSrc ||
-          image.src;
-
-        lightboxImage.alt =
-          image.alt ||
-          'Foto pranikah';
-
-
-        if (
-          typeof lightbox.showModal ===
-          'function'
-        ) {
-          lightbox.showModal();
-
-        } else {
-          lightbox.setAttribute(
-            'open',
-            ''
-          );
-        }
-
-      }
+    window.clearInterval(
+      stackTimer
     );
 
-  });
+    stackTimer = null;
+  };
+
+
+  const startStackAuto = () => {
+    stopStackAuto();
+
+    if (
+      reduceMotion ||
+      document.hidden ||
+      modal.open
+    ) {
+      return;
+    }
+
+    stackTimer =
+      window.setInterval(
+        () => {
+          stackIndex =
+            (
+              stackIndex + 1
+            ) %
+            gallery.length;
+
+          renderStack();
+        },
+        3200
+      );
+  };
+
+
+  /* =====================================================
+     MODAL DETAIL SLIDER
+  ====================================================== */
+
+  const renderModal = () => {
+    track.style.transform =
+      `translate3d(-${modalIndex * 100}%, 0, 0)`;
+
+    if (counter) {
+      counter.textContent =
+        `${modalIndex + 1} / ${slides.length}`;
+    }
+  };
+
+
+  const goToModal = (index) => {
+    modalIndex =
+      (
+        index +
+        slides.length
+      ) %
+      slides.length;
+
+    renderModal();
+  };
+
+
+  const stopModalAuto = () => {
+    if (!modalTimer) return;
+
+    window.clearInterval(
+      modalTimer
+    );
+
+    modalTimer = null;
+  };
+
+
+  const startModalAuto = () => {
+    stopModalAuto();
+
+    if (
+      reduceMotion ||
+      document.hidden ||
+      !modal.open
+    ) {
+      return;
+    }
+
+    modalTimer =
+      window.setInterval(
+        () => {
+          goToModal(
+            modalIndex + 1
+          );
+        },
+        5000
+      );
+  };
+
+
+  const openModal = () => {
+    stopStackAuto();
+
+    goToModal(
+      stackIndex %
+      slides.length
+    );
+
+    if (
+      typeof modal.showModal ===
+      'function'
+    ) {
+      modal.showModal();
+    } else {
+      modal.setAttribute(
+        'open',
+        ''
+      );
+    }
+
+    document.body.classList.add(
+      'is-story-detail-open'
+    );
+
+    startModalAuto();
+  };
+
+
+  const closeModal = () => {
+    stopModalAuto();
+
+    document.body.classList.remove(
+      'is-story-detail-open'
+    );
+
+    if (
+      typeof modal.close ===
+        'function' &&
+      modal.open
+    ) {
+      modal.close();
+    } else {
+      modal.removeAttribute(
+        'open'
+      );
+    }
+
+    startStackAuto();
+  };
+
+
+  trigger.addEventListener(
+    'click',
+    openModal
+  );
+
+  openButton?.addEventListener(
+    'click',
+    openModal
+  );
+
+
+  prev?.addEventListener(
+    'click',
+    () => {
+      goToModal(
+        modalIndex - 1
+      );
+
+      startModalAuto();
+    }
+  );
+
+
+  next?.addEventListener(
+    'click',
+    () => {
+      goToModal(
+        modalIndex + 1
+      );
+
+      startModalAuto();
+    }
+  );
 
 
   closeButton?.addEventListener(
     'click',
-    closeLightbox
+    closeModal
   );
 
 
-  lightbox.addEventListener(
+  modal.addEventListener(
     'click',
     (event) => {
-
       if (
-        event.target === lightbox
+        event.target === modal
       ) {
-        closeLightbox();
+        closeModal();
       }
-
     }
   );
 
 
-  lightbox.addEventListener(
+  modal.addEventListener(
     'close',
     () => {
-      lightboxImage.removeAttribute(
-        'src'
+      stopModalAuto();
+
+      document.body.classList.remove(
+        'is-story-detail-open'
       );
 
-      lightboxImage.alt = '';
+      startStackAuto();
     }
   );
+
+
+  /* =====================================================
+     MOBILE SWIPE
+  ====================================================== */
+
+  viewport.addEventListener(
+    'touchstart',
+    (event) => {
+      const touch =
+        event.touches[0];
+
+      touchStartX =
+        touch.clientX;
+
+      touchStartY =
+        touch.clientY;
+
+      stopModalAuto();
+    },
+    { passive: true }
+  );
+
+
+  viewport.addEventListener(
+    'touchend',
+    (event) => {
+      if (
+        touchStartX === null ||
+        touchStartY === null
+      ) {
+        startModalAuto();
+        return;
+      }
+
+      const touch =
+        event.changedTouches[0];
+
+      const deltaX =
+        touch.clientX -
+        touchStartX;
+
+      const deltaY =
+        touch.clientY -
+        touchStartY;
+
+      touchStartX = null;
+      touchStartY = null;
+
+      if (
+        Math.abs(deltaX) > 45 &&
+        Math.abs(deltaX) >
+          Math.abs(deltaY)
+      ) {
+        deltaX < 0
+          ? goToModal(
+              modalIndex + 1
+            )
+          : goToModal(
+              modalIndex - 1
+            );
+      }
+
+      startModalAuto();
+    },
+    { passive: true }
+  );
+
+
+  /* =====================================================
+     KEYBOARD
+  ====================================================== */
+
+  document.addEventListener(
+    'keydown',
+    (event) => {
+      if (!modal.open) return;
+
+      if (
+        event.key ===
+        'ArrowLeft'
+      ) {
+        goToModal(
+          modalIndex - 1
+        );
+
+        startModalAuto();
+      }
+
+      if (
+        event.key ===
+        'ArrowRight'
+      ) {
+        goToModal(
+          modalIndex + 1
+        );
+
+        startModalAuto();
+      }
+
+      if (
+        event.key ===
+        'Escape'
+      ) {
+        closeModal();
+      }
+    }
+  );
+
+
+  document.addEventListener(
+    'visibilitychange',
+    () => {
+      if (document.hidden) {
+        stopStackAuto();
+        stopModalAuto();
+        return;
+      }
+
+      if (modal.open) {
+        startModalAuto();
+      } else {
+        startStackAuto();
+      }
+    }
+  );
+
+
+  renderStack();
+  renderModal();
+  startStackAuto();
 }
 
 
