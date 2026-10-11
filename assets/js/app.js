@@ -535,130 +535,173 @@ function setupStorySlider() {
 ========================================================= */
 
 function setupStoryGallery() {
-  const gallery =
-    $('#story-gallery');
+  const trigger =
+    $('#story-gallery-trigger');
 
-  const lightbox =
-    $('#story-lightbox');
+  const modal =
+    $('#story-gallery-modal');
 
-  const lightboxImage =
-    $('#story-lightbox-image');
+  const track =
+    $('.story-modal__track', modal);
+
+  const slides =
+    $$('.story-modal__slide', modal);
+
+  const prev =
+    $('[data-story-modal-prev]', modal);
+
+  const next =
+    $('[data-story-modal-next]', modal);
 
   const closeButton =
-    $(
-      '[data-story-lightbox-close]',
-      lightbox || document
-    );
+    $('[data-story-modal-close]', modal);
 
+  const counter =
+    $('[data-story-modal-counter]', modal);
 
   if (
-    !gallery ||
-    !lightbox ||
-    !lightboxImage
+    !trigger ||
+    !modal ||
+    !track ||
+    !slides.length
   ) {
     return;
   }
 
+  let index = 0;
+  let autoTimer = null;
 
-  const closeLightbox = () => {
+  const reduceMotion =
+    window
+      .matchMedia?.(
+        '(prefers-reduced-motion: reduce)'
+      )
+      .matches;
 
-    if (lightbox.open) {
+  const render = () => {
+    track.style.transform =
+      `translateX(-${index * 100}%)`;
 
-      if (
-        typeof lightbox.close ===
-        'function'
-      ) {
-        lightbox.close();
-
-      } else {
-        lightbox.removeAttribute(
-          'open'
-        );
-      }
-
+    if (counter) {
+      counter.textContent =
+        `${index + 1} / ${slides.length}`;
     }
-
-    lightboxImage.removeAttribute(
-      'src'
-    );
-
-    lightboxImage.alt = '';
   };
 
+  const goTo = (nextIndex) => {
+    index =
+      (
+        nextIndex +
+        slides.length
+      ) %
+      slides.length;
 
-  $$(
-    '[data-story-frame]',
-    gallery
-  ).forEach((frame) => {
+    render();
+  };
 
-    frame.addEventListener(
-      'click',
-      () => {
+  const stopAuto = () => {
+    if (!autoTimer) return;
 
-        const image =
-          $('img', frame);
+    clearInterval(autoTimer);
+    autoTimer = null;
+  };
 
-        if (!image) return;
+  const startAuto = () => {
+    stopAuto();
 
+    if (
+      reduceMotion ||
+      document.hidden ||
+      !modal.open
+    ) {
+      return;
+    }
 
-        lightboxImage.src =
-          frame.dataset.fullSrc ||
-          image.src;
+    autoTimer =
+      setInterval(() => {
+        goTo(index + 1);
+      }, 4200);
+  };
 
-        lightboxImage.alt =
-          image.alt ||
-          'Foto pranikah';
+  const openModal = () => {
+    if (
+      typeof modal.showModal ===
+      'function'
+    ) {
+      modal.showModal();
+    } else {
+      modal.setAttribute('open', '');
+    }
 
+    goTo(0);
+    startAuto();
+  };
 
-        if (
-          typeof lightbox.showModal ===
-          'function'
-        ) {
-          lightbox.showModal();
+  const closeModal = () => {
+    stopAuto();
 
-        } else {
-          lightbox.setAttribute(
-            'open',
-            ''
-          );
-        }
+    if (
+      typeof modal.close === 'function' &&
+      modal.open
+    ) {
+      modal.close();
+    } else {
+      modal.removeAttribute('open');
+    }
+  };
 
-      }
-    );
+  trigger.addEventListener(
+    'click',
+    openModal
+  );
 
-  });
+  prev?.addEventListener(
+    'click',
+    () => {
+      goTo(index - 1);
+      startAuto();
+    }
+  );
 
+  next?.addEventListener(
+    'click',
+    () => {
+      goTo(index + 1);
+      startAuto();
+    }
+  );
 
   closeButton?.addEventListener(
     'click',
-    closeLightbox
+    closeModal
   );
 
-
-  lightbox.addEventListener(
+  modal.addEventListener(
     'click',
     (event) => {
-
-      if (
-        event.target === lightbox
-      ) {
-        closeLightbox();
+      if (event.target === modal) {
+        closeModal();
       }
-
     }
   );
 
-
-  lightbox.addEventListener(
+  modal.addEventListener(
     'close',
-    () => {
-      lightboxImage.removeAttribute(
-        'src'
-      );
+    stopAuto
+  );
 
-      lightboxImage.alt = '';
+  document.addEventListener(
+    'visibilitychange',
+    () => {
+      if (document.hidden) {
+        stopAuto();
+      } else if (modal.open) {
+        startAuto();
+      }
     }
   );
+
+  render();
 }
 
 
