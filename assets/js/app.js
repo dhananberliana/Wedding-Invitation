@@ -195,12 +195,12 @@ function setupOpeningCover() {
   button.addEventListener(
     'click',
     () => {
-      /* Tutup cover utama */
+      // Tutup cover utama.
       cover.classList.add('is-open');
       cover.setAttribute('aria-hidden', 'true');
       cover.style.pointerEvents = 'none';
 
-      /* Lepas semua scroll lock, termasuk fallback Safari/iPhone */
+      // Lepas semua scroll lock, termasuk fallback untuk Safari/iPhone.
       document.body.classList.remove('is-locked');
       document.documentElement.classList.remove('is-locked');
 
@@ -209,28 +209,22 @@ function setupOpeningCover() {
         element.style.removeProperty('overflow-y');
         element.style.removeProperty('position');
         element.style.removeProperty('top');
-        element.style.removeProperty('left');
-        element.style.removeProperty('right');
-        element.style.removeProperty('width');
         element.style.removeProperty('height');
         element.style.removeProperty('touch-action');
       });
 
-      /* Aktifkan Home / Hero */
+      // Pastikan hero/home aktif dan viewport kembali ke awal halaman.
       hero?.classList.add('hero--entered');
 
-      /* Pastikan viewport berada di awal Home */
       window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => {
-          window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'auto'
-          });
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'auto'
         });
       });
 
-      /* Musik tidak boleh menggagalkan proses membuka undangan */
+      // Musik tidak boleh menggagalkan proses membuka undangan.
       if (!audio) return;
 
       audio.volume = 0.65;
@@ -541,6 +535,11 @@ function setupStoryGallery() {
   const modal =
     $('#story-gallery-modal');
 
+  if (!trigger || !modal) return;
+
+  const viewport =
+    $('[data-story-modal-viewport]', modal);
+
   const track =
     $('.story-modal__track', modal);
 
@@ -560,8 +559,7 @@ function setupStoryGallery() {
     $('[data-story-modal-counter]', modal);
 
   if (
-    !trigger ||
-    !modal ||
+    !viewport ||
     !track ||
     !slides.length
   ) {
@@ -570,6 +568,8 @@ function setupStoryGallery() {
 
   let index = 0;
   let autoTimer = null;
+  let touchStartX = null;
+  let touchStartY = null;
 
   const reduceMotion =
     window
@@ -580,7 +580,7 @@ function setupStoryGallery() {
 
   const render = () => {
     track.style.transform =
-      `translateX(-${index * 100}%)`;
+      `translate3d(-${index * 100}%, 0, 0)`;
 
     if (counter) {
       counter.textContent =
@@ -602,7 +602,7 @@ function setupStoryGallery() {
   const stopAuto = () => {
     if (!autoTimer) return;
 
-    clearInterval(autoTimer);
+    window.clearInterval(autoTimer);
     autoTimer = null;
   };
 
@@ -618,12 +618,16 @@ function setupStoryGallery() {
     }
 
     autoTimer =
-      setInterval(() => {
-        goTo(index + 1);
-      }, 4200);
+      window.setInterval(
+        () => goTo(index + 1),
+        5000
+      );
   };
 
   const openModal = () => {
+    index = 0;
+    render();
+
     if (
       typeof modal.showModal ===
       'function'
@@ -633,12 +637,19 @@ function setupStoryGallery() {
       modal.setAttribute('open', '');
     }
 
-    goTo(0);
+    document.body.classList.add(
+      'is-gallery-open'
+    );
+
     startAuto();
   };
 
   const closeModal = () => {
     stopAuto();
+
+    document.body.classList.remove(
+      'is-gallery-open'
+    );
 
     if (
       typeof modal.close === 'function' &&
@@ -687,7 +698,97 @@ function setupStoryGallery() {
 
   modal.addEventListener(
     'close',
-    stopAuto
+    () => {
+      stopAuto();
+
+      document.body.classList.remove(
+        'is-gallery-open'
+      );
+    }
+  );
+
+  /*
+    Swipe kiri / kanan untuk mobile.
+  */
+
+  viewport.addEventListener(
+    'touchstart',
+    (event) => {
+      const touch = event.touches[0];
+
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+
+      stopAuto();
+    },
+    { passive: true }
+  );
+
+  viewport.addEventListener(
+    'touchend',
+    (event) => {
+      if (
+        touchStartX === null ||
+        touchStartY === null
+      ) {
+        startAuto();
+        return;
+      }
+
+      const touch =
+        event.changedTouches[0];
+
+      const deltaX =
+        touch.clientX - touchStartX;
+
+      const deltaY =
+        touch.clientY - touchStartY;
+
+      touchStartX = null;
+      touchStartY = null;
+
+      /*
+        Hanya anggap swipe jika gerakan horizontal
+        lebih dominan dari gerakan vertikal.
+      */
+      if (
+        Math.abs(deltaX) > 45 &&
+        Math.abs(deltaX) >
+          Math.abs(deltaY)
+      ) {
+        deltaX < 0
+          ? goTo(index + 1)
+          : goTo(index - 1);
+      }
+
+      startAuto();
+    },
+    { passive: true }
+  );
+
+  /*
+    Keyboard support untuk desktop.
+  */
+
+  document.addEventListener(
+    'keydown',
+    (event) => {
+      if (!modal.open) return;
+
+      if (event.key === 'ArrowLeft') {
+        goTo(index - 1);
+        startAuto();
+      }
+
+      if (event.key === 'ArrowRight') {
+        goTo(index + 1);
+        startAuto();
+      }
+
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    }
   );
 
   document.addEventListener(
@@ -1477,7 +1578,8 @@ function setupBankAccountCopy() {
 ========================================================= */
 
 function init() {
-  /* Opening dipasang paling awal agar tombol tetap bekerja */
+  // Daftarkan tombol pembuka lebih dulu supaya tetap bekerja
+  // walaupun ada konfigurasi fitur lain yang belum lengkap.
   setupOpeningCover();
 
   setupMusic();
