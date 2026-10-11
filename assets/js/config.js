@@ -70,13 +70,13 @@ export const WEDDING_CONFIG = Object.freeze({
   },
 
   site: {
-    invitationLabel: 'Wedding Invitation',
-    greeting: 'Dear family & friends,',
-    openingMessage:
-      'Together with our families, we warmly invite you to celebrate the beginning of our forever.',
-    closingMessage:
-      'Your presence and prayers will make our day even more meaningful.',
-    browserTitle:
-      'Dhanan & Berliana | Undangan Pernikahan'
-  }
+  invitationLabel: 'The Wedding Of',
+  greeting: 'Dear family & friends,',
+  openingMessage:
+    'Together with our families, we warmly invite you to celebrate the beginning of our forever.',
+  closingMessage:
+    'Your presence and prayers will make our day even more meaningful.',
+  browserTitle:
+    'Dhanan & Berliana | Undangan Pernikahan'
+}
 });
