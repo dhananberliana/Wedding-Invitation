@@ -529,280 +529,130 @@ function setupStorySlider() {
 ========================================================= */
 
 function setupStoryGallery() {
-  const trigger =
-    $('#story-gallery-trigger');
+  const gallery =
+    $('#story-gallery');
 
-  const modal =
-    $('#story-gallery-modal');
+  const lightbox =
+    $('#story-lightbox');
 
-  if (!trigger || !modal) return;
-
-  const viewport =
-    $('[data-story-modal-viewport]', modal);
-
-  const track =
-    $('.story-modal__track', modal);
-
-  const slides =
-    $$('.story-modal__slide', modal);
-
-  const prev =
-    $('[data-story-modal-prev]', modal);
-
-  const next =
-    $('[data-story-modal-next]', modal);
+  const lightboxImage =
+    $('#story-lightbox-image');
 
   const closeButton =
-    $('[data-story-modal-close]', modal);
+    $(
+      '[data-story-lightbox-close]',
+      lightbox || document
+    );
 
-  const counter =
-    $('[data-story-modal-counter]', modal);
 
   if (
-    !viewport ||
-    !track ||
-    !slides.length
+    !gallery ||
+    !lightbox ||
+    !lightboxImage
   ) {
     return;
   }
 
-  let index = 0;
-  let autoTimer = null;
-  let touchStartX = null;
-  let touchStartY = null;
 
-  const reduceMotion =
-    window
-      .matchMedia?.(
-        '(prefers-reduced-motion: reduce)'
-      )
-      .matches;
+  const closeLightbox = () => {
 
-  const render = () => {
-    track.style.transform =
-      `translate3d(-${index * 100}%, 0, 0)`;
+    if (lightbox.open) {
 
-    if (counter) {
-      counter.textContent =
-        `${index + 1} / ${slides.length}`;
-    }
-  };
+      if (
+        typeof lightbox.close ===
+        'function'
+      ) {
+        lightbox.close();
 
-  const goTo = (nextIndex) => {
-    index =
-      (
-        nextIndex +
-        slides.length
-      ) %
-      slides.length;
+      } else {
+        lightbox.removeAttribute(
+          'open'
+        );
+      }
 
-    render();
-  };
-
-  const stopAuto = () => {
-    if (!autoTimer) return;
-
-    window.clearInterval(autoTimer);
-    autoTimer = null;
-  };
-
-  const startAuto = () => {
-    stopAuto();
-
-    if (
-      reduceMotion ||
-      document.hidden ||
-      !modal.open
-    ) {
-      return;
     }
 
-    autoTimer =
-      window.setInterval(
-        () => goTo(index + 1),
-        5000
-      );
-  };
-
-  const openModal = () => {
-    index = 0;
-    render();
-
-    if (
-      typeof modal.showModal ===
-      'function'
-    ) {
-      modal.showModal();
-    } else {
-      modal.setAttribute('open', '');
-    }
-
-    document.body.classList.add(
-      'is-gallery-open'
+    lightboxImage.removeAttribute(
+      'src'
     );
 
-    startAuto();
+    lightboxImage.alt = '';
   };
 
-  const closeModal = () => {
-    stopAuto();
 
-    document.body.classList.remove(
-      'is-gallery-open'
+  $$(
+    '[data-story-frame]',
+    gallery
+  ).forEach((frame) => {
+
+    frame.addEventListener(
+      'click',
+      () => {
+
+        const image =
+          $('img', frame);
+
+        if (!image) return;
+
+
+        lightboxImage.src =
+          frame.dataset.fullSrc ||
+          image.src;
+
+        lightboxImage.alt =
+          image.alt ||
+          'Foto pranikah';
+
+
+        if (
+          typeof lightbox.showModal ===
+          'function'
+        ) {
+          lightbox.showModal();
+
+        } else {
+          lightbox.setAttribute(
+            'open',
+            ''
+          );
+        }
+
+      }
     );
 
-    if (
-      typeof modal.close === 'function' &&
-      modal.open
-    ) {
-      modal.close();
-    } else {
-      modal.removeAttribute('open');
-    }
-  };
+  });
 
-  trigger.addEventListener(
-    'click',
-    openModal
-  );
-
-  prev?.addEventListener(
-    'click',
-    () => {
-      goTo(index - 1);
-      startAuto();
-    }
-  );
-
-  next?.addEventListener(
-    'click',
-    () => {
-      goTo(index + 1);
-      startAuto();
-    }
-  );
 
   closeButton?.addEventListener(
     'click',
-    closeModal
+    closeLightbox
   );
 
-  modal.addEventListener(
+
+  lightbox.addEventListener(
     'click',
     (event) => {
-      if (event.target === modal) {
-        closeModal();
+
+      if (
+        event.target === lightbox
+      ) {
+        closeLightbox();
       }
+
     }
   );
 
-  modal.addEventListener(
+
+  lightbox.addEventListener(
     'close',
     () => {
-      stopAuto();
-
-      document.body.classList.remove(
-        'is-gallery-open'
+      lightboxImage.removeAttribute(
+        'src'
       );
+
+      lightboxImage.alt = '';
     }
   );
-
-  /*
-    Swipe kiri / kanan untuk mobile.
-  */
-
-  viewport.addEventListener(
-    'touchstart',
-    (event) => {
-      const touch = event.touches[0];
-
-      touchStartX = touch.clientX;
-      touchStartY = touch.clientY;
-
-      stopAuto();
-    },
-    { passive: true }
-  );
-
-  viewport.addEventListener(
-    'touchend',
-    (event) => {
-      if (
-        touchStartX === null ||
-        touchStartY === null
-      ) {
-        startAuto();
-        return;
-      }
-
-      const touch =
-        event.changedTouches[0];
-
-      const deltaX =
-        touch.clientX - touchStartX;
-
-      const deltaY =
-        touch.clientY - touchStartY;
-
-      touchStartX = null;
-      touchStartY = null;
-
-      /*
-        Hanya anggap swipe jika gerakan horizontal
-        lebih dominan dari gerakan vertikal.
-      */
-      if (
-        Math.abs(deltaX) > 45 &&
-        Math.abs(deltaX) >
-          Math.abs(deltaY)
-      ) {
-        deltaX < 0
-          ? goTo(index + 1)
-          : goTo(index - 1);
-      }
-
-      startAuto();
-    },
-    { passive: true }
-  );
-
-  /*
-    Keyboard support untuk desktop.
-  */
-
-  document.addEventListener(
-    'keydown',
-    (event) => {
-      if (!modal.open) return;
-
-      if (event.key === 'ArrowLeft') {
-        goTo(index - 1);
-        startAuto();
-      }
-
-      if (event.key === 'ArrowRight') {
-        goTo(index + 1);
-        startAuto();
-      }
-
-      if (event.key === 'Escape') {
-        closeModal();
-      }
-    }
-  );
-
-  document.addEventListener(
-    'visibilitychange',
-    () => {
-      if (document.hidden) {
-        stopAuto();
-      } else if (modal.open) {
-        startAuto();
-      }
-    }
-  );
-
-  render();
 }
 
 
