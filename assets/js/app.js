@@ -195,37 +195,16 @@ function setupOpeningCover() {
   button.addEventListener(
     'click',
     () => {
-
-      /* ============================================
-         1. TUTUP COVER
-      ============================================ */
-
+      /* Tutup cover utama */
       cover.classList.add('is-open');
-
-      cover.setAttribute(
-        'aria-hidden',
-        'true'
-      );
-
+      cover.setAttribute('aria-hidden', 'true');
       cover.style.pointerEvents = 'none';
 
-
-      /* ============================================
-         2. UNLOCK SCROLL
-         Termasuk Safari / iPhone
-      ============================================ */
-
+      /* Lepas semua scroll lock, termasuk fallback Safari/iPhone */
       document.body.classList.remove('is-locked');
+      document.documentElement.classList.remove('is-locked');
 
-      document.documentElement.classList.remove(
-        'is-locked'
-      );
-
-      [
-        document.body,
-        document.documentElement
-      ].forEach((element) => {
-
+      [document.body, document.documentElement].forEach((element) => {
         element.style.removeProperty('overflow');
         element.style.removeProperty('overflow-y');
         element.style.removeProperty('position');
@@ -235,63 +214,36 @@ function setupOpeningCover() {
         element.style.removeProperty('width');
         element.style.removeProperty('height');
         element.style.removeProperty('touch-action');
-
       });
 
+      /* Aktifkan Home / Hero */
+      hero?.classList.add('hero--entered');
 
-      /* ============================================
-         3. AKTIFKAN HOME / HERO
-      ============================================ */
-
-      if (hero) {
-
-        hero.classList.add(
-          'hero--entered'
-        );
-
-      }
-
-
-      /* ============================================
-         4. KEMBALI KE POSISI HOME
-      ============================================ */
-
+      /* Pastikan viewport berada di awal Home */
       window.requestAnimationFrame(() => {
-
         window.requestAnimationFrame(() => {
-
           window.scrollTo({
             top: 0,
             left: 0,
             behavior: 'auto'
           });
-
         });
-
       });
 
-
-      /* ============================================
-         5. MUSIK
-         Musik tidak boleh menghalangi website
-      ============================================ */
-
+      /* Musik tidak boleh menggagalkan proses membuka undangan */
       if (!audio) return;
 
       audio.volume = 0.65;
       audio.muted = false;
 
-      const playPromise =
-        audio.play();
+      const playPromise = audio.play();
 
       if (
         playPromise &&
         typeof playPromise.then === 'function'
       ) {
-
         playPromise
           .then(() => {
-
             if (!musicToggle) return;
 
             musicToggle.setAttribute(
@@ -303,19 +255,12 @@ function setupOpeningCover() {
               'aria-label',
               'Jeda musik latar'
             );
-
           })
           .catch((error) => {
-
             console.warn(
               'Browser memblokir musik otomatis:',
               error
             );
-
-            /*
-              Musik gagal tidak boleh
-              membuat undangan gagal terbuka
-            */
 
             if (!musicToggle) return;
 
@@ -328,16 +273,86 @@ function setupOpeningCover() {
               'aria-label',
               'Putar musik latar'
             );
-
           });
+      }
+    },
+    { once: true }
+  );
+}
 
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+function setupMusic() {
+  const button =
+    $('#music-toggle');
+
+  const audio =
+    $('#background-music');
+
+  if (!button || !audio) return;
+
+
+  const syncButton = () => {
+    const playing =
+      !audio.paused;
+
+    button.setAttribute(
+      'aria-pressed',
+      playing ? 'true' : 'false'
+    );
+
+    button.setAttribute(
+      'aria-label',
+      playing
+        ? 'Jeda musik latar'
+        : 'Putar musik latar'
+    );
+  };
+
+
+  button.addEventListener(
+    'click',
+    async () => {
+
+      if (audio.paused) {
+
+        try {
+          await audio.play();
+        } catch {
+          button.setAttribute(
+            'aria-pressed',
+            'false'
+          );
+        }
+
+      } else {
+        audio.pause();
       }
 
-    },
-    {
-      once: true
+      syncButton();
     }
   );
+
+
+  audio.addEventListener(
+    'play',
+    syncButton
+  );
+
+  audio.addEventListener(
+    'pause',
+    syncButton
+  );
+
+  audio.addEventListener(
+    'ended',
+    syncButton
+  );
+
+  syncButton();
 }
 
 
@@ -1419,13 +1434,14 @@ function setupBankAccountCopy() {
 ========================================================= */
 
 function init() {
-  populateConfiguredText();
-
-  setupExternalLinks();
-
+  /* Opening dipasang paling awal agar tombol tetap bekerja */
   setupOpeningCover();
 
   setupMusic();
+
+  populateConfiguredText();
+
+  setupExternalLinks();
 
   setupStorySlider();
 
