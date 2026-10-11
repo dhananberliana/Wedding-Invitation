@@ -556,11 +556,8 @@ function setupStoryGallery() {
   const viewport =
     $('[data-story-modal-viewport]', modal);
 
-  const track =
-    $('.story-detail-modal__track', modal);
-
-  const slides =
-    $$('.story-detail-modal__slide', modal);
+  const detailImage =
+    $('#story-detail-image');
 
   const prev =
     $('[data-story-modal-prev]', modal);
@@ -582,26 +579,64 @@ function setupStoryGallery() {
     !backImage ||
     !modal ||
     !viewport ||
-    !track ||
-    !slides.length
+    !detailImage
   ) {
     return;
   }
 
   const gallery = [
-    'assets/images/story-frame-01.webp',
-    'assets/images/story-frame-02.webp',
-    'assets/images/story-frame-03.webp',
-    'assets/images/story-frame-04.webp',
-    'assets/images/story-frame-05.webp',
-    'assets/images/story-frame-06.webp',
-    'assets/images/story-frame-07.webp',
-    'assets/images/story-frame-08.webp',
-    'assets/images/story-frame-09.webp',
-    'assets/images/story-frame-10.webp',
-    'assets/images/bride.webp',
-    'assets/images/story-frame-11-v1.webp',
-    'assets/images/story-frame-12-v1.webp'
+    {
+      src: 'assets/images/story-frame-01.webp',
+      alt: 'Dhanan dan Berliana berpelukan dalam busana adat Bali'
+    },
+    {
+      src: 'assets/images/story-frame-02.webp',
+      alt: 'Dhanan dan Berliana berbagi momen bahagia'
+    },
+    {
+      src: 'assets/images/story-frame-03.webp',
+      alt: 'Potret formal pranikah Dhanan dan Berliana'
+    },
+    {
+      src: 'assets/images/story-frame-04.webp',
+      alt: 'Dhanan dan Berliana di dekat pintu kayu berukir'
+    },
+    {
+      src: 'assets/images/story-frame-05.webp',
+      alt: 'Potret romantis di balik selendang tipis'
+    },
+    {
+      src: 'assets/images/story-frame-06.webp',
+      alt: 'Potret close-up pranikah'
+    },
+    {
+      src: 'assets/images/story-frame-07.webp',
+      alt: 'Potret Berliana menatap kamera'
+    },
+    {
+      src: 'assets/images/story-frame-08.webp',
+      alt: 'Potret artistik Dhanan dan Berliana'
+    },
+    {
+      src: 'assets/images/story-frame-09.webp',
+      alt: 'Potret pranikah tradisional Dhanan dan Berliana'
+    },
+    {
+      src: 'assets/images/story-frame-10.webp',
+      alt: 'Potret solo Dhanan dalam busana adat Bali'
+    },
+    {
+      src: 'assets/images/bride.webp',
+      alt: 'Potret solo Berliana dalam busana adat Bali'
+    },
+    {
+      src: 'assets/images/story-frame-11-v1.webp',
+      alt: 'Potret Berliana dalam busana adat Bali'
+    },
+    {
+      src: 'assets/images/story-frame-12-v1.webp',
+      alt: 'Potret studio Dhanan dan Berliana bergandengan tangan'
+    }
   ];
 
   let stackIndex = 0;
@@ -636,16 +671,16 @@ function setupStoryGallery() {
       (stackIndex + 2) % gallery.length;
 
     frontImage.src =
-      gallery[frontIndex];
+      gallery[frontIndex].src;
 
     middleImage.src =
-      gallery[middleIndex];
+      gallery[middleIndex].src;
 
     backImage.src =
-      gallery[backIndex];
+      gallery[backIndex].src;
 
     frontImage.alt =
-      `Foto kisah kami ${frontIndex + 1}`;
+      gallery[frontIndex].alt;
 
     if (stackProgress) {
       const ratio =
@@ -707,16 +742,75 @@ function setupStoryGallery() {
 
 
   /* =====================================================
-     MODAL DETAIL SLIDER
+     DETAIL IMAGE SLIDER
+     Satu image element, src diganti.
+     Lebih stabil untuk mobile / Safari.
   ====================================================== */
 
   const renderModal = () => {
-    track.style.transform =
-      `translate3d(-${modalIndex * 100}%, 0, 0)`;
+    const item =
+      gallery[modalIndex];
+
+    /*
+      Fade ringan saat ganti foto.
+    */
+    detailImage.classList.add(
+      'is-changing'
+    );
+
+    const nextImage =
+      new Image();
+
+    nextImage.onload = () => {
+      detailImage.src =
+        item.src;
+
+      detailImage.alt =
+        item.alt;
+
+      window.requestAnimationFrame(
+        () => {
+          detailImage.classList.remove(
+            'is-changing'
+          );
+        }
+      );
+    };
+
+    nextImage.onerror = () => {
+      /*
+        Jika satu file foto bermasalah,
+        jangan biarkan layar blank.
+        Lompat ke foto berikutnya.
+      */
+      detailImage.classList.remove(
+        'is-changing'
+      );
+
+      modalIndex =
+        (
+          modalIndex + 1
+        ) %
+        gallery.length;
+
+      if (counter) {
+        counter.textContent =
+          `${modalIndex + 1} / ${gallery.length}`;
+      }
+
+      detailImage.src =
+        gallery[modalIndex].src;
+
+      detailImage.alt =
+        gallery[modalIndex].alt;
+    };
+
+    nextImage.src =
+      item.src;
 
     if (counter) {
       counter.textContent =
-        `${modalIndex + 1} / ${slides.length}`;
+        `${modalIndex + 1} / ${gallery.length}`;
     }
   };
 
@@ -725,9 +819,9 @@ function setupStoryGallery() {
     modalIndex =
       (
         index +
-        slides.length
+        gallery.length
       ) %
-      slides.length;
+      gallery.length;
 
     renderModal();
   };
@@ -772,7 +866,7 @@ function setupStoryGallery() {
 
     goToModal(
       stackIndex %
-      slides.length
+      gallery.length
     );
 
     if (
@@ -1009,6 +1103,18 @@ function setupStoryGallery() {
       }
     }
   );
+
+
+  /*
+    Preload semua foto untuk perpindahan lebih mulus.
+  */
+  gallery.forEach((item) => {
+    const image =
+      new Image();
+
+    image.src =
+      item.src;
+  });
 
 
   renderStack();
