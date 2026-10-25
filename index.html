@@ -922,6 +922,41 @@
       }
     }
   </style>
+  <style>
+    #countdown .countdown-glass-card {
+      position: relative;
+      isolation: isolate;
+      width: min(100%, 52rem);
+      margin-inline: auto;
+      padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2.5rem);
+      border: 1px solid rgba(255,253,249,.65);
+      border-radius: clamp(2rem, 6vw, 3.5rem);
+      background: linear-gradient(145deg, rgba(255,253,249,.4), rgba(243,238,230,.2));
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 60px rgba(69,50,29,.12), inset 0 1px 0 rgba(255,255,255,.6);
+      text-align: center;
+    }
+    #countdown .countdown-glass-card::before {
+      position: absolute;
+      inset: .55rem;
+      z-index: -1;
+      border: 1px solid rgba(163,124,69,.2);
+      border-radius: inherit;
+      content: "";
+      pointer-events: none;
+    }
+    #countdown .countdown-glass-card #countdown-title {
+      font-size: clamp(2.4rem, 10vw, 4.8rem);
+      line-height: 1.05;
+    }
+    #countdown .countdown-glass-card .countdown-card {
+      background: linear-gradient(180deg, rgba(255,253,249,.4), rgba(255,250,245,.2));
+    }
+    #countdown .countdown-glass-card .countdown-invitation-copy {
+      max-width: 36rem;
+    }
+  </style>
 </head>
 
 <body class="is-locked">
@@ -1425,6 +1460,8 @@
       aria-labelledby="countdown-title">
 
       <div class="section-shell reveal">
+        <div class="countdown-glass-card">
+          <span class="event-card__ornament event-card__ornament--top" aria-hidden="true"></span>
 
         
 
@@ -1517,6 +1554,8 @@
           id="countdown-note">
         </p>
 
+          <span class="event-card__ornament event-card__ornament--bottom" aria-hidden="true"></span>
+        </div>
       </div>
 
     </section>
