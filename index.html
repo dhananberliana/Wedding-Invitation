@@ -806,6 +806,18 @@
     @media(max-width:767px) { #gift .gift-account-grid { grid-template-columns: minmax(0,1fr); } }
     @media(prefers-reduced-motion:reduce) { .wedding-gift-dropdown__chevron { transition: none; } }
   </style>
+  <style>
+    #countdown .countdown-event-details {
+      margin-top: 1.5rem;
+      color: var(--color-ink);
+      text-align: center;
+    }
+    #countdown .countdown-event-details p {
+      margin: .35rem 0;
+      font-size: clamp(.95rem, 3vw, 1.15rem);
+      line-height: 1.6;
+    }
+  </style>
 </head>
 
 <body class="is-locked">
@@ -1311,14 +1323,19 @@
       <div class="section-shell reveal">
 
         <p class="eyebrow">
-          Menghitung hari menuju hari bahagia kami
+          Mark your calendar
         </p>
 
         <h2
           class="display-title display-title--light"
           id="countdown-title">
-          Menuju Hari Bahagia
+          Save the Date
         </h2>
+
+        <div class="countdown-event-details">
+          <p><time datetime="2026-12-11">Jumat, 11 Desember 2026</time></p>
+          <p>Jam 16.00 - Selesai</p>
+        </div>
 
         <div
           class="countdown-grid"
