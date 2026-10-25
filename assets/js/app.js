@@ -1358,6 +1358,40 @@ function setupInlineAlbumSlider() {
   start();
 }
 
+function setupAlbumCoverPreview() {
+  const album = $('.story-inline-album.story-stack-card');
+  if (!album) return;
+  const photos = $$('.story-inline-gallery img', album);
+  const front = $('.story-stack-card__photo--front img', album);
+  const middle = $('.story-stack-card__photo--middle img', album);
+  const back = $('.story-stack-card__photo--back img', album);
+  if (photos.length < 3 || !front || !middle || !back) return;
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let index = 0;
+  let timer = null;
+  const render = () => {
+    [front, middle, back].forEach((image, offset) => {
+      const source = photos[(index + offset) % photos.length];
+      image.src = source.src;
+      image.alt = offset === 0 ? source.alt : '';
+    });
+  };
+  const sync = () => {
+    window.clearInterval(timer);
+    timer = null;
+    if (document.hidden || motion.matches) return;
+    timer = window.setInterval(() => {
+      if ($('#album-photo-dialog')?.open) return;
+      index = (index + 1) % photos.length;
+      render();
+    }, 3500);
+  };
+  document.addEventListener('visibilitychange', sync);
+  motion.addEventListener('change', sync);
+  render();
+  sync();
+}
+
 function init() {
   // Daftarkan tombol pembuka lebih dulu supaya tetap bekerja
   // walaupun ada konfigurasi fitur lain yang belum lengkap.
@@ -1372,6 +1406,8 @@ function init() {
   setupExternalLinks();
 
   setupStorySlider();
+
+  setupAlbumCoverPreview();
 
   setupInlineAlbumSlider();
 
