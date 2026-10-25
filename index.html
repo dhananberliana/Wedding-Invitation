@@ -1788,7 +1788,6 @@
 
           <p class="body-copy body-copy--light">
             Konfirmasi kehadiran Anda sangat membantu kami mempersiapkan acara dengan baik.
-            Mohon isi satu konfirmasi untuk Anda dan rombongan.
           </p>
 
         </div>
@@ -1800,18 +1799,15 @@
 
           <div class="field-group">
 
-            <label for="full-name">
-              Nama Lengkap
-            </label>
-
-            <input
+<input
               id="full-name"
               name="fullName"
               type="text"
               autocomplete="name"
               maxlength="120"
               required
-              placeholder="Masukkan nama lengkap Anda">
+              placeholder="Masukan Nama Anda"
+              aria-label="Nama Anda">
 
             <p
               class="field-error"
@@ -1867,32 +1863,7 @@
 
           </fieldset>
 
-          <div
-            class="field-group"
-            id="guest-count-group">
 
-            <label for="guest-count">
-              Jumlah Tamu yang Hadir
-            </label>
-
-            <input
-              id="guest-count"
-              name="guests"
-              type="number"
-              min="1"
-              max="10"
-              step="1"
-              inputmode="numeric"
-              value="1"
-              aria-describedby="guest-count-hint">
-
-            <p
-              class="field-hint"
-              id="guest-count-hint">
-              Masukkan jumlah tamu yang akan hadir (1–10).
-            </p>
-
-          </div>
 
           <div class="field-group">
 
@@ -1913,7 +1884,8 @@
             class="button button--light button--full"
             id="rsvp-submit"
             type="submit">
-            Kirim Konfirmasi
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:.5rem"><path d="m22 2-7 20-4-9-9-4 20-7ZM22 2 11 13"/></svg>
+            <span>Kirim</span>
           </button>
 
           <p
