@@ -1045,6 +1045,15 @@
     .album-auto-slider__arrow { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(255,253,249,.4); border-radius: 6px; background: rgba(255,253,249,.15); color: inherit; cursor: pointer; font-size: 1.25rem; }
     .album-auto-slider__arrow:focus-visible { outline: 2px solid var(--color-gold-light); outline-offset: 3px; }
   </style>
+  <style>
+    .album-photo-open { display: block; width: 100%; margin: 0; padding: 0; border: 0; background: transparent; cursor: zoom-in; color: inherit; }
+    .album-photo-open:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; border-radius: 8px; }
+    .album-photo-dialog { width: min(96vw,60rem); max-width: 96vw; max-height: 94svh; margin: auto; padding: 3rem .75rem .75rem; border: 1px solid rgba(255,255,255,.2); border-radius: 12px; background: rgba(29,28,26,.9); }
+    .album-photo-dialog::backdrop { background: rgba(0,0,0,.8); }
+    .album-photo-dialog__image { width: auto; height: auto; max-width: 100%; max-height: 80svh; object-fit: contain; margin: auto; border-radius: 8px; }
+    .album-photo-dialog__close { position: absolute; top: .25rem; right: .5rem; width: 44px; height: 44px; border: 0; background: transparent; color: white; font-size: 2rem; cursor: pointer; }
+    body.is-album-photo-open { overflow: hidden; }
+  </style>
 </head>
 
 <body class="is-locked">
@@ -1933,41 +1942,38 @@
               </span>
             </summary>
             <div class="story-inline-gallery">
-              <figure><img src="assets/images/story-frame-01.webp" alt="Dhanan dan Berliana berpelukan dalam busana adat Bali" loading="lazy" decoding="async"></figure>
-              <figure><img src="assets/images/story-frame-02.webp" alt="Dhanan dan Berliana berbagi momen bahagia" loading="lazy" decoding="async"></figure>
-              <figure><img src="assets/images/story-frame-03.webp" alt="Potret formal pranikah Dhanan dan Berliana" loading="lazy" decoding="async"></figure>
-              <figure><img src="assets/images/story-frame-04.webp" alt="Dhanan dan Berliana di dekat pintu kayu berukir" loading="lazy" decoding="async"></figure>
-              <figure><img src="assets/images/story-frame-05.webp" alt="Potret romantis di balik selendang tipis" loading="lazy" decoding="async"></figure>
-              <figure><img src="assets/images/story-frame-06.webp" alt="Potret close-up pranikah" loading="lazy" decoding="async"></figure>
-              <figure><img src="assets/images/story-frame-07.webp" alt="Potret Berliana menatap kamera" loading="lazy" decoding="async"></figure>
-              <figure><img src="assets/images/story-frame-08.webp" alt="Potret artistik Dhanan dan Berliana" loading="lazy" decoding="async"></figure>
-              <figure><img src="assets/images/story-frame-09.webp" alt="Potret pranikah tradisional Dhanan dan Berliana" loading="lazy" decoding="async"></figure>
-              <figure><img src="assets/images/story-frame-10.webp" alt="Potret solo Dhanan dalam busana adat Bali" loading="lazy" decoding="async"></figure>
-              <figure><img src="assets/images/bride.webp" alt="Potret solo Berliana dalam busana adat Bali" loading="lazy" decoding="async"></figure>
-              <figure><img src="assets/images/story-frame-11-v1.webp" alt="Potret Berliana dalam busana adat Bali" loading="lazy" decoding="async"></figure>
-              <figure><img src="assets/images/story-frame-12-v1.webp" alt="Potret studio Dhanan dan Berliana bergandengan tangan" loading="lazy" decoding="async"></figure>
+              <figure><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-01.webp" alt="Dhanan dan Berliana berpelukan dalam busana adat Bali" loading="lazy" decoding="async"></button></figure>
+              <figure><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-02.webp" alt="Dhanan dan Berliana berbagi momen bahagia" loading="lazy" decoding="async"></button></figure>
+              <figure><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-03.webp" alt="Potret formal pranikah Dhanan dan Berliana" loading="lazy" decoding="async"></button></figure>
+              <figure><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-04.webp" alt="Dhanan dan Berliana di dekat pintu kayu berukir" loading="lazy" decoding="async"></button></figure>
+              <figure><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-05.webp" alt="Potret romantis di balik selendang tipis" loading="lazy" decoding="async"></button></figure>
+              <figure><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-06.webp" alt="Potret close-up pranikah" loading="lazy" decoding="async"></button></figure>
+              <figure><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-07.webp" alt="Potret Berliana menatap kamera" loading="lazy" decoding="async"></button></figure>
+              <figure><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-08.webp" alt="Potret artistik Dhanan dan Berliana" loading="lazy" decoding="async"></button></figure>
+              <figure><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-09.webp" alt="Potret pranikah tradisional Dhanan dan Berliana" loading="lazy" decoding="async"></button></figure>
+              <figure><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-10.webp" alt="Potret solo Dhanan dalam busana adat Bali" loading="lazy" decoding="async"></button></figure>
+              <figure><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/bride.webp" alt="Potret solo Berliana dalam busana adat Bali" loading="lazy" decoding="async"></button></figure>
+              <figure><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-11-v1.webp" alt="Potret Berliana dalam busana adat Bali" loading="lazy" decoding="async"></button></figure>
+              <figure><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-12-v1.webp" alt="Potret studio Dhanan dan Berliana bergandengan tangan" loading="lazy" decoding="async"></button></figure>
             </div>
           <div class="album-auto-slider" role="region" aria-label="Slider otomatis momen pranikah" aria-roledescription="carousel" data-album-slider data-photo-count="13">
-              <div class="album-auto-slider__viewport"><div class="album-auto-slider__track"><div class="album-auto-slider__slide"><img src="assets/images/story-frame-01.webp" alt="Dhanan dan Berliana berpelukan dalam busana adat Bali" loading="lazy" decoding="async"></div>
-<div class="album-auto-slider__slide"><img src="assets/images/story-frame-02.webp" alt="Dhanan dan Berliana berbagi momen bahagia" loading="lazy" decoding="async"></div>
-<div class="album-auto-slider__slide"><img src="assets/images/story-frame-03.webp" alt="Potret formal pranikah Dhanan dan Berliana" loading="lazy" decoding="async"></div>
-<div class="album-auto-slider__slide"><img src="assets/images/story-frame-04.webp" alt="Dhanan dan Berliana di dekat pintu kayu berukir" loading="lazy" decoding="async"></div>
-<div class="album-auto-slider__slide"><img src="assets/images/story-frame-05.webp" alt="Potret romantis di balik selendang tipis" loading="lazy" decoding="async"></div>
-<div class="album-auto-slider__slide"><img src="assets/images/story-frame-06.webp" alt="Potret close-up pranikah" loading="lazy" decoding="async"></div>
-<div class="album-auto-slider__slide"><img src="assets/images/story-frame-07.webp" alt="Potret Berliana menatap kamera" loading="lazy" decoding="async"></div>
-<div class="album-auto-slider__slide"><img src="assets/images/story-frame-08.webp" alt="Potret artistik Dhanan dan Berliana" loading="lazy" decoding="async"></div>
-<div class="album-auto-slider__slide"><img src="assets/images/story-frame-09.webp" alt="Potret pranikah tradisional Dhanan dan Berliana" loading="lazy" decoding="async"></div>
-<div class="album-auto-slider__slide"><img src="assets/images/story-frame-10.webp" alt="Potret solo Dhanan dalam busana adat Bali" loading="lazy" decoding="async"></div>
-<div class="album-auto-slider__slide"><img src="assets/images/bride.webp" alt="Potret solo Berliana dalam busana adat Bali" loading="lazy" decoding="async"></div>
-<div class="album-auto-slider__slide"><img src="assets/images/story-frame-11-v1.webp" alt="Potret Berliana dalam busana adat Bali" loading="lazy" decoding="async"></div>
-<div class="album-auto-slider__slide"><img src="assets/images/story-frame-12-v1.webp" alt="Potret studio Dhanan dan Berliana bergandengan tangan" loading="lazy" decoding="async"></div>
-<div class="album-auto-slider__slide" aria-hidden="true"><img src="assets/images/story-frame-01.webp" alt="" loading="lazy" decoding="async"></div>
-<div class="album-auto-slider__slide" aria-hidden="true"><img src="assets/images/story-frame-02.webp" alt="" loading="lazy" decoding="async"></div>
-<div class="album-auto-slider__slide" aria-hidden="true"><img src="assets/images/story-frame-03.webp" alt="" loading="lazy" decoding="async"></div></div></div>
-              <div class="album-auto-slider__controls">
-                <button class="album-auto-slider__arrow" type="button" data-album-prev aria-label="Foto sebelumnya">&lt;</button>
-                <button class="album-auto-slider__arrow" type="button" data-album-next aria-label="Foto berikutnya">&gt;</button>
-              </div>
+              <div class="album-auto-slider__viewport"><div class="album-auto-slider__track"><div class="album-auto-slider__slide"><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-01.webp" alt="Dhanan dan Berliana berpelukan dalam busana adat Bali" loading="lazy" decoding="async"></button></div>
+<div class="album-auto-slider__slide"><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-02.webp" alt="Dhanan dan Berliana berbagi momen bahagia" loading="lazy" decoding="async"></button></div>
+<div class="album-auto-slider__slide"><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-03.webp" alt="Potret formal pranikah Dhanan dan Berliana" loading="lazy" decoding="async"></button></div>
+<div class="album-auto-slider__slide"><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-04.webp" alt="Dhanan dan Berliana di dekat pintu kayu berukir" loading="lazy" decoding="async"></button></div>
+<div class="album-auto-slider__slide"><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-05.webp" alt="Potret romantis di balik selendang tipis" loading="lazy" decoding="async"></button></div>
+<div class="album-auto-slider__slide"><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-06.webp" alt="Potret close-up pranikah" loading="lazy" decoding="async"></button></div>
+<div class="album-auto-slider__slide"><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-07.webp" alt="Potret Berliana menatap kamera" loading="lazy" decoding="async"></button></div>
+<div class="album-auto-slider__slide"><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-08.webp" alt="Potret artistik Dhanan dan Berliana" loading="lazy" decoding="async"></button></div>
+<div class="album-auto-slider__slide"><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-09.webp" alt="Potret pranikah tradisional Dhanan dan Berliana" loading="lazy" decoding="async"></button></div>
+<div class="album-auto-slider__slide"><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-10.webp" alt="Potret solo Dhanan dalam busana adat Bali" loading="lazy" decoding="async"></button></div>
+<div class="album-auto-slider__slide"><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/bride.webp" alt="Potret solo Berliana dalam busana adat Bali" loading="lazy" decoding="async"></button></div>
+<div class="album-auto-slider__slide"><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-11-v1.webp" alt="Potret Berliana dalam busana adat Bali" loading="lazy" decoding="async"></button></div>
+<div class="album-auto-slider__slide"><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-12-v1.webp" alt="Potret studio Dhanan dan Berliana bergandengan tangan" loading="lazy" decoding="async"></button></div>
+<div class="album-auto-slider__slide" aria-hidden="true"><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-01.webp" alt="" loading="lazy" decoding="async"></button></div>
+<div class="album-auto-slider__slide" aria-hidden="true"><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-02.webp" alt="" loading="lazy" decoding="async"></button></div>
+<div class="album-auto-slider__slide" aria-hidden="true"><button class="album-photo-open" type="button" data-album-photo aria-label="Lihat foto lebih besar"><img src="assets/images/story-frame-03.webp" alt="" loading="lazy" decoding="async"></button></div></div></div>
+              
             </div>
           </details>
         </div>
@@ -2449,6 +2455,10 @@
     src="assets/js/app.js">
   </script>
 
+  <dialog class="album-photo-dialog" id="album-photo-dialog" aria-label="Foto pranikah">
+    <button class="album-photo-dialog__close" type="button" data-album-photo-close aria-label="Tutup foto">×</button>
+    <img class="album-photo-dialog__image" alt="">
+  </dialog>
 </body>
 </html>
 
