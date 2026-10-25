@@ -749,6 +749,30 @@
       }
     }
   </style>
+  <style>
+    .hero .scroll-cue--swipe {
+      flex-direction: column;
+      gap: .5rem;
+      min-width: 5rem;
+      min-height: 44px;
+      padding: .75rem;
+      color: #fffdf9;
+      text-align: center;
+    }
+    .hero .scroll-cue--swipe::before {
+      content: none;
+    }
+    .scroll-cue__arrow {
+      animation: swipeArrowUp 1.6s ease-in-out infinite;
+    }
+    @keyframes swipeArrowUp {
+      0%, 100% { transform: translateY(0); opacity: .65; }
+      50% { transform: translateY(-8px); opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-cue__arrow { animation: none; }
+    }
+  </style>
 </head>
 
 <body class="is-locked">
@@ -1080,10 +1104,13 @@
         </p>
 
         <a
-          class="scroll-cue"
+          class="scroll-cue scroll-cue--swipe"
           href="#couple"
-          aria-label="Lihat detail pernikahan">
-          Lihat Selengkapnya
+          aria-label="Geser ke atas untuk melihat detail pernikahan">
+          <svg class="scroll-cue__arrow" aria-hidden="true" width="26" height="32" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 27V6M5 13l7-7 7 7"/>
+          </svg>
+          <span>Swipe Up</span>
         </a>
 
       </div>
