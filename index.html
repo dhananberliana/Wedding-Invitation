@@ -1007,6 +1007,17 @@
     .story-inline-gallery img { width: 100%; height: auto; border-radius: 8px; }
     @media(max-width:767px) { .story-inline-gallery { grid-template-columns: repeat(2,minmax(0,1fr)); gap: .6rem; } }
   </style>
+  <style>
+    .album-auto-slider { width: min(100%, 44rem); margin: 2rem auto 0; }
+    .album-auto-slider__viewport { width: 100%; overflow: hidden; padding-block: .75rem; }
+    .album-auto-slider__track { display: flex; width: 100%; transition: transform .65s ease; }
+    .album-auto-slider__slide { flex: 0 0 33.333333%; min-width: 0; padding-inline: clamp(.2rem,1vw,.5rem); }
+    .album-auto-slider__slide img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 8px; transform: scale(.92); transition: transform .65s ease; }
+    .album-auto-slider__slide.is-center img { transform: scale(1); }
+    .album-auto-slider__pause { margin-top: .6rem; min-height: 44px; padding: .5rem 1rem; border: 1px solid rgba(91,71,46,.3); border-radius: 6px; background: rgba(255,253,249,.25); color: var(--color-ink); cursor: pointer; font-size: .75rem; }
+    .album-auto-slider__pause:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 4px; }
+    @media(prefers-reduced-motion:reduce) { .album-auto-slider__track, .album-auto-slider__slide img { transition: none; } }
+  </style>
 </head>
 
 <body class="is-locked">
@@ -1896,6 +1907,25 @@
               <figure><img src="assets/images/bride.webp" alt="Potret solo Berliana dalam busana adat Bali" loading="lazy" decoding="async"></figure>
               <figure><img src="assets/images/story-frame-11-v1.webp" alt="Potret Berliana dalam busana adat Bali" loading="lazy" decoding="async"></figure>
               <figure><img src="assets/images/story-frame-12-v1.webp" alt="Potret studio Dhanan dan Berliana bergandengan tangan" loading="lazy" decoding="async"></figure>
+            </div>
+          <div class="album-auto-slider" role="region" aria-label="Slider otomatis momen pranikah" aria-roledescription="carousel" data-album-slider data-photo-count="13">
+              <div class="album-auto-slider__viewport"><div class="album-auto-slider__track"><div class="album-auto-slider__slide"><img src="assets/images/story-frame-01.webp" alt="Dhanan dan Berliana berpelukan dalam busana adat Bali" loading="lazy" decoding="async"></div>
+<div class="album-auto-slider__slide"><img src="assets/images/story-frame-02.webp" alt="Dhanan dan Berliana berbagi momen bahagia" loading="lazy" decoding="async"></div>
+<div class="album-auto-slider__slide"><img src="assets/images/story-frame-03.webp" alt="Potret formal pranikah Dhanan dan Berliana" loading="lazy" decoding="async"></div>
+<div class="album-auto-slider__slide"><img src="assets/images/story-frame-04.webp" alt="Dhanan dan Berliana di dekat pintu kayu berukir" loading="lazy" decoding="async"></div>
+<div class="album-auto-slider__slide"><img src="assets/images/story-frame-05.webp" alt="Potret romantis di balik selendang tipis" loading="lazy" decoding="async"></div>
+<div class="album-auto-slider__slide"><img src="assets/images/story-frame-06.webp" alt="Potret close-up pranikah" loading="lazy" decoding="async"></div>
+<div class="album-auto-slider__slide"><img src="assets/images/story-frame-07.webp" alt="Potret Berliana menatap kamera" loading="lazy" decoding="async"></div>
+<div class="album-auto-slider__slide"><img src="assets/images/story-frame-08.webp" alt="Potret artistik Dhanan dan Berliana" loading="lazy" decoding="async"></div>
+<div class="album-auto-slider__slide"><img src="assets/images/story-frame-09.webp" alt="Potret pranikah tradisional Dhanan dan Berliana" loading="lazy" decoding="async"></div>
+<div class="album-auto-slider__slide"><img src="assets/images/story-frame-10.webp" alt="Potret solo Dhanan dalam busana adat Bali" loading="lazy" decoding="async"></div>
+<div class="album-auto-slider__slide"><img src="assets/images/bride.webp" alt="Potret solo Berliana dalam busana adat Bali" loading="lazy" decoding="async"></div>
+<div class="album-auto-slider__slide"><img src="assets/images/story-frame-11-v1.webp" alt="Potret Berliana dalam busana adat Bali" loading="lazy" decoding="async"></div>
+<div class="album-auto-slider__slide"><img src="assets/images/story-frame-12-v1.webp" alt="Potret studio Dhanan dan Berliana bergandengan tangan" loading="lazy" decoding="async"></div>
+<div class="album-auto-slider__slide" aria-hidden="true"><img src="assets/images/story-frame-01.webp" alt="" loading="lazy" decoding="async"></div>
+<div class="album-auto-slider__slide" aria-hidden="true"><img src="assets/images/story-frame-02.webp" alt="" loading="lazy" decoding="async"></div>
+<div class="album-auto-slider__slide" aria-hidden="true"><img src="assets/images/story-frame-03.webp" alt="" loading="lazy" decoding="async"></div></div></div>
+              <button class="album-auto-slider__pause" type="button" data-album-pause>Jeda slideshow</button>
             </div>
           </details>
         </div>
