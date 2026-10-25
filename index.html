@@ -1132,6 +1132,22 @@
     }
     .story-inline-album .story-stack-card__heading { position: relative; z-index: 3; }
   </style>
+
+  <style>
+    @media (min-width: 768px) {
+      #couple .couple-copy {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: min(100%, 46rem);
+        text-align: center;
+      }
+      #couple .couple-copy > .display-title,
+      #couple .couple-copy > .body-copy {
+        margin-inline: auto;
+      }
+      #couple .couple-copy > .body-copy { max-width: 38rem; }
+    }
+  </style>
 </head>
 
 <body class="is-locked">
