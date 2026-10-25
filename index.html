@@ -719,6 +719,36 @@
       overflow-wrap: anywhere;
     }
   </style>
+  <style>
+    .opening-cover__branding .opening-cover__logo {
+      position: static;
+      transform: none;
+      margin: 0 auto .65rem;
+    }
+    .opening-cover__branding .eyebrow {
+      margin: 0 0 1rem;
+      text-align: center;
+    }
+    @media (max-width: 767px) {
+      .opening-cover__branding {
+        position: fixed;
+        z-index: 4;
+        top: calc(env(safe-area-inset-top) + 1.75rem);
+        left: 50%;
+        width: max-content;
+        max-width: calc(100% - 2rem);
+        transform: translateX(-50%);
+      }
+      .opening-cover__branding .eyebrow {
+        margin-bottom: 0;
+      }
+    }
+    @media (max-width: 420px) {
+      .opening-cover__branding {
+        top: calc(env(safe-area-inset-top) + 1.35rem);
+      }
+    }
+  </style>
 </head>
 
 <body class="is-locked">
@@ -855,6 +885,7 @@
 
     <div class="opening-cover__content">
 
+      <div class="opening-cover__branding">
       <img
         class="opening-cover__logo"
         src="assets/images/db-logo-white.png"
@@ -866,6 +897,7 @@
       <p class="eyebrow">
         THE WEDDING OF
       </p>
+      </div>
 
       <h1 class="opening-cover__names">
         <span>Dhanan</span>
