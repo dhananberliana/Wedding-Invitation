@@ -1018,6 +1018,28 @@
     .album-auto-slider__pause:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 4px; }
     @media(prefers-reduced-motion:reduce) { .album-auto-slider__track, .album-auto-slider__slide img { transition: none; } }
   </style>
+  <style>
+    .story-inline-album.story-stack-card { width: min(100%, 34rem); }
+    .story-stack-card .story-album-dropdown > summary {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      color: inherit;
+      letter-spacing: normal;
+    }
+    .story-stack-card .story-album-dropdown > summary .story-stack-card__viewer { display: block; }
+    .story-stack-card .story-stack-card__footer { justify-content: center; }
+    .story-stack-card .story-album-dropdown[open] > summary span { transform: none; }
+    .story-stack-card .story-album-dropdown > summary .story-stack-card__photo--back { transform: translate(-16%,5%) rotate(-9deg) scale(.92); }
+    .story-stack-card .story-album-dropdown > summary .story-stack-card__photo--middle { transform: translate(7%,2%) rotate(5deg) scale(.96); }
+    .story-stack-card .story-album-dropdown > summary .story-stack-card__photo--front { transform: none; }
+  </style>
 </head>
 
 <body class="is-locked">
@@ -1888,11 +1910,23 @@
         <p class="story-gallery__intro">Momen-momen pranikah kami dalam satu album. Klik View Album untuk melihat seluruh foto di bawah.</p>
       </div>
       <div class="section-shell">
-        <div class="story-inline-album">
-          <p class="mini-label">CAPTURED</p>
-          <h3 class="story-inline-album__title">Our Moments</h3>
+        <div class="story-inline-album story-stack-card">
+          <div class="story-stack-card__heading">
+            <span class="story-stack-card__eyebrow">CAPTURED</span>
+            <span class="story-stack-card__title">Our Moments</span>
+          </div>
           <details class="story-album-dropdown">
-            <summary>View Album <span aria-hidden="true">⌄</span></summary>
+            <summary>
+              <span class="story-stack-card__viewer">
+                <span class="story-stack-card__photo story-stack-card__photo--back" aria-hidden="true"><img src="assets/images/story-frame-03.webp" alt="" loading="lazy" decoding="async"></span>
+                <span class="story-stack-card__photo story-stack-card__photo--middle" aria-hidden="true"><img src="assets/images/story-frame-02.webp" alt="" loading="lazy" decoding="async"></span>
+                <span class="story-stack-card__photo story-stack-card__photo--front"><img src="assets/images/story-frame-01.webp" alt="Foto pranikah Dhanan dan Berliana" loading="lazy" decoding="async"></span>
+                <span class="story-stack-card__tap">Ketuk untuk melihat album</span>
+              </span>
+              <span class="story-stack-card__footer">
+                <span class="story-stack-card__open">VIEW ALBUM <span aria-hidden="true">⌄</span></span>
+              </span>
+            </summary>
             <div class="story-inline-gallery">
               <figure><img src="assets/images/story-frame-01.webp" alt="Dhanan dan Berliana berpelukan dalam busana adat Bali" loading="lazy" decoding="async"></figure>
               <figure><img src="assets/images/story-frame-02.webp" alt="Dhanan dan Berliana berbagi momen bahagia" loading="lazy" decoding="async"></figure>
