@@ -1293,10 +1293,11 @@ function setupInlineAlbumSlider() {
   if (!dropdown || !slider) return;
   const track = $('.album-auto-slider__track', slider);
   const slides = $$('.album-auto-slider__slide', slider);
-  const prev = $('[data-album-prev]', slider);
-  const next = $('[data-album-next]', slider);
+  const photoDialog = $('#album-photo-dialog');
+  const photoImage = $('.album-photo-dialog__image', photoDialog);
+  const photoClose = $('[data-album-photo-close]', photoDialog);
   const count = Number(slider.dataset.photoCount);
-  if (!track || !prev || !next || count < 3) return;
+  if (!track || !photoDialog || !photoImage || !photoClose || count < 3) return;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let index = 0;
   let timer = null;
@@ -1321,14 +1322,35 @@ function setupInlineAlbumSlider() {
   const stop = () => { window.clearInterval(timer); timer = null; };
   const start = () => {
     stop();
-    if (!dropdown.open || document.hidden || reduceMotion.matches) return;
+    if (!dropdown.open || photoDialog.open || document.hidden || reduceMotion.matches) return;
     timer = window.setInterval(() => move(1), 3500);
   };
   track.addEventListener('transitionend', (event) => {
     if (event.target === track && event.propertyName === 'transform' && index >= count) snap(0);
   });
-  prev.addEventListener('click', () => { move(-1); start(); });
-  next.addEventListener('click', () => { move(1); start(); });
+  $$('[data-album-photo]', dropdown).forEach((button) => {
+    button.addEventListener('click', () => {
+      const image = $('img', button);
+      if (!image) return;
+      if (typeof photoDialog.showModal !== 'function') {
+        window.open(image.src, '_blank', 'noopener,noreferrer');
+        return;
+      }
+      stop();
+      photoImage.src = image.currentSrc || image.src;
+      photoImage.alt = image.alt || 'Foto pranikah Dhanan dan Berliana';
+      photoDialog.showModal();
+      document.body.classList.add('is-album-photo-open');
+    });
+  });
+  photoClose.addEventListener('click', () => photoDialog.close());
+  photoDialog.addEventListener('click', (event) => {
+    if (event.target === photoDialog) photoDialog.close();
+  });
+  photoDialog.addEventListener('close', () => {
+    document.body.classList.remove('is-album-photo-open');
+    start();
+  });
   dropdown.addEventListener('toggle', start);
   document.addEventListener('visibilitychange', start);
   reduceMotion.addEventListener('change', start);
