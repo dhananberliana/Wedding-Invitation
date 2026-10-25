@@ -1286,6 +1286,51 @@ function setupBankAccountCopy() {
    INITIALISATION
 ========================================================= */
 
+
+function setupInlineAlbumSlider() {
+  const dropdown = $('.story-album-dropdown');
+  const slider = $('[data-album-slider]');
+  if (!dropdown || !slider) return;
+  const track = $('.album-auto-slider__track', slider);
+  const slides = $('.album-auto-slider__slide', slider);
+  const pauseButton = $('[data-album-pause]', slider);
+  const count = Number(slider.dataset.photoCount);
+  if (!track || !pauseButton || count < 3) return;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let index = 0;
+  let timer = null;
+  let paused = reduceMotion.matches;
+  const render = () => {
+    track.style.transform = 'translateX(-' + (index * 100 / 3) + '%)';
+    slides.forEach((slide, i) => slide.classList.toggle('is-center', i === index + 1));
+  };
+  const stop = () => { window.clearInterval(timer); timer = null; };
+  const start = () => {
+    stop();
+    pauseButton.textContent = paused ? 'Putar slideshow' : 'Jeda slideshow';
+    if (!dropdown.open || document.hidden || paused) return;
+    timer = window.setInterval(() => {
+      index += 1;
+      if (reduceMotion.matches && index >= count) index = 0;
+      render();
+    }, 3500);
+  };
+  track.addEventListener('transitionend', (event) => {
+    if (event.target !== track || event.propertyName !== 'transform' || index < count) return;
+    track.style.transition = 'none';
+    index = 0;
+    render();
+    void track.offsetWidth;
+    track.style.transition = '';
+  });
+  dropdown.addEventListener('toggle', start);
+  document.addEventListener('visibilitychange', start);
+  pauseButton.addEventListener('click', () => { paused = !paused; start(); });
+  reduceMotion.addEventListener('change', () => { paused = reduceMotion.matches; start(); });
+  render();
+  start();
+}
+
 function init() {
   // Daftarkan tombol pembuka lebih dulu supaya tetap bekerja
   // walaupun ada konfigurasi fitur lain yang belum lengkap.
@@ -1300,6 +1345,8 @@ function init() {
   setupExternalLinks();
 
   setupStorySlider();
+
+  setupInlineAlbumSlider();
 
 
   setupCountdown();
