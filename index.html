@@ -903,6 +903,25 @@
       text-align: center;
     }
   </style>
+  <style>
+    .pawiwahan-intro > .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .45s ease-out, transform .45s ease-out;
+      transition-delay: 0s;
+    }
+    .pawiwahan-intro > .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .pawiwahan-intro > .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
 </head>
 
 <body class="is-locked">
@@ -1265,16 +1284,16 @@
 
 
           <p
-            class="pawiwahan-intro__aksara"
+            class="pawiwahan-intro__aksara reveal"
             lang="ban-Bali">
             ᬒᬁ ᬲ᭄ᬯᬲ᭄ᬢ᭄ᬬᬲ᭄ᬢᬸ
           </p>
 
-          <p class="pawiwahan-intro__greeting">
+          <p class="pawiwahan-intro__greeting reveal">
             Om Swastyastu
           </p>
 
-          <p class="pawiwahan-intro__copy">
+          <p class="pawiwahan-intro__copy reveal">
             Atas Asung Kertha Wara Nugraha Ida Sang Hyang Widhi Wasa/Tuhan Yang Maha Esa
             kami bermaksud mengundang Bapak/Ibu/Saudara/i pada Upacara Manusa Yadnya
             Pawiwahan (Pernikahan) kami.
