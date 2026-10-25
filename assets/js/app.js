@@ -1332,6 +1332,51 @@ function setupInlineAlbumSlider() {
   const photoDownload = $('[data-album-photo-download]', photoDialog);
   const count = Number(slider.dataset.photoCount);
   if (!track || !photoDialog || !photoImage || !photoClose || count < 3) return;
+  let downloadUrl = null;
+  let downloadVersion = 0;
+  const resetDownload = () => {
+    downloadVersion += 1;
+    if (downloadUrl) URL.revokeObjectURL(downloadUrl);
+    downloadUrl = null;
+    photoDownload?.removeAttribute('href');
+    photoDownload?.setAttribute('aria-disabled', 'true');
+  };
+  const preparePngDownload = async (source) => {
+    resetDownload();
+    if (!photoDownload) return;
+    const version = downloadVersion;
+    photoDownload.setAttribute('aria-busy', 'true');
+    photoDownload.title = 'Menyiapkan PNG…';
+    try {
+      const image = new Image();
+      image.src = source;
+      await image.decode();
+      const canvas = document.createElement('canvas');
+      canvas.width = image.naturalWidth;
+      canvas.height = image.naturalHeight;
+      const context = canvas.getContext('2d');
+      if (!context) throw new Error('Canvas unavailable');
+      context.drawImage(image, 0, 0);
+      const blob = await new Promise((resolve, reject) => {
+        canvas.toBlob((result) => result ? resolve(result) : reject(new Error('PNG conversion failed')), 'image/png');
+      });
+      if (version !== downloadVersion) return;
+      downloadUrl = URL.createObjectURL(blob);
+      photoDownload.href = downloadUrl;
+      const name = new URL(source, document.baseURI).pathname.split('/').pop().replace(/\.[^.]+$/, '');
+      photoDownload.download = 'Dhanan-Berliana-' + name + '.png';
+      photoDownload.removeAttribute('aria-disabled');
+      photoDownload.title = 'Download foto PNG';
+    } catch (error) {
+      if (version !== downloadVersion) return;
+      photoDownload.title = 'Gagal menyiapkan PNG. Tutup dan buka foto untuk mencoba lagi.';
+    } finally {
+      if (version === downloadVersion) photoDownload.removeAttribute('aria-busy');
+    }
+  };
+  photoDownload?.addEventListener('click', (event) => {
+    if (!downloadUrl) event.preventDefault();
+  });
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let index = 0;
   let timer = null;
@@ -1372,10 +1417,7 @@ function setupInlineAlbumSlider() {
       }
       stop();
       photoImage.src = image.currentSrc || image.src;
-      if (photoDownload) {
-        photoDownload.href = photoImage.src;
-        photoDownload.download = 'Dhanan-Berliana-' + new URL(photoImage.src, document.baseURI).pathname.split('/').pop();
-      }
+      preparePngDownload(photoImage.src);
       photoImage.alt = image.alt || 'Foto pranikah Dhanan dan Berliana';
       photoDialog.showModal();
       document.body.classList.add('is-album-photo-open');
@@ -1386,6 +1428,7 @@ function setupInlineAlbumSlider() {
     if (event.target === photoDialog) photoDialog.close();
   });
   photoDialog.addEventListener('close', () => {
+    resetDownload();
     document.body.classList.remove('is-album-photo-open');
     start();
   });
