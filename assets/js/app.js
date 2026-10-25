@@ -1292,7 +1292,7 @@ function setupInlineAlbumSlider() {
   const slider = $('[data-album-slider]');
   if (!dropdown || !slider) return;
   const track = $('.album-auto-slider__track', slider);
-  const slides = $('.album-auto-slider__slide', slider);
+  const slides = $$('.album-auto-slider__slide', slider);
   const pauseButton = $('[data-album-pause]', slider);
   const count = Number(slider.dataset.photoCount);
   if (!track || !pauseButton || count < 3) return;
