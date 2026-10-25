@@ -1099,6 +1099,23 @@
     #gift .gift-account-card__status:empty { display: none; }
     #gift .gift-account-card__status { margin: .4rem 0 0; }
   </style>
+  <style>
+    .story-inline-album.story-stack-card { position: relative; isolation: isolate; }
+    .moment-corner-flower {
+      position: absolute;
+      top: .35rem;
+      width: clamp(4.25rem, 19%, 6.5rem);
+      height: auto;
+      z-index: 2;
+      pointer-events: none;
+      user-select: none;
+      mix-blend-mode: multiply;
+      clip-path: polygon(0 0, 92% 0, 100% 8%, 100% 100%, 0 100%);
+    }
+    .moment-corner-flower--right { right: .35rem; }
+    .moment-corner-flower--left { left: .35rem; transform: scaleX(-1); }
+    .story-inline-album .story-stack-card__heading { position: relative; z-index: 3; }
+  </style>
 </head>
 
 <body class="is-locked">
@@ -1998,6 +2015,8 @@
       </div>
       <div class="section-shell">
         <div class="story-inline-album story-stack-card">
+          <img class="moment-corner-flower moment-corner-flower--left" src="assets/images/moment-floral-corner.png" alt="" aria-hidden="true" width="214" height="217" loading="lazy" decoding="async">
+          <img class="moment-corner-flower moment-corner-flower--right" src="assets/images/moment-floral-corner.png" alt="" aria-hidden="true" width="214" height="217" loading="lazy" decoding="async">
           <div class="story-stack-card__heading">
             <span class="story-stack-card__eyebrow">CAPTURED</span>
             <span class="story-stack-card__title">Our Moments</span>
