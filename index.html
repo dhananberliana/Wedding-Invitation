@@ -686,6 +686,11 @@
       margin-top: clamp(2rem, 5vw, 3rem);
     }
   </style>
+  <style>
+    .event-card--invitation .event-card__actions {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  </style>
 </head>
 
 <body class="is-locked">
@@ -1445,23 +1450,6 @@
               <div class="event-card__actions">
 
                 <a
-                  class="button button--dark"
-                  id="calendar-link"
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer">
-
-                  <span
-                    class="event-card__button-icon"
-                    aria-hidden="true">
-                    🗓
-                  </span>
-
-                  Simpan Tanggal
-
-                </a>
-
-                <a
                   class="button button--outline-dark"
                   id="event-maps-link"
                   href="https://www.google.com/maps/search/?api=1&query=XXX"
@@ -1475,6 +1463,23 @@
                   </span>
 
                   Google Maps
+
+                </a>
+
+                <a
+                  class="button button--dark"
+                  id="calendar-link"
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer">
+
+                  <span
+                    class="event-card__button-icon"
+                    aria-hidden="true">
+                    🗓
+                  </span>
+
+                  Tambahkan ke kalender
 
                 </a>
 
