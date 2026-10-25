@@ -647,7 +647,7 @@
     }
 
     /* Frosted glass treatment for the opening button only. */
-    .opening-cover #open-invitation {
+    .opening-cover .opening-invitation-button {
       background: rgba(255, 253, 249, .12);
       color: #fffdf9;
       border: 1px solid rgba(255, 253, 249, .48);
@@ -655,11 +655,11 @@
       backdrop-filter: blur(12px);
       box-shadow: 0 8px 24px rgba(0, 0, 0, .12), inset 0 1px 0 rgba(255, 255, 255, .12);
     }
-    .opening-cover #open-invitation:hover {
+    .opening-cover .opening-invitation-button:hover {
       background: rgba(255, 253, 249, .2);
       border-color: rgba(255, 253, 249, .7);
     }
-    .opening-cover #open-invitation:focus-visible {
+    .opening-cover .opening-invitation-button:focus-visible {
       outline: 2px solid #fffdf9;
       outline-offset: 4px;
     }
@@ -825,7 +825,7 @@
       </p>
 
       <button
-        class="button button--light"
+        class="button button--light opening-invitation-button"
         type="button"
         id="open-invitation">
         Open Invitation
