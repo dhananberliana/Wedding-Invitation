@@ -1766,8 +1766,7 @@ function setupRsvp(
         buildRsvpPayload(values);
 
 
-      const originalLabel =
-        submitButton.textContent;
+      const originalLabel = [...submitButton.childNodes].map(node => node.cloneNode(true));
 
 
       submitButton.disabled =
@@ -1841,8 +1840,7 @@ function setupRsvp(
         submitButton.disabled =
           false;
 
-        submitButton.textContent =
-          originalLabel;
+        submitButton.replaceChildren(...originalLabel);
 
       }
 
