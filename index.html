@@ -18,6 +18,86 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 
   <style>
+    /* Initial photo loading screen; scoped to preserve the invitation. */
+    .invitation-loader[hidden] { display: none; }
+    .invitation-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 20000;
+      display: grid;
+      place-items: center;
+      overflow: auto;
+      padding: max(1.5rem, env(safe-area-inset-top)) 1.5rem max(1.5rem, env(safe-area-inset-bottom));
+      background: #302b29;
+      color: #e8d6b9;
+      text-align: center;
+      opacity: 1;
+      transition: opacity 550ms ease;
+    }
+    .invitation-loader.is-leaving { opacity: 0; pointer-events: none; }
+    .invitation-loader__inner { width: min(100%, 21rem); margin: auto; }
+    .invitation-loader__photos {
+      position: relative;
+      width: min(100%, 29vh, 19rem);
+      width: min(100%, 39svh, 19rem);
+      aspect-ratio: 4 / 5;
+      margin: 0 auto 1.7rem;
+      overflow: hidden;
+      background: #403834;
+      box-shadow: 0 1.5rem 3rem rgba(0,0,0,.2);
+    }
+    .invitation-loader__photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+      opacity: 0;
+      transition: opacity 600ms ease;
+    }
+    .invitation-loader__photo.is-active { opacity: 1; }
+    .invitation-loader__label {
+      margin: 0 0 .7rem;
+      font: 500 .65rem/1.5 'Manrope', sans-serif;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+    }
+    .invitation-loader__names {
+      margin: 0;
+      color: #c7a674;
+      font: italic 500 clamp(2rem, 8vw, 2.8rem)/1.15 'Cormorant Garamond', Georgia, serif;
+    }
+    .invitation-loader__track {
+      width: 70%;
+      height: 2px;
+      margin: 2rem auto 1rem;
+      overflow: hidden;
+      background: rgba(232,214,185,.22);
+    }
+    .invitation-loader__fill {
+      display: block;
+      height: 100%;
+      background: #e8d6b9;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 120ms linear;
+    }
+    .invitation-loader__percentage {
+      margin: 0;
+      font: 500 .75rem/1.5 'Manrope', sans-serif;
+      letter-spacing: .12em;
+      font-variant-numeric: tabular-nums;
+    }
+    html.is-initial-loading { overflow: hidden; }
+    html.is-initial-loading .opening-cover,
+    html.is-initial-loading main,
+    html.is-initial-loading .music-toggle { visibility: hidden; }
+    @media (prefers-reduced-motion: reduce) {
+      .invitation-loader, .invitation-loader__photo,
+      .invitation-loader__fill { transition: none; }
+    }
+
     /* =========================================================
        APPROVED CINEMATIC HERO / OPENING
     ========================================================= */
@@ -568,6 +648,114 @@
 </head>
 
 <body class="is-locked">
+
+  <div class="invitation-loader" id="invitation-loader" hidden role="status" aria-label="Menyiapkan undangan Dhanan dan Berliana">
+    <div class="invitation-loader__inner">
+      <div class="invitation-loader__photos" aria-hidden="true">
+        <img class="invitation-loader__photo" data-loader-src="assets/images/hero.webp" alt="" width="400" height="500" decoding="async">
+        <img class="invitation-loader__photo" data-loader-src="assets/images/story-frame-01.webp" alt="" width="400" height="500" decoding="async">
+        <img class="invitation-loader__photo" data-loader-src="assets/images/story-frame-03.webp" alt="" width="400" height="500" decoding="async">
+      </div>
+      <p class="invitation-loader__label">The Wedding of</p>
+      <p class="invitation-loader__names">Dhanan &amp; Berliana</p>
+      <div class="invitation-loader__track" aria-hidden="true"><span class="invitation-loader__fill"></span></div>
+      <p class="invitation-loader__percentage" aria-hidden="true">0%</p>
+    </div>
+  </div>
+  <script id="invitation-loader-script">
+    (() => {
+      const loader = document.getElementById('invitation-loader');
+      if (!loader) return;
+      const root = document.documentElement;
+      let finished = false;
+      let tick = null;
+      let slideshow = null;
+      let deadline = null;
+      const protectedElements = new Map();
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const protectInvitation = () => {
+        if (finished) return;
+        document.querySelectorAll('#opening-cover, main, #music-toggle').forEach((element) => {
+          protectedElements.set(element, element.inert);
+          element.inert = true;
+        });
+      };
+      const finish = () => {
+        if (finished) return;
+        finished = true;
+        window.clearInterval(tick);
+        window.clearInterval(slideshow);
+        window.clearTimeout(deadline);
+        document.removeEventListener('DOMContentLoaded', protectInvitation);
+        root.classList.remove('is-initial-loading');
+        protectedElements.forEach((wasInert, element) => { element.inert = wasInert; });
+        loader.querySelector('.invitation-loader__fill').style.transform = 'scaleX(1)';
+        loader.querySelector('.invitation-loader__percentage').textContent = '100%';
+        // Reveal the cover underneath, then fade the loader without opening it.
+        window.setTimeout(() => {
+          loader.classList.add('is-leaving');
+          window.setTimeout(() => loader.remove(), reduceMotion ? 0 : 600);
+        }, reduceMotion ? 0 : 160);
+      };
+
+      // Always release the screen, even when a photo or later script fails.
+      deadline = window.setTimeout(finish, 7000);
+      try {
+        root.classList.add('is-initial-loading');
+        loader.hidden = false;
+        document.addEventListener('DOMContentLoaded', protectInvitation, { once: true });
+        const photos = Array.from(loader.querySelectorAll('[data-loader-src]'));
+        const fill = loader.querySelector('.invitation-loader__fill');
+        const label = loader.querySelector('.invitation-loader__percentage');
+        const readyPhotos = [];
+        let settled = 0;
+        let index = 0;
+        let progress = 0;
+        const started = performance.now();
+        const duration = reduceMotion ? 400 : 3300;
+        const show = (photo) => {
+          photos.forEach((item) => item.classList.toggle('is-active', item === photo));
+        };
+        photos.forEach((photo) => {
+          let handled = false;
+          const settle = (success) => {
+            if (handled || finished) return;
+            handled = true;
+            settled += 1;
+            if (success) {
+              readyPhotos.push(photo);
+              if (readyPhotos.length === 1) show(photo);
+            }
+          };
+          photo.addEventListener('load', () => settle(true), { once: true });
+          photo.addEventListener('error', () => settle(false), { once: true });
+          photo.src = photo.dataset.loaderSrc;
+          if (photo.complete) settle(photo.naturalWidth > 0);
+        });
+        if (!reduceMotion) {
+          slideshow = window.setInterval(() => {
+            if (readyPhotos.length < 2 || document.hidden) return;
+            index = (index + 1) % readyPhotos.length;
+            show(readyPhotos[index]);
+          }, 1050);
+        }
+        // Percentage combines the short introduction and photo readiness;
+        // it is preparation progress, not a download byte counter.
+        tick = window.setInterval(() => {
+          const elapsed = performance.now() - started;
+          const timeline = Math.min(1, elapsed / duration);
+          progress = Math.max(progress, Math.min(99, Math.floor(timeline * 75 + settled / photos.length * 25)));
+          fill.style.transform = `scaleX(${progress / 100})`;
+          label.textContent = `${progress}%`;
+          if (timeline === 1 && settled === photos.length && document.readyState !== 'loading') finish();
+        }, 80);
+        window.addEventListener('pagehide', finish, { once: true });
+      } catch (error) {
+        finish();
+      }
+    })();
+  </script>
 
   <noscript>
     <div class="noscript-banner">
@@ -2239,3 +2427,4 @@
 
 </body>
 </html>
+
