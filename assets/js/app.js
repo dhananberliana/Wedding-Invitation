@@ -908,12 +908,44 @@ function createWishCard(wish) {
    RENDER WISHES
 ========================================================= */
 
+let wishesRenderSnapshot = null;
+let wishesAnimationObserver = null;
+
+function animateWishCards(list) {
+  if (wishesAnimationObserver) wishesAnimationObserver.disconnect();
+  const cards = $$('.wish-card', list);
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const reveal = (card) => {
+    if (typeof card.animate === 'function') {
+      card.animate(
+        [{ opacity: .35, transform: 'translateY(12px)' }, { opacity: 1, transform: 'translateY(0)' }],
+        { duration: 450, easing: 'ease-out' }
+      );
+    }
+  };
+  if (!('IntersectionObserver' in window)) {
+    cards.forEach(reveal);
+    return;
+  }
+  wishesAnimationObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      reveal(entry.target);
+      wishesAnimationObserver.unobserve(entry.target);
+    });
+  }, { threshold: .05 });
+  cards.forEach((card) => wishesAnimationObserver.observe(card));
+}
+
 function renderWishes(wishes = []) {
   const wishesList =
     $('#wishes-list');
 
   if (!wishesList) return;
 
+  const snapshot = JSON.stringify(wishes);
+  if (snapshot === wishesRenderSnapshot) return;
+  wishesRenderSnapshot = snapshot;
 
   wishesList.replaceChildren();
 
@@ -958,6 +990,7 @@ function renderWishes(wishes = []) {
 
 
   wishesList.append(fragment);
+  animateWishCards(wishesList);
 }
 
 
