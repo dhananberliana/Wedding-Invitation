@@ -4405,7 +4405,8 @@ body::before {
       rgba(243,238,230,.74) 70%,
       rgba(243,238,230,.88) 100%),
     url('../images/DSC_3089.webp');
-  background-position: center, center 48%;
+  /* The couple stands slightly left of the photo's geometric center. */
+  background-position: center, 40% 65%;
   background-size: cover, cover;
   background-repeat: no-repeat;
 }
@@ -4422,8 +4423,9 @@ main > #rsvp {
 }
 @media (min-aspect-ratio: 1/1) {
   body::before {
-    /* Fit the portrait vertically so neither face is cropped on wide screens. */
-    background-size: cover, auto 100%;
-    background-position: center, center;
+    /* Bring the couple toward the center, reducing the empty space overhead.
+       Keep both faces visible rather than stretching a portrait across the screen. */
+    background-size: cover, auto 120%;
+    background-position: center, calc(50% + 5vh) 85%;
   }
 }
