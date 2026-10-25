@@ -773,6 +773,38 @@
       .scroll-cue__arrow { animation: none; }
     }
   </style>
+
+  <style>
+    #gift .wedding-gift-dropdown { width: min(100%, 52rem); margin: 2rem auto 0; }
+    #gift .wedding-gift-dropdown summary {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding: 1rem 1.25rem; border: 1px solid rgba(91,71,46,.25); border-radius: .65rem;
+      background: rgba(255,253,249,.22); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+      color: #49382d; cursor: pointer; list-style: none; font-weight: 600;
+    }
+    #gift .wedding-gift-dropdown summary::-webkit-details-marker { display: none; }
+    #gift .wedding-gift-dropdown summary:focus-visible,
+    #gift .gift-account-card__copy:focus-visible { outline: 2px solid #6f3439; outline-offset: 4px; }
+    .wedding-gift-dropdown__chevron { transition: transform .2s ease; }
+    .wedding-gift-dropdown[open] .wedding-gift-dropdown__chevron { transform: rotate(180deg); }
+    #gift .gift-account-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.25rem; padding-top: 1.25rem; }
+    #gift .gift-account-card {
+      min-width: 0; padding: clamp(1.15rem,3vw,1.75rem); border: 1px solid rgba(255,253,249,.65);
+      border-radius: 1rem; background: linear-gradient(135deg,rgba(255,253,249,.4),rgba(255,253,249,.16));
+      -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      box-shadow: 0 14px 40px rgba(63,48,30,.08),inset 0 1px 0 rgba(255,255,255,.55);
+      color: #49382d; text-align: left;
+    }
+    .gift-account-card__head { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+    .gift-account-card__head .mini-label { margin: 0; font-size: .6rem; letter-spacing: .12em; }
+    .gift-account-card__logo { width: 90px; height: 36px; object-fit: contain; flex-shrink: 0; }
+    .gift-account-card__number { margin: 1.5rem 0 .4rem; font-size: clamp(1.35rem,5vw,1.8rem); letter-spacing: .07em; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+    .gift-account-card__name { margin: 0 0 1.25rem; font-size: .9rem; overflow-wrap: anywhere; }
+    .gift-account-card__copy { min-height: 44px; padding: .6rem 1rem; border: 1px solid rgba(73,56,45,.35); border-radius: 6px; background: rgba(255,253,249,.3); color: inherit; cursor: pointer; font-size: .75rem; }
+    .gift-account-card__status { min-height: 1.5em; margin: .65rem 0 0; font-size: .72rem; }
+    @media(max-width:767px) { #gift .gift-account-grid { grid-template-columns: minmax(0,1fr); } }
+    @media(prefers-reduced-motion:reduce) { .wedding-gift-dropdown__chevron { transition: none; } }
+  </style>
 </head>
 
 <body class="is-locked">
@@ -1700,55 +1732,31 @@
       </p>
     </div>
 
-    <div class="gift-grid">
-
-      <!-- BANK ACCOUNT -->
-      <article class="gift-info-card gift-bank-card">
-
-        <div class="gift-bank-card__head">
-
-          <span
-            class="gift-bank-card__icon"
-            aria-hidden="true">
-            💳
-          </span>
-
-          <span class="mini-label">
-            Nomor Rekening
-          </span>
-
-        </div>
-
-        <p
-          class="gift-bank-card__name"
-          data-config="gift.bankAccountName">
-          a.n. Dhanan Arieyasa
-        </p>
-
-        <strong
-          class="gift-bank-card__number"
-          id="bank-account-number"
-          data-config="gift.bankAccount">
-          XXX
-        </strong>
-
-        <button
-          class="gift-copy-button"
-          id="copy-bank-account"
-          type="button"
-          aria-label="Salin nomor rekening">
-          Salin Nomor Rekening
-        </button>
-
-        <p
-          class="gift-copy-status"
-          id="gift-copy-status"
-          aria-live="polite">
-        </p>
-
-      </article>
-
-    </div>
+    <details class="wedding-gift-dropdown">
+      <summary>Wedding Gift <span class="wedding-gift-dropdown__chevron" aria-hidden="true">⌄</span></summary>
+      <div class="gift-account-grid">
+        <article class="gift-account-card" data-gift-account>
+          <div class="gift-account-card__head">
+            <span class="mini-label">Bank Central Asia</span>
+            <img class="gift-account-card__logo" src="https://cdn.jsdelivr.net/npm/idn-finlogos@2/dist/icons/bca.svg" alt="BCA" width="90" height="36" loading="lazy" decoding="async">
+          </div>
+          <p class="gift-account-card__number" data-account-number>7705388041</p>
+          <p class="gift-account-card__name">I Wayan Dhanan Arieyasa</p>
+          <button class="gift-account-card__copy" type="button" data-copy-account aria-label="Salin nomor rekening I Wayan Dhanan Arieyasa" aria-describedby="gift-copy-status-dhanan">Salin Nomor Rekening</button>
+          <p class="gift-account-card__status" id="gift-copy-status-dhanan" data-copy-status aria-live="polite"></p>
+        </article>
+        <article class="gift-account-card" data-gift-account>
+          <div class="gift-account-card__head">
+            <span class="mini-label">Bank Central Asia</span>
+            <img class="gift-account-card__logo" src="https://cdn.jsdelivr.net/npm/idn-finlogos@2/dist/icons/bca.svg" alt="BCA" width="90" height="36" loading="lazy" decoding="async">
+          </div>
+          <p class="gift-account-card__number" data-account-number>6690609477</p>
+          <p class="gift-account-card__name">Ni Putu Berliana Maharani</p>
+          <button class="gift-account-card__copy" type="button" data-copy-account aria-label="Salin nomor rekening Ni Putu Berliana Maharani" aria-describedby="gift-copy-status-berliana">Salin Nomor Rekening</button>
+          <p class="gift-account-card__status" id="gift-copy-status-berliana" data-copy-status aria-live="polite"></p>
+        </article>
+      </div>
+    </details>
 
   </div>
 
