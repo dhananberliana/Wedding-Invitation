@@ -1040,6 +1040,11 @@
     .story-stack-card .story-album-dropdown > summary .story-stack-card__photo--middle { transform: translate(7%,2%) rotate(5deg) scale(.96); }
     .story-stack-card .story-album-dropdown > summary .story-stack-card__photo--front { transform: none; }
   </style>
+  <style>
+    .album-auto-slider__controls { display: flex; justify-content: center; gap: .75rem; margin-top: .75rem; }
+    .album-auto-slider__arrow { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(255,253,249,.4); border-radius: 6px; background: rgba(255,253,249,.15); color: inherit; cursor: pointer; font-size: 1.25rem; }
+    .album-auto-slider__arrow:focus-visible { outline: 2px solid var(--color-gold-light); outline-offset: 3px; }
+  </style>
 </head>
 
 <body class="is-locked">
@@ -1959,7 +1964,10 @@
 <div class="album-auto-slider__slide" aria-hidden="true"><img src="assets/images/story-frame-01.webp" alt="" loading="lazy" decoding="async"></div>
 <div class="album-auto-slider__slide" aria-hidden="true"><img src="assets/images/story-frame-02.webp" alt="" loading="lazy" decoding="async"></div>
 <div class="album-auto-slider__slide" aria-hidden="true"><img src="assets/images/story-frame-03.webp" alt="" loading="lazy" decoding="async"></div></div></div>
-              <button class="album-auto-slider__pause" type="button" data-album-pause>Jeda slideshow</button>
+              <div class="album-auto-slider__controls">
+                <button class="album-auto-slider__arrow" type="button" data-album-prev aria-label="Foto sebelumnya">&lt;</button>
+                <button class="album-auto-slider__arrow" type="button" data-album-next aria-label="Foto berikutnya">&gt;</button>
+              </div>
             </div>
           </details>
         </div>
