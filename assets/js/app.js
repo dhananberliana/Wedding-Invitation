@@ -40,6 +40,13 @@ function getConfigValue(path) {
     );
 }
 
+function populateInvitationGuest() {
+  const guest = $('#invitation-guest-name');
+  if (!guest) return;
+  const name = new URLSearchParams(window.location.search).get('to')?.trim();
+  guest.textContent = name || 'Bapak/Ibu/Saudara/i';
+}
+
 function populateConfiguredText() {
   $$('[data-config]').forEach((node) => {
     const value = getConfigValue(node.dataset.config);
@@ -1902,6 +1909,8 @@ function init() {
   setupMusic();
 
   populateConfiguredText();
+
+  populateInvitationGuest();
 
   setupExternalLinks();
 
