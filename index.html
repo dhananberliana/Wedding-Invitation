@@ -1114,6 +1114,12 @@
     }
     .moment-corner-flower--right { right: .35rem; }
     .moment-corner-flower--left { left: .35rem; transform: scaleX(-1); }
+    .moment-corner-flower--bottom-right {
+      top: auto; bottom: .35rem; right: .35rem; transform: scaleY(-1);
+    }
+    .moment-corner-flower--bottom-left {
+      top: auto; bottom: .35rem; left: .35rem; transform: scale(-1, -1);
+    }
     .story-inline-album .story-stack-card__heading { position: relative; z-index: 3; }
   </style>
 </head>
@@ -2015,6 +2021,8 @@
       </div>
       <div class="section-shell">
         <div class="story-inline-album story-stack-card">
+          <img class="moment-corner-flower moment-corner-flower--bottom-left" src="assets/images/moment-floral-corner.png" alt="" aria-hidden="true" width="214" height="217" loading="lazy" decoding="async">
+          <img class="moment-corner-flower moment-corner-flower--bottom-right" src="assets/images/moment-floral-corner.png" alt="" aria-hidden="true" width="214" height="217" loading="lazy" decoding="async">
           <img class="moment-corner-flower moment-corner-flower--left" src="assets/images/moment-floral-corner.png" alt="" aria-hidden="true" width="214" height="217" loading="lazy" decoding="async">
           <img class="moment-corner-flower moment-corner-flower--right" src="assets/images/moment-floral-corner.png" alt="" aria-hidden="true" width="214" height="217" loading="lazy" decoding="async">
           <div class="story-stack-card__heading">
