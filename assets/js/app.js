@@ -1855,45 +1855,27 @@ function setupRsvp(
 ========================================================= */
 
 function setupBankAccountCopy() {
-  const button = $('#copy-bank-account');
-  const account = $('#bank-account-number');
-  const status = $('#gift-copy-status');
-
-  if (!button || !account) return;
-
-  button.addEventListener('click', async () => {
-    const value = account.textContent.trim();
-
-    if (!value || value === 'XXX') {
-      if (status) {
-        status.textContent = 'Nomor rekening belum tersedia.';
-      }
-      return;
-    }
-
-    try {
-      await navigator.clipboard.writeText(value);
-
-      button.textContent = 'Tersalin ✓';
-
-      if (status) {
+  $$('[data-gift-account]').forEach((card) => {
+    const button = $('[data-copy-account]', card);
+    const account = $('[data-account-number]', card);
+    const status = $('[data-copy-status]', card);
+    if (!button || !account || !status) return;
+    let resetTimer;
+    button.addEventListener('click', async () => {
+      const value = account.textContent.trim();
+      try {
+        await navigator.clipboard.writeText(value);
+        button.textContent = 'Tersalin ✓';
         status.textContent = 'Nomor rekening berhasil disalin.';
-      }
-
-      window.setTimeout(() => {
-        button.textContent = 'Salin Nomor Rekening';
-
-        if (status) {
+        window.clearTimeout(resetTimer);
+        resetTimer = window.setTimeout(() => {
+          button.textContent = 'Salin Nomor Rekening';
           status.textContent = '';
-        }
-      }, 1800);
-
-    } catch {
-      if (status) {
-        status.textContent =
-          'Tidak dapat menyalin otomatis. Tekan dan tahan nomor rekening untuk menyalin.';
+        }, 1800);
+      } catch {
+        status.textContent = 'Tidak dapat menyalin otomatis. Tekan dan tahan nomor rekening untuk menyalin.';
       }
-    }
+    });
   });
 }
 
