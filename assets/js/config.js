@@ -70,7 +70,7 @@ export const WEDDING_CONFIG = Object.freeze({
   },
 
   site: {
-    invitationLabel: 'Wedding Invitation',
+    invitationLabel: 'The Wedding of',
     greeting: 'Dear family & friends,',
     openingMessage:
       'Together with our families, we warmly invite you to celebrate the beginning of our forever.',
