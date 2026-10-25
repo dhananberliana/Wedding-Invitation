@@ -1867,7 +1867,7 @@ function setupBankAccountCopy() {
         status.textContent = 'Nomor rekening berhasil disalin.';
         window.clearTimeout(resetTimer);
         resetTimer = window.setTimeout(() => {
-          button.textContent = 'Salin Nomor Rekening';
+          button.textContent = 'Copy';
           status.textContent = '';
         }, 1800);
       } catch {
