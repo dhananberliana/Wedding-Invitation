@@ -989,6 +989,24 @@
       height: 44px;
     }
   </style>
+  <style>
+    .story-inline-album { width: min(100%, 56rem); margin: 2rem auto 0; text-align: center; }
+    .story-inline-album__title { margin: 0 0 1.5rem; font: 500 clamp(2rem,6vw,3.5rem)/1.1 var(--font-display); }
+    .story-album-dropdown summary {
+      display: flex; width: fit-content; max-width: 100%; margin: 0 auto; min-height: 44px;
+      align-items: center; justify-content: center; gap: .75rem; padding: .8rem 1.5rem;
+      border: 1px solid rgba(91,71,46,.3); border-radius: 6px;
+      background: rgba(255,253,249,.25); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+      color: var(--color-ink); cursor: pointer; list-style: none; font-size: .8rem; letter-spacing: .08em;
+    }
+    .story-album-dropdown summary::-webkit-details-marker { display: none; }
+    .story-album-dropdown summary:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 4px; }
+    .story-album-dropdown[open] summary span { transform: rotate(180deg); }
+    .story-inline-gallery { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .8rem; margin-top: 1.5rem; }
+    .story-inline-gallery figure { min-width: 0; margin: 0; }
+    .story-inline-gallery img { width: 100%; height: auto; border-radius: 8px; }
+    @media(max-width:767px) { .story-inline-gallery { grid-template-columns: repeat(2,minmax(0,1fr)); gap: .6rem; } }
+  </style>
 </head>
 
 <body class="is-locked">
@@ -1852,204 +1870,36 @@
 
     </section>
 
-    <section
-      class="story story--album"
-      aria-labelledby="story-title">
-
+    <section class="story story--album" aria-labelledby="story-title">
       <div class="section-shell story-heading reveal">
-
-        <p class="eyebrow eyebrow--dark">
-          Sekilas Tentang Kami
-        </p>
-
-        <h2
-          class="display-title"
-          id="story-title">
-          Kisah Kami dalam Bingkai
-        </h2>
-
-        <p class="story-gallery__intro">
-          Momen-momen pranikah kami dalam satu album.
-          Foto akan berganti secara otomatis, dan dapat diketuk untuk melihat lebih detail.
-        </p>
-
+        <p class="eyebrow eyebrow--dark">Sekilas Tentang Kami</p>
+        <h2 class="display-title" id="story-title">Kisah Kami dalam Bingkai</h2>
+        <p class="story-gallery__intro">Momen-momen pranikah kami dalam satu album. Klik View Album untuk melihat seluruh foto di bawah.</p>
       </div>
-
-
       <div class="section-shell">
-
-        <div
-          class="story-stack-card reveal"
-          id="story-stack-card">
-
-          <div class="story-stack-card__heading">
-            <span class="story-stack-card__eyebrow">
-              CAPTURED
-            </span>
-
-            <span class="story-stack-card__title">
-              Our Moments
-            </span>
-          </div>
-
-
-          <button
-            class="story-stack-card__viewer"
-            id="story-gallery-trigger"
-            type="button"
-            aria-haspopup="dialog"
-            aria-controls="story-gallery-modal"
-            aria-label="Buka album foto kisah kami">
-
-            <span
-              class="story-stack-card__photo story-stack-card__photo--back"
-              aria-hidden="true">
-
-              <img
-                id="story-stack-back"
-                src="assets/images/story-frame-03.webp"
-                alt=""
-                loading="lazy"
-                decoding="async">
-
-            </span>
-
-            <span
-              class="story-stack-card__photo story-stack-card__photo--middle"
-              aria-hidden="true">
-
-              <img
-                id="story-stack-middle"
-                src="assets/images/story-frame-02.webp"
-                alt=""
-                loading="lazy"
-                decoding="async">
-
-            </span>
-
-            <span class="story-stack-card__photo story-stack-card__photo--front">
-
-              <img
-                id="story-stack-front"
-                src="assets/images/story-frame-01.webp"
-                alt="Foto pranikah Dhanan dan Berliana"
-                loading="lazy"
-                decoding="async">
-
-            </span>
-
-            <span class="story-stack-card__tap">
-              Ketuk untuk melihat album
-            </span>
-
-          </button>
-
-
-          <div class="story-stack-card__footer">
-
-            <div
-              class="story-stack-card__progress"
-              aria-hidden="true">
-              <span id="story-stack-progress"></span>
+        <div class="story-inline-album">
+          <p class="mini-label">CAPTURED</p>
+          <h3 class="story-inline-album__title">Our Moments</h3>
+          <details class="story-album-dropdown">
+            <summary>View Album <span aria-hidden="true">⌄</span></summary>
+            <div class="story-inline-gallery">
+              <figure><img src="assets/images/story-frame-01.webp" alt="Dhanan dan Berliana berpelukan dalam busana adat Bali" loading="lazy" decoding="async"></figure>
+              <figure><img src="assets/images/story-frame-02.webp" alt="Dhanan dan Berliana berbagi momen bahagia" loading="lazy" decoding="async"></figure>
+              <figure><img src="assets/images/story-frame-03.webp" alt="Potret formal pranikah Dhanan dan Berliana" loading="lazy" decoding="async"></figure>
+              <figure><img src="assets/images/story-frame-04.webp" alt="Dhanan dan Berliana di dekat pintu kayu berukir" loading="lazy" decoding="async"></figure>
+              <figure><img src="assets/images/story-frame-05.webp" alt="Potret romantis di balik selendang tipis" loading="lazy" decoding="async"></figure>
+              <figure><img src="assets/images/story-frame-06.webp" alt="Potret close-up pranikah" loading="lazy" decoding="async"></figure>
+              <figure><img src="assets/images/story-frame-07.webp" alt="Potret Berliana menatap kamera" loading="lazy" decoding="async"></figure>
+              <figure><img src="assets/images/story-frame-08.webp" alt="Potret artistik Dhanan dan Berliana" loading="lazy" decoding="async"></figure>
+              <figure><img src="assets/images/story-frame-09.webp" alt="Potret pranikah tradisional Dhanan dan Berliana" loading="lazy" decoding="async"></figure>
+              <figure><img src="assets/images/story-frame-10.webp" alt="Potret solo Dhanan dalam busana adat Bali" loading="lazy" decoding="async"></figure>
+              <figure><img src="assets/images/bride.webp" alt="Potret solo Berliana dalam busana adat Bali" loading="lazy" decoding="async"></figure>
+              <figure><img src="assets/images/story-frame-11-v1.webp" alt="Potret Berliana dalam busana adat Bali" loading="lazy" decoding="async"></figure>
+              <figure><img src="assets/images/story-frame-12-v1.webp" alt="Potret studio Dhanan dan Berliana bergandengan tangan" loading="lazy" decoding="async"></figure>
             </div>
-
-            <button
-              class="story-stack-card__open"
-              type="button"
-              data-story-stack-open>
-              VIEW ALBUM
-              <span aria-hidden="true">⌄</span>
-            </button>
-
-          </div>
-
+          </details>
         </div>
-
       </div>
-
-
-      <!-- FULLSCREEN DETAIL SLIDER -->
-
-      <dialog
-        class="story-detail-modal"
-        id="story-gallery-modal"
-        aria-label="Album foto Dhanan dan Berliana">
-
-        <div class="story-detail-modal__shell">
-
-          <div class="story-detail-modal__topbar">
-
-            <div class="story-detail-modal__brand">
-              <span>CAPTURED</span>
-              <strong>Our Moments</strong>
-            </div>
-
-            <button
-              class="story-detail-modal__close"
-              type="button"
-              data-story-modal-close
-              aria-label="Tutup album">
-              ×
-            </button>
-
-          </div>
-
-
-          <div
-            class="story-detail-modal__viewport"
-            data-story-modal-viewport>
-
-            <div class="story-detail-modal__stage">
-
-              <img
-                class="story-detail-modal__image"
-                id="story-detail-image"
-                src="assets/images/story-frame-01.webp"
-                alt="Foto kisah Dhanan dan Berliana">
-
-            </div>
-
-          </div>
-
-
-          <div class="story-detail-modal__footer">
-
-            <button
-              class="story-detail-modal__arrow"
-              type="button"
-              data-story-modal-prev
-              aria-label="Foto sebelumnya">
-              ←
-            </button>
-
-            <div class="story-detail-modal__status">
-
-              <span
-                class="story-detail-modal__counter"
-                data-story-modal-counter>
-                1 / 13
-              </span>
-
-              <span class="story-detail-modal__hint">
-                Geser foto untuk melihat momen lainnya
-              </span>
-
-            </div>
-
-            <button
-              class="story-detail-modal__arrow"
-              type="button"
-              data-story-modal-next
-              aria-label="Foto berikutnya">
-              →
-            </button>
-
-          </div>
-
-        </div>
-
-      </dialog>
-
     </section>
 
     
