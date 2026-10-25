@@ -4459,3 +4459,11 @@ main > #rsvp {
     letter-spacing: .08em;
   }
 }
+
+/* Subtle rounding on Our Moment previews and opened photos. */
+.story-stack-card__photo,
+.story-stack-card__photo img,
+.story-detail-modal__image,
+.story-detail-modal__slide img {
+  border-radius: 8px;
+}
