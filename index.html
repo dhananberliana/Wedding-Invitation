@@ -851,6 +851,20 @@
       color: #fff;
     }
   </style>
+  <style>
+    #countdown .countdown-calendar-action {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    #countdown #calendar-link {
+      width: auto;
+      max-width: 100%;
+      border-radius: 6px;
+      gap: .5rem;
+      text-align: center;
+    }
+  </style>
 </head>
 
 <body class="is-locked">
@@ -1365,7 +1379,12 @@
           Save the Date
         </h2>
 
-<div
+        <div class="countdown-event-details">
+          <p><time datetime="2026-12-11">Jumat, 11 Desember 2026</time></p>
+          <p>Jam 16.00 - Selesai</p>
+        </div>
+
+        <div
           class="countdown-grid"
           aria-live="polite">
 
@@ -1407,9 +1426,25 @@
 
         </div>
 
-        <div class="countdown-event-details">
-          <p><time datetime="2026-12-11">Jumat, 11 Desember 2026</time></p>
-          <p>Jam 16.00 - Selesai</p>
+
+
+        <div class="countdown-calendar-action">
+          <a
+                  class="button button--dark"
+                  id="calendar-link"
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer">
+
+                  <span
+                    class="event-card__button-icon"
+                    aria-hidden="true">
+                    🗓
+                  </span>
+
+                  Tambahkan ke kalender
+
+                </a>
         </div>
 
         <p
@@ -1515,22 +1550,7 @@
 
                 </a>
 
-                <a
-                  class="button button--dark"
-                  id="calendar-link"
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer">
-
-                  <span
-                    class="event-card__button-icon"
-                    aria-hidden="true">
-                    🗓
-                  </span>
-
-                  Tambahkan ke kalender
-
-                </a>
+                
 
               </div>
 
