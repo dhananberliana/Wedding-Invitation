@@ -1392,6 +1392,36 @@ function setupAlbumCoverPreview() {
   sync();
 }
 
+function setupSmoothAlbumDropdown() {
+  const dropdown = $('.story-album-dropdown');
+  const summary = dropdown && $('summary', dropdown);
+  if (!dropdown || !summary || typeof dropdown.animate !== 'function') return;
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let animation = null;
+  summary.addEventListener('click', (event) => {
+    if (motion.matches) return;
+    event.preventDefault();
+    const opening = !dropdown.open;
+    const from = dropdown.getBoundingClientRect().height;
+    if (animation) animation.cancel();
+    const closedHeight = summary.getBoundingClientRect().height;
+    if (opening) dropdown.open = true;
+    const to = opening ? dropdown.getBoundingClientRect().height : closedHeight;
+    dropdown.style.overflow = 'hidden';
+    const current = dropdown.animate(
+      [{ height: from + 'px' }, { height: to + 'px' }],
+      { duration: 420, easing: 'cubic-bezier(.22,1,.36,1)' }
+    );
+    animation = current;
+    current.onfinish = () => {
+      if (animation !== current) return;
+      dropdown.open = opening;
+      dropdown.style.overflow = '';
+      animation = null;
+    };
+  });
+}
+
 function init() {
   // Daftarkan tombol pembuka lebih dulu supaya tetap bekerja
   // walaupun ada konfigurasi fitur lain yang belum lengkap.
@@ -1410,6 +1440,8 @@ function init() {
   setupAlbumCoverPreview();
 
   setupInlineAlbumSlider();
+
+  setupSmoothAlbumDropdown();
 
 
   setupCountdown();
