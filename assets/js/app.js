@@ -1329,6 +1329,7 @@ function setupInlineAlbumSlider() {
   const photoDialog = $('#album-photo-dialog');
   const photoImage = $('.album-photo-dialog__image', photoDialog);
   const photoClose = $('[data-album-photo-close]', photoDialog);
+  const photoDownload = $('[data-album-photo-download]', photoDialog);
   const count = Number(slider.dataset.photoCount);
   if (!track || !photoDialog || !photoImage || !photoClose || count < 3) return;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -1371,6 +1372,10 @@ function setupInlineAlbumSlider() {
       }
       stop();
       photoImage.src = image.currentSrc || image.src;
+      if (photoDownload) {
+        photoDownload.href = photoImage.src;
+        photoDownload.download = 'Dhanan-Berliana-' + new URL(photoImage.src, document.baseURI).pathname.split('/').pop();
+      }
       photoImage.alt = image.alt || 'Foto pranikah Dhanan dan Berliana';
       photoDialog.showModal();
       document.body.classList.add('is-album-photo-open');
