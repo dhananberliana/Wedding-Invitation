@@ -4385,3 +4385,45 @@ body.is-story-detail-open {
   }
 }
 
+
+/* Shared portrait behind the scrolling invitation details.
+   A fixed layer also works on mobile Safari without background-attachment. */
+body {
+  isolation: isolate;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: #d8cec1;
+  background-image:
+    linear-gradient(180deg,
+      rgba(243,238,230,.80) 0%,
+      rgba(243,238,230,.66) 38%,
+      rgba(243,238,230,.74) 70%,
+      rgba(243,238,230,.88) 100%),
+    url('../images/DSC_3089.webp');
+  background-position: center, center 48%;
+  background-size: cover, cover;
+  background-repeat: no-repeat;
+}
+main > .section--paper,
+main > .section--sand,
+main > .story,
+#countdown {
+  background: transparent;
+}
+/* Retain the light text contrast of the RSVP section. */
+main > #rsvp {
+  background: linear-gradient(180deg,
+    rgba(29,28,26,.88), rgba(29,28,26,.80), rgba(29,28,26,.88));
+}
+@media (min-aspect-ratio: 1/1) {
+  body::before {
+    /* Fit the portrait vertically so neither face is cropped on wide screens. */
+    background-size: cover, auto 100%;
+    background-position: center, center;
+  }
+}
