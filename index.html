@@ -1154,6 +1154,27 @@
   <style>
     #gift .gift-account-card__number { font-weight: 700; }
   </style>
+
+  <style>
+    .hero__desktop-video-space { display: none; }
+    @media (min-width: 768px) {
+      #home .hero__desktop-video-space {
+        display: block;
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 64%;
+        z-index: 1;
+        overflow: hidden;
+        pointer-events: none;
+        -webkit-mask-image: linear-gradient(to right, #000 88%, transparent);
+        mask-image: linear-gradient(to right, #000 88%, transparent);
+      }
+      #home .hero__desktop-video { display: none; width: 100%; height: 100%; object-fit: cover; }
+      #home .hero__desktop-video[src] { display: block; }
+      #home .hero__overlay { z-index: 2; }
+      #home .hero__content { z-index: 3; }
+    }
+  </style>
 </head>
 
 <body class="is-locked">
@@ -1456,6 +1477,11 @@
 
         </div>
 
+      </div>
+
+      <!-- Desktop left video area. Add the uploaded video URL to src when available. -->
+      <div class="hero__desktop-video-space" aria-hidden="true">
+        <video class="hero__desktop-video" muted loop playsinline autoplay preload="none" tabindex="-1"></video>
       </div>
 
       <div class="hero__overlay"></div>
