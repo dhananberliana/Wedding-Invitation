@@ -1379,12 +1379,13 @@ function setupInlineAlbumSlider() {
     const track = $('.album-auto-slider__track', slider);
     const slides = $$('.album-auto-slider__slide', slider);
     const count = Number(slider.dataset.photoCount);
+    const perView = Number(slider.dataset.slidesPerView) || 3;
     if (!track || count < 3) return null;
   let index = 0;
   let timer = null;
   const render = () => {
-    track.style.transform = 'translateX(-' + (index * 100 / 3) + '%)';
-    slides.forEach((slide, i) => slide.classList.toggle('is-center', i === index + 1));
+    track.style.transform = 'translateX(-' + (index * 100 / perView) + '%)';
+    slides.forEach((slide, i) => slide.classList.toggle('is-center', i === index + Math.floor(perView / 2)));
   };
   const snap = (value) => {
     track.style.transition = 'none';
