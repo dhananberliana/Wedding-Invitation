@@ -1322,7 +1322,7 @@ function setupBankAccountCopy() {
 
 function setupInlineAlbumSlider() {
   const dropdown = $('.story-album-dropdown');
-  const sliders = $('[data-album-slider]', dropdown);
+  const sliders = $$('[data-album-slider]', dropdown);
   if (!dropdown || !sliders.length) return;
   const photoDialog = $('#album-photo-dialog');
   const photoImage = $('.album-photo-dialog__image', photoDialog);
@@ -1452,7 +1452,7 @@ function setupAlbumCoverPreview() {
   if (!album) return;
   const gallery = $('.story-album-dropdown > .story-inline-gallery', album);
   if (!gallery) return;
-  const photos = $('img', gallery);
+  const photos = $$('img', gallery);
   const front = $('.story-stack-card__photo--front img', album);
   const middle = $('.story-stack-card__photo--middle img', album);
   const back = $('.story-stack-card__photo--back img', album);
