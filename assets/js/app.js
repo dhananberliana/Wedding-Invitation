@@ -1450,7 +1450,9 @@ function setupInlineAlbumSlider() {
 function setupAlbumCoverPreview() {
   const album = $('.story-inline-album.story-stack-card');
   if (!album) return;
-  const photos = $$('.story-inline-gallery img', album);
+  const gallery = $('.story-album-dropdown > .story-inline-gallery', album);
+  if (!gallery) return;
+  const photos = $('img', gallery);
   const front = $('.story-stack-card__photo--front img', album);
   const middle = $('.story-stack-card__photo--middle img', album);
   const back = $('.story-stack-card__photo--back img', album);
