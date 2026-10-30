@@ -656,17 +656,18 @@ function setupRevealAnimations() {
     if (!entry.isIntersecting) return;
 
     entry.target.classList.add('is-visible');
+    entry.target.classList.remove('reveal-pending');
     observer.unobserve(entry.target);
   });
 }, {
-  threshold: 0.22,
-  rootMargin: '0px 0px -8% 0px'
+  threshold: 0.01,
+  rootMargin: '0px 0px 40px 0px'
 });
 
 
   elements.forEach(
     (element) =>
-      observer.observe(element)
+      { element.classList.add('reveal-pending'); observer.observe(element); }
   );
 }
 
@@ -1514,6 +1515,7 @@ function setupSmoothAlbumDropdown() {
 }
 
 function init() {
+  setupRevealAnimations();
   // Daftarkan tombol pembuka lebih dulu supaya tetap bekerja
   // walaupun ada konfigurasi fitur lain yang belum lengkap.
   setupOpeningCover();
@@ -1536,8 +1538,6 @@ function init() {
 
 
   setupCountdown();
-
-  setupRevealAnimations();
 
   const syncAttendance =
     setupAttendanceToggle();
