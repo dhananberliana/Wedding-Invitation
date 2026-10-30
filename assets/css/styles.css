@@ -4487,3 +4487,8 @@ main > #rsvp {
 #wishes .wish-card time {
   color: #65594c;
 }
+
+/* Keep the bride's headwear visible in the circular portrait. */
+.couple-portrait--bride {
+  object-position: center top;
+}
