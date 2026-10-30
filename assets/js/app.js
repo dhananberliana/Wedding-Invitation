@@ -1322,16 +1322,13 @@ function setupBankAccountCopy() {
 
 function setupInlineAlbumSlider() {
   const dropdown = $('.story-album-dropdown');
-  const slider = $('[data-album-slider]');
-  if (!dropdown || !slider) return;
-  const track = $('.album-auto-slider__track', slider);
-  const slides = $$('.album-auto-slider__slide', slider);
+  const sliders = $('[data-album-slider]', dropdown);
+  if (!dropdown || !sliders.length) return;
   const photoDialog = $('#album-photo-dialog');
   const photoImage = $('.album-photo-dialog__image', photoDialog);
   const photoClose = $('[data-album-photo-close]', photoDialog);
   const photoDownload = $('[data-album-photo-download]', photoDialog);
-  const count = Number(slider.dataset.photoCount);
-  if (!track || !photoDialog || !photoImage || !photoClose || count < 3) return;
+  if (!photoDialog || !photoImage || !photoClose) return;
   let downloadUrl = null;
   let downloadVersion = 0;
   const resetDownload = () => {
@@ -1378,6 +1375,11 @@ function setupInlineAlbumSlider() {
     if (!downloadUrl) event.preventDefault();
   });
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const controls = sliders.map((slider) => {
+    const track = $('.album-auto-slider__track', slider);
+    const slides = $$('.album-auto-slider__slide', slider);
+    const count = Number(slider.dataset.photoCount);
+    if (!track || count < 3) return null;
   let index = 0;
   let timer = null;
   const render = () => {
@@ -1404,9 +1406,15 @@ function setupInlineAlbumSlider() {
     if (!dropdown.open || photoDialog.open || document.hidden || reduceMotion.matches) return;
     timer = window.setInterval(() => move(1), 3500);
   };
-  track.addEventListener('transitionend', (event) => {
-    if (event.target === track && event.propertyName === 'transform' && index >= count) snap(0);
-  });
+
+    track.addEventListener('transitionend', (event) => {
+      if (event.target === track && event.propertyName === 'transform' && index >= count) snap(0);
+    });
+    render();
+    return { start, stop };
+  }).filter(Boolean);
+  const stop = () => controls.forEach((control) => control.stop());
+  const start = () => controls.forEach((control) => control.start());
   $$('[data-album-photo]', dropdown).forEach((button) => {
     button.addEventListener('click', () => {
       const image = $('img', button);
@@ -1435,7 +1443,6 @@ function setupInlineAlbumSlider() {
   dropdown.addEventListener('toggle', start);
   document.addEventListener('visibilitychange', start);
   reduceMotion.addEventListener('change', start);
-  render();
   start();
 }
 
