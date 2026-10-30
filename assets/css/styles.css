@@ -4492,3 +4492,12 @@ main > #rsvp {
 .couple-portrait--bride {
   object-position: center top;
 }
+
+/* Frosted transparent glass for the Our Moments album card. */
+.story-inline-album.story-stack-card {
+  background: linear-gradient(145deg, rgba(255,253,249,.22), rgba(125,94,67,.12));
+  border: 1px solid rgba(255,253,249,.4);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 20px 60px rgba(55,39,26,.12), inset 0 1px 0 rgba(255,255,255,.22);
+}
