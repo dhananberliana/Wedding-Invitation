@@ -1200,6 +1200,15 @@
 .wedding-video__frame iframe { display:block; width:100%; height:100%; border:0; }
 .wedding-video__link { display:inline-block; margin-top:1rem; color:inherit; font-size:.8rem; text-underline-offset:4px; }
 </style>
+<style>
+.wedding-video__frame { position:relative; aspect-ratio:1/1; }
+.wedding-video__frame.is-expanded { aspect-ratio:9/16; }
+.wedding-video__frame iframe[hidden] { display:none; }
+.wedding-video__preview { position:absolute; inset:0; width:100%; height:100%; border:0; padding:0; cursor:pointer; background:#201d1a; color:white; }
+.wedding-video__preview img { width:100%; height:100%; object-fit:cover; }
+.wedding-video__preview span { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); display:grid; place-items:center; width:64px; height:64px; border-radius:50%; background:rgba(0,0,0,.5); font-size:26px; }
+.wedding-video__preview[hidden] { display:none; }
+</style>
 </head>
 
 <body class="is-locked">
@@ -2156,9 +2165,10 @@
       </div>
     
       <div class="section-shell wedding-video">
-        <div class="wedding-video__frame">
-          <iframe
-            src="https://www.youtube-nocookie.com/embed/ReACOSX9SYo?playsinline=1&amp;rel=0"
+        <div class="wedding-video__frame" id="wedding-video-frame">
+          <button class="wedding-video__preview" type="button" aria-label="Putar video Dhanan dan Berliana" aria-expanded="false"><img src="https://i.ytimg.com/vi/ReACOSX9SYo/hqdefault.jpg" alt="Video Dhanan dan Berliana" loading="lazy"><span aria-hidden="true">▶</span></button>
+          <iframe hidden
+            data-video-src="https://www.youtube-nocookie.com/embed/ReACOSX9SYo?playsinline=1&amp;rel=0&amp;autoplay=1"
             title="Video pernikahan Dhanan dan Berliana"
             width="405" height="720"
             loading="lazy"
@@ -2655,6 +2665,26 @@
     </a>
     <img class="album-photo-dialog__image" alt="">
   </dialog>
+<script>
+(() => {
+  const frame = document.getElementById('wedding-video-frame');
+  const button = frame?.querySelector('.wedding-video__preview');
+  const player = frame?.querySelector('iframe');
+  if (!button || !player) return;
+  button.addEventListener('click', () => {
+    frame.classList.add('is-expanded');
+    button.setAttribute('aria-expanded', 'true');
+    button.hidden = true;
+    player.hidden = false;
+    player.src = player.dataset.videoSrc;
+    document.getElementById('background-music')?.pause();
+    const music = document.getElementById('music-toggle');
+    music?.setAttribute('aria-pressed', 'false');
+    music?.setAttribute('aria-label', 'Putar musik latar');
+    player.focus();
+  }, { once: true });
+})();
+</script>
 </body>
 </html>
 
