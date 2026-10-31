@@ -1194,6 +1194,12 @@
 .moments-together__landscape-slider .album-auto-slider__slide.is-center img { transform:scale(1); }
 .moments-together__landscape-slider .album-photo-open { display:block; width:100%; }
 </style>
+<style>
+.wedding-video { margin:clamp(2rem,6vw,4rem) auto; text-align:center; }
+.wedding-video__frame { width:min(100%,405px); aspect-ratio:9/16; margin-inline:auto; overflow:hidden; border-radius:12px; background:#201d1a; border:1px solid rgba(255,253,249,.35); box-shadow:0 16px 40px rgba(30,25,20,.16); }
+.wedding-video__frame iframe { display:block; width:100%; height:100%; border:0; }
+.wedding-video__link { display:inline-block; margin-top:1rem; color:inherit; font-size:.8rem; text-underline-offset:4px; }
+</style>
 </head>
 
 <body class="is-locked">
@@ -2149,6 +2155,20 @@
         </div>
       </div>
     
+      <div class="section-shell wedding-video">
+        <div class="wedding-video__frame">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/ReACOSX9SYo?playsinline=1&amp;rel=0"
+            title="Video pernikahan Dhanan dan Berliana"
+            width="405" height="720"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+        <a class="wedding-video__link" href="https://youtube.com/shorts/ReACOSX9SYo" target="_blank" rel="noopener noreferrer">Tonton di YouTube</a>
+      </div>
+
       <div class="section-shell album-closing-message reveal">
         <p class="album-closing-message__copy">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
         <p class="album-closing-message__prayer">Om Shanti, Shanti, Shanti Om</p>
