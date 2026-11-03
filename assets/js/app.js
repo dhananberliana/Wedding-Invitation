@@ -1451,10 +1451,11 @@ function setupInlineAlbumSlider() {
 function setupAlbumCoverPreview() {
   const album = $('.story-inline-album.story-stack-card');
   if (!album) return;
-  const slider = $('.story-album-dropdown > [data-album-slider]', album);
-  if (!slider) return;
-  const photoCount = Number(slider.dataset.photoCount);
-  const photos = $$('.album-auto-slider__slide img', slider).slice(0, photoCount);
+  const baliPhotos = $$('.story-album-dropdown > .story-inline-gallery img', album);
+  const aquariumPhotos = $$('.moments-together__gallery img', album);
+  const photos = baliPhotos.flatMap((photo, index) =>
+    aquariumPhotos.length ? [photo, aquariumPhotos[index % aquariumPhotos.length]] : [photo]
+  );
   const front = $('.story-stack-card__photo--front img', album);
   const middle = $('.story-stack-card__photo--middle img', album);
   const back = $('.story-stack-card__photo--back img', album);
