@@ -2217,6 +2217,44 @@
         <a class="wedding-video__link" href="https://youtube.com/shorts/1AHSivban4c" target="_blank" rel="noopener noreferrer">Tonton di YouTube</a>
       </div>
 
+      <section class="section-shell" id="guest-album" data-endpoint="https://script.google.com/macros/s/AKfycbzwnehgfa-cXX5WAn4ExFrc0jefnR15YRi4vI8Tv3qcUHFkizAGBcYfzLgYl9UrjJEj/exec" aria-labelledby="guest-album-title" hidden>
+        <div class="guest-album-card">
+        <p class="story-stack-card__eyebrow">Captured</p>
+        <h2 class="story-stack-card__title" id="guest-album-title">Momen dari Tamu</h2>
+        <p>Abadikan momen hari ini dan bagikan ke album bersama, Quota maksimal 10 foto per nama penerima.</p>
+        <form>
+          <button type="submit" hidden>Coba Lagi</button>
+        </form>
+        <p role="status"></p>
+        <details class="guest-album-dropdown">
+          <summary>
+            <img data-guest-cover alt="" hidden>
+            <span>Ketuk untuk melihat Momen Tamu</span>
+          </summary>
+          <div data-gallery aria-label="Foto dari tamu">Memuat foto…</div>
+        </details>
+        </div>
+      </section>
+      <style>
+        #guest-album { text-align: center; margin-block: 2rem; }
+        #guest-album .guest-album-card { width: min(100%, 28rem); box-sizing: border-box; margin-inline: auto; padding: clamp(1rem, 4vw, 1.75rem); border: 1px solid rgba(255,255,255,.45); border-radius: 1.25rem; background: rgba(255,255,255,.18); }
+        #guest-album .guest-album-card > [role="status"] { margin: .75rem 0 1rem; }
+        #guest-album form { display: grid; justify-items: center; gap: .75rem; margin-block: 1rem; }
+        .guest-album-camera { position: fixed; z-index: 700; right: max(1rem, env(safe-area-inset-right)); bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 3.65rem); display: grid; place-items: center; width: 3rem; height: 3rem; padding: 0; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; background: rgba(29,28,26,.86); color: #fff; cursor: pointer; }
+        .guest-album-camera[hidden], html.is-initial-loading .guest-album-camera, body.is-locked .guest-album-camera { display: none; }
+        .guest-album-camera span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+        .guest-album-camera:focus-within { outline: 2px solid currentColor; outline-offset: 3px; }
+        .guest-album-camera input { margin: 0; position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+        #guest-album img { max-width: 100%; border-radius: .75rem; }
+        #guest-album summary { display: grid; justify-items: center; gap: .65rem; width: min(100%, 26rem); margin-inline: auto; padding: .7rem; border: 1px solid rgba(255,255,255,.45); border-radius: 1rem; background: rgba(255,255,255,.18); cursor: pointer; list-style: none; }
+        #guest-album summary::-webkit-details-marker { display: none; }
+        #guest-album [data-guest-cover] { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+        #guest-album summary span { padding: .65rem 1rem; border-radius: .75rem; background: rgba(29,28,26,.86); color: #fff; }
+        #guest-album [data-gallery] { margin-top: 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr)); gap: .75rem; }
+        #guest-album [data-gallery] img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+      </style>
+      <script type="module" src="assets/js/guest-album.js?v=guest-slideshow-5"></script>
+
       <div class="section-shell album-closing-message reveal">
         <p class="album-closing-message__copy">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
         <p class="album-closing-message__prayer">Om Shanti, Shanti, Shanti Om</p>
@@ -2286,6 +2324,15 @@
   <!-- =======================================================
        MUSIC
   ======================================================== -->
+
+<label class="guest-album-camera" hidden for="guest-album-photo">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 7h4l2-3h4l2 3h4a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z"/>
+              <circle cx="12" cy="13" r="3.5"/>
+            </svg>
+            <span>Ambil Foto</span>
+            <input id="guest-album-photo" type="file" accept="image/*" capture="environment" required>
+          </label>
 
   <button
     class="music-toggle"
