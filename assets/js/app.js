@@ -1,4 +1,4 @@
-import { WEDDING_CONFIG } from './config.js';
+import { WEDDING_CONFIG } from './config.js?v=event-1400';
 
 import {
   buildGoogleCalendarUrl,
